@@ -26,7 +26,7 @@ import okhttp3.Response;
  * 返回gson对象，ZResponse的代理，处理数据完成后调用ZResponse的成功失败函数
  */
 public class ZResponseProxy<T extends HttpBaseReplyBean> extends GsonResponse<T> {
-    private static final int STATUS_CODE_SUCCESS = 200;
+    private static final String STATUS_CODE_SUCCESS = "success";
 
     private ZResponse<T> zResponse;
 
@@ -62,12 +62,12 @@ public class ZResponseProxy<T extends HttpBaseReplyBean> extends GsonResponse<T>
 
     @Override
     public void onSuccess(Response response, T reply) {
-        if (reply != null && reply.code == STATUS_CODE_SUCCESS) {
+        if (reply != null && STATUS_CODE_SUCCESS.equals(reply.status)) {
             zResponse.onSuccess(response, reply);
         } else if (reply == null) {
             zResponse.onError(-1, "json对象解析失败！");
         } else {
-            zResponse.onError(reply.code, reply.message);
+            zResponse.onError(reply.error, reply.status);
         }
     }
 

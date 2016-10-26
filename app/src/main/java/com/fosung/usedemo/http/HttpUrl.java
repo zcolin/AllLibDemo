@@ -13,8 +13,6 @@ package com.fosung.usedemo.http;
  */
 public class HttpUrl {
 
-    public static final String URLHEAD_HTTP = "http://139.129.13.55:8080/service.php/";
-
-    public static final String URL_BAIDU_TEST = "http://baidu.com";
+    public static final String URL_BAIDU_TEST = "http://api.map.baidu.com/telematics/v3/weather?location=%E6%B5%8E%E5%8D%97&output=json&ak=11ffd27d38deda622f51c9d314d46b17";
 
 }

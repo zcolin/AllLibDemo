@@ -5,9 +5,9 @@
 
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
     <!-- 操作摄像头 -->
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <!-- 录音 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <!-- 手机震动 -->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- 获取手机状态 -->
@@ -50,7 +50,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="GlideModule"
-            android:value=".imageloader.SimpleGlideModule"/>
+            android:value="com.fosung.frame.imageloader.SimpleGlideModule"/>
 
         <activity android:name="com.fosung.usedemo.amodule.init.InitActivity">
             <intent-filter>
@@ -60,17 +60,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.fosung.usedemo.demo.demo_mvp.activity.MainActivity"
+            android:name=".amodule.main.activity.MainActivity"
             android:launchMode="singleTask"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.DemoToolBarActivity"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.DemoSecondLevelActivity"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.DemoMvpActivity"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.DemoDesignSupportActivity"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.DemoDesignSupportActivity1"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.videorecord.DemoRecordVideoActivity"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.videorecord.DemoRecordVideoPreviewActivity"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.DemoQrCodeScanActivity"/>
-        <activity android:name="com.fosung.usedemo.demo.demo_mvp.activity.DemoImageSelectorActivity"/>
+        <activity android:name=".amodule.demo_view.activity.DesignSupportActivity"/>
+        <activity android:name=".amodule.demo_view.activity.DesignSupportActivity1"/>
+        <activity android:name=".amodule.demo_video.RecordVideoActivity"/>
+        <activity android:name=".amodule.demo_video.RecordVideoPreviewActivity"/>
+        <activity android:name=".amodule.demo_video.QrCodeScanActivity"/>
+        <activity android:name=".amodule.demo_image.ImageSelectorActivity"/>
+        <activity android:name=".amodule.demo_image.ImageUtilActivity"/>
+        <activity android:name=".amodule.demo_view.activity.WebViewActivity"/>
+        <activity android:name=".amodule.demo_view.activity.PassDataActivity"/>
+        <activity android:name=".amodule.demo_view.activity.PassDataActivity1"/>
+        <activity android:name=".amodule.demo_view.activity.DialogActivity"/>
+        <activity android:name=".amodule.demo_view.activity.OtherViewActivity"/>
+        <activity android:name=".amodule.demo_db.DbDemoActivity"/>
+        <activity android:name=".amodule.demo_http.HttpDemoActivity"/>
         
     </application>
 

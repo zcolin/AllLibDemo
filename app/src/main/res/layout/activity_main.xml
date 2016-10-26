@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.fosung.usedemo.views.ZTabView
+    <com.fosung.gui.ZTabView
         android:id="@+id/view_tabview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,12 +13,12 @@
 
     <include
         android:id="@+id/divider"
-        layout="@layout/view_divider"
+        layout="@layout/gui_view_divider"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_above="@id/view_tabview"/>
 
-    <com.fosung.usedemo.views.ZViewPager
+    <com.fosung.gui.ZViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
