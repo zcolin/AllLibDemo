@@ -2,7 +2,7 @@
 <manifest package="com.fosung.usedemo"
           xmlns:android="http://schemas.android.com/apk/res/android"
     >
-
+    
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
     <!-- 操作摄像头 -->
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -76,6 +76,7 @@
         <activity android:name=".amodule.demo_view.activity.OtherViewActivity"/>
         <activity android:name=".amodule.demo_db.DbDemoActivity"/>
         <activity android:name=".amodule.demo_http.HttpDemoActivity"/>
+        <activity android:name=".amodule.demo_video.EasyPRActivity"/>
         
     </application>
 

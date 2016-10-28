@@ -8,6 +8,7 @@
 package com.fosung.usedemo.amodule.main.fragment;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.fosung.usedemo.amodule.demo_video.EasyPRActivity;
 import com.fosung.frame.app.BaseFrameLazyLoadFrag;
 import com.fosung.frame.permission.PermissionHelper;
 import com.fosung.frame.permission.PermissionsResultAction;
@@ -59,6 +61,7 @@ public class VideoImageFragment extends BaseFrameLazyLoadFrag implements View.On
         listButton.add(addButton("扫码"));
         listButton.add(addButton("图片选择"));
         listButton.add(addButton("图片加载"));
+        listButton.add(addButton("车牌识别"));
 
         for (Button btn : listButton) {
             btn.setOnClickListener(this);
@@ -105,6 +108,19 @@ public class VideoImageFragment extends BaseFrameLazyLoadFrag implements View.On
             ActivityUtil.startActivity(mActivity, ImageSelectorActivity.class);
         }else if (v == listButton.get(3)) {
             ActivityUtil.startActivity(mActivity, ImageUtilActivity.class);
+        }else if (v == listButton.get(4)) {
+            PermissionHelper.requestCameraPermission(this, new PermissionsResultAction() {
+                @Override
+                public void onGranted() {
+                    Intent intent = new Intent(mActivity, EasyPRActivity.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onDenied(String permission) {
+                    ToastUtil.toastShort("请赋予本程序拍照权限！");
+                }
+            });
         }
     }
 }
