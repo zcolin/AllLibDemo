@@ -125,6 +125,9 @@ public class ZAlert extends ZDlg implements OnClickListener {
 
 
     private void initRes() {
+        TextView tvCancel = getView(R.id.dialog_cancelbutton);
+        tvCancel.setVisibility(View.GONE);
+        
         tvOK = getView(R.id.dialog_okbutton);
         tvMessage = getView(R.id.dialog_message);
         tvTitle = getView(R.id.dialog_tilte);
