@@ -246,6 +246,13 @@ public class PullRecyclerView extends LinearLayout {
         return mSwipeRefreshLayout;
     }
 
+    /**
+     * 设置是否处理冲突（如Viewpager），默认不处理
+     */
+    public void setIsProceeConflict(boolean isProceeConflict) {
+        mSwipeRefreshLayout.setIsProceeConflict(isProceeConflict);
+    }
+    
     public void setRefreshing(final boolean isRefreshing) {
         handler.post(new Runnable() {
 

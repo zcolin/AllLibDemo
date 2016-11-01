@@ -41,7 +41,7 @@ public class ZWebView extends BridgeWebView {
     //网页属性设置
     @SuppressLint({"SetJavaScriptEnabled"})
     private void initWebView() {
-        webViewClient = new ZWebViewClient(this);
+        webViewClient = new ZWebViewClient();
         webChromeClient = new ZWebChromeClient();
         setWebViewClient(webViewClient);
         setWebChromeClient(webChromeClient);

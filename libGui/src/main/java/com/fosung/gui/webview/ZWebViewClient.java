@@ -9,7 +9,6 @@ package com.fosung.gui.webview;
 import android.graphics.Bitmap;
 import android.webkit.WebView;
 
-import com.fosung.frame.jsbridge.BridgeWebView;
 import com.fosung.frame.jsbridge.BridgeWebViewClient;
 import com.fosung.frame.utils.ToastUtil;
 
@@ -17,10 +16,6 @@ import com.fosung.frame.utils.ToastUtil;
  * WebViewClient主要帮助WebView处理各种通知、请求事件的.
  */
 public class ZWebViewClient extends BridgeWebViewClient {
-
-    public ZWebViewClient(BridgeWebView webView) {
-        super();
-    }
 
     @Override
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {

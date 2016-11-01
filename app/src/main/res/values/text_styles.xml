@@ -1,3 +1,12 @@
+<!--
+  ~ **********************************************************
+  ~   author   colin
+  ~   company  fosung
+  ~   email    wanglin2046@126.com
+  ~   date     16-11-1 下午2:39
+  ~ *********************************************************
+  -->
+
 <resources>
 
     <style name="TextStyle_White_Small" parent="@android:style/Widget.TextView">
