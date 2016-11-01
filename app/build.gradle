@@ -82,7 +82,7 @@ dependencies {
  
     compile 'com.github.zcolin:zcolin_IjkPlayerLib:1.0.0'//视频播放
     compile 'com.github.zcolin:zcolin_EasyPRLib:1.0.1'//车牌识别
-    compile 'com.github.zcolin:zcolin_FrameTemplateLib:1.0.1'//程序框架 
+    compile 'com.github.zcolin:zcolin_FrameTemplateLib:1.0.2'//程序框架 
     compile 'com.github.zcolin:zcolin_BarcodeScannerLib:1.0.0'//二维码扫描
     compile 'com.github.zcolin:zcolin_MultiImageSelectorLib:1.0.0'//多图选择    
     compile project(path: ':libGui')
