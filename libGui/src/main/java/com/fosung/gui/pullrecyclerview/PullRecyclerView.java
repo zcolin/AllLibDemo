@@ -1,10 +1,10 @@
 /*
- * **********************************************************
+ * *********************************************************
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     16-10-13 上午11:45
- * *********************************************************
+ *   date     16-11-3 下午2:03
+ * ********************************************************
  */
 
 package com.fosung.gui.pullrecyclerview;
@@ -59,7 +59,7 @@ public class PullRecyclerView extends LinearLayout {
     private Context                              mContext;
     private TextView                             loadMoreText;
     private LinearLayout                         loadMoreLayout;
-    private PullRecyclerView.AdapterDataObserver mEmptyDataObserver;
+    private AdapterDataObserver mEmptyDataObserver;
     private boolean                              hasRegisterEmptyObserver;
     private Handler handler = new Handler(Looper.getMainLooper());
 
@@ -177,7 +177,7 @@ public class PullRecyclerView extends LinearLayout {
         if (adapter != null) {
             mRecyclerView.setAdapter(adapter);
             if (mEmptyDataObserver == null) {
-                mEmptyDataObserver = new PullRecyclerView.AdapterDataObserver();
+                mEmptyDataObserver = new AdapterDataObserver();
             }
             adapter.registerAdapterDataObserver(mEmptyDataObserver);
             hasRegisterEmptyObserver = true;
@@ -356,15 +356,24 @@ public class PullRecyclerView extends LinearLayout {
         setRefreshing(false);
 
         isLoadMore = false;
-        mFooterView.animate()
-                   .translationY(mFooterView.getHeight())
-                   .setDuration(300)
-                   .setInterpolator(new AccelerateDecelerateInterpolator())
-                   .start();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                mFooterView.animate()
+                           .translationY(mFooterView.getHeight())
+                           .setDuration(300)
+                           .setInterpolator(new AccelerateDecelerateInterpolator())
+                           .start();
+            }
+        });
+
     }
 
-    public void setNoMore(boolean noMore) {
-        setPushRefreshEnable(false);
+    public void setNoMore(boolean isNoMore) {
+        if (mRecyclerView.getAdapter() != null && mRecyclerView.getAdapter() instanceof BaseRecyclerAdapter) {
+            ((BaseRecyclerAdapter) mRecyclerView.getAdapter()).setNoMoreVisibility(mContext, isNoMore);
+        }
+        setPushRefreshEnable(!isNoMore);
     }
 
     public void setOnPullLoadMoreListener(PullLoadMoreListener listener) {

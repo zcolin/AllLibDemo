@@ -9,8 +9,9 @@
 
 package com.fosung.usedemo.http.response;
 
+import android.app.Activity;
+
 import com.fosung.frame.app.BaseApp;
-import com.fosung.frame.app.BaseFrameActivity;
 import com.fosung.frame.http.response.GsonResponse;
 import com.fosung.frame.utils.LogUtil;
 import com.fosung.frame.utils.NetworkUtil;
@@ -35,12 +36,12 @@ public class ZResponseProxy<T extends HttpBaseReplyBean> extends GsonResponse<T>
         this.zResponse = zResponse;
     }
 
-    ZResponseProxy(Class<T> cls, ZResponse<T> zResponse, BaseFrameActivity barActy) {
+    ZResponseProxy(Class<T> cls, ZResponse<T> zResponse, Activity barActy) {
         super(cls, barActy);
         this.zResponse = zResponse;
     }
 
-    ZResponseProxy(Class<T> cls, ZResponse<T> zResponse, BaseFrameActivity barActy, String barMsg) {
+    ZResponseProxy(Class<T> cls, ZResponse<T> zResponse, Activity barActy, String barMsg) {
         super(cls, barActy, barMsg);
         this.zResponse = zResponse;
     }

@@ -1,14 +1,15 @@
 /*
- * **********************************************************
+ * *********************************************************
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     16-10-11 下午3:41
- * *********************************************************
+ *   date     16-11-3 下午2:03
+ * ********************************************************
  */
 package com.fosung.gui.pullrecyclerview;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -16,6 +17,9 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.fosung.gui.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +28,16 @@ import java.util.List;
  * 可以设置Header并且封装了基本方法的的Adapter
  */
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.CommonHolder> {
-    public static final int TYPE_NORMAL = 100;
-    public static final int TYPE_HEADER = 101;
-    public static final int TYPE_FOOTER = 102;
+    public static final int TYPE_NORMAL        = 100;
+    public static final int TYPE_HEADER        = 101;
+    public static final int TYPE_FOOTER        = 102;
+    public static final int TYPE_NOMORE_FOOTER = 103;
 
     private ArrayList<T> listData = new ArrayList<>();
-    private View                   headerView;
-    private View                   footerView;
+    private View headerView;
+    private View footerView;
+    private View noMoreView;
+    private boolean isShowNoMore = true;
     private OnItemClickListener<T> itemClickListener;
 
     public void setOnItemClickListener(OnItemClickListener<T> li) {
@@ -65,6 +72,60 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         this.headerView = LayoutInflater.from(context)
                                         .inflate(footerViewLayoutId, null);
         this.notifyDataSetChanged();
+    }
+
+    /**
+     * 设置“已加载全部”为其他文字
+     */
+    public void setNoMoreText(Context context, String text) {
+        if (isShowNoMore) {
+            if (noMoreView == null) {
+                this.noMoreView = LayoutInflater.from(context)
+                                                .inflate(R.layout.gui_view_pullrecycler_nomore, null);
+                this.notifyDataSetChanged();
+            }
+
+            if (noMoreView instanceof TextView) {
+                ((TextView) noMoreView).setText(text);
+            }
+        }
+    }
+
+    /**
+     * 设置“已加载全部”为的字体颜色
+     */
+    public void setNoMoreTextColor(Context context, int color) {
+        if (isShowNoMore) {
+            if (noMoreView == null) {
+                this.noMoreView = LayoutInflater.from(context)
+                                                .inflate(R.layout.gui_view_pullrecycler_nomore, null);
+                this.notifyDataSetChanged();
+            }
+
+            if (noMoreView instanceof TextView) {
+                ((TextView) noMoreView).setTextColor(color);
+            }
+        }
+    }
+
+    void setNoMoreVisibility(Context context, boolean isVisible) {
+        if (isShowNoMore) {
+            if (noMoreView == null) {
+                this.noMoreView = LayoutInflater.from(context)
+                                                .inflate(R.layout.gui_view_pullrecycler_nomore, null);
+                this.notifyDataSetChanged();
+            }
+
+            noMoreView.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    public void setNoMoreView(@NonNull View view) {
+        this.noMoreView = view;
+    }
+
+    public void setIsShowNoMore(boolean isShowNoMore) {
+        this.isShowNoMore = isShowNoMore;
     }
 
     /**
@@ -112,8 +173,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     public int getItemViewType(int position) {
         if (position == 0 && headerView != null) {
             return TYPE_HEADER;
-        } else if (position == getItemCount() - 1 && footerView != null) {
+        } else if (((isShowNoMore && position == getItemCount() - 2) || (!isShowNoMore && position == getItemCount() - 1))
+                && footerView != null) {
             return TYPE_FOOTER;
+        } else if (position == getItemCount() - 1 && isShowNoMore) {
+            return TYPE_NOMORE_FOOTER;
         }
         return TYPE_NORMAL;
     }
@@ -127,6 +191,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         int count = listData.size();
         count += headerView == null ? 0 : 1;
         count += footerView == null ? 0 : 1;
+        count += isShowNoMore ? 1 : 0;
         return count;
     }
 
@@ -139,10 +204,19 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
 
     @Override
     public CommonHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
-        if (headerView != null && viewType == TYPE_HEADER)
+        if (headerView != null && viewType == TYPE_HEADER) {
             return new CommonHolder((RecyclerView) parent, headerView);
-        if (footerView != null && viewType == TYPE_FOOTER)
+        } else if (footerView != null && viewType == TYPE_FOOTER) {
             return new CommonHolder((RecyclerView) parent, footerView);
+        } else if (viewType == TYPE_NOMORE_FOOTER) {
+            if (noMoreView == null) {
+                this.noMoreView = LayoutInflater.from(parent.getContext())
+                                                .inflate(R.layout.gui_view_pullrecycler_nomore, null);
+            }
+            noMoreView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            noMoreView.setVisibility(isShowNoMore ? View.VISIBLE : View.GONE);
+            return new CommonHolder((RecyclerView) parent, noMoreView);
+        }
 
         View v = LayoutInflater.from(parent.getContext())
                                .inflate(getItemLayoutId(viewType), parent, false);
@@ -152,10 +226,14 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     @Override
     public void onBindViewHolder(final CommonHolder viewHolder, int position) {
         int viewType = getItemViewType(position);
-        if (viewType == TYPE_HEADER)
+        if (viewType == TYPE_HEADER) {
             return;
-        if (viewType == TYPE_FOOTER)
+        } else if (viewType == TYPE_FOOTER) {
             return;
+        } else if (viewType == TYPE_NOMORE_FOOTER) {
+            return;
+        }
+
         final int pos = getRealPosition(position);
         final T data = listData.get(pos);
         if (itemClickListener != null) {
