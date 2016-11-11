@@ -13,7 +13,6 @@ import com.fosung.frame.http.okhttp.OkHttpUtils;
 import com.fosung.frame.http.response.FileResponse;
 import com.fosung.frame.http.response.StringResponse;
 import com.fosung.usedemo.http.entity.HttpBaseReplyBean;
-import com.fosung.usedemo.http.entity.HttpCommonReply;
 import com.fosung.usedemo.http.response.ZResponse;
 
 import java.io.File;
@@ -277,7 +276,7 @@ public class HttpUtil {
     /**
      * 上传文件
      */
-    public static String uploadFile(String url, String key, File file, ZResponse<HttpCommonReply> response) {
+    public static <T extends HttpBaseReplyBean> String uploadFile(String url, String key, File file, ZResponse<T> response) {
         String cancelTag = UUID.randomUUID()
                                .toString();
         OkHttpUtils.post()
@@ -292,7 +291,7 @@ public class HttpUtil {
     /**
      * 上传文件
      */
-    public static String uploadFile(String url, Map<String, String> contentParams, Map<String, File> fileParams, ZResponse<HttpCommonReply> response) {
+    public static <T extends HttpBaseReplyBean> String uploadFile(String url, Map<String, String> contentParams, Map<String, File> fileParams, ZResponse<T> response) {
         String cancelTag = UUID.randomUUID()
                                .toString();
         OkHttpUtils.post()
@@ -309,7 +308,7 @@ public class HttpUtil {
     /**
      * 上传文件
      */
-    public static String uploadFile(String url, Map<String, String> contentParams, String fileKey, File fileValue, ZResponse<HttpCommonReply> response) {
+    public static <T extends HttpBaseReplyBean> String uploadFile(String url, Map<String, String> contentParams, String fileKey, File fileValue, ZResponse<T> response) {
         String cancelTag = UUID.randomUUID()
                                .toString();
         OkHttpUtils.post()
@@ -326,7 +325,7 @@ public class HttpUtil {
     /**
      * 上传文件
      */
-    public static String uploadFile(String url, Map<String, File> contentParams, ZResponse<HttpCommonReply> response) {
+    public static <T extends HttpBaseReplyBean> String uploadFile(String url, Map<String, File> contentParams, ZResponse<T> response) {
         String cancelTag = UUID.randomUUID()
                                .toString();
         OkHttpUtils.post()
@@ -341,7 +340,7 @@ public class HttpUtil {
     /**
      * 上传文件
      */
-    public static String uploadFile(String url, String fileKey, File[] fileValue, ZResponse<HttpCommonReply> response) {
+    public static <T extends HttpBaseReplyBean> String uploadFile(String url, String fileKey, File[] fileValue, ZResponse<T> response) {
         String cancelTag = UUID.randomUUID()
                                .toString();
         OkHttpUtils.post()
@@ -356,7 +355,7 @@ public class HttpUtil {
     /**
      * 上传文件
      */
-    public static String uploadFile(String url, Map<String, String> contentParams, String fileKey, File[] fileValue, ZResponse<HttpCommonReply> response) {
+    public static <T extends HttpBaseReplyBean> String uploadFile(String url, Map<String, String> contentParams, String fileKey, File[] fileValue, ZResponse<T> response) {
         String cancelTag = UUID.randomUUID()
                                .toString();
         OkHttpUtils.post()
@@ -388,7 +387,7 @@ public class HttpUtil {
     /**
      * 上传文件
      */
-    public static String uploadFileWithHeadr(String url, LinkedHashMap<String, String> headers, Map<String, File> contentParams, ZResponse<HttpCommonReply> response) {
+    public static <T extends HttpBaseReplyBean> String uploadFileWithHeadr(String url, LinkedHashMap<String, String> headers, Map<String, File> contentParams, ZResponse<T> response) {
         String cancelTag = UUID.randomUUID()
                                .toString();
         OkHttpUtils.post()
