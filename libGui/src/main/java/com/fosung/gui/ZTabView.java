@@ -47,6 +47,7 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
     private ZTabListener         tabListener;                    //tab切换时回调接口
     private OnPageChangeListener pagerChangeListener;            //ViewPager切换时回调
     private ViewPager            pager;                            //盛放内容的ViewPager
+    private Bitmap               tabLineBitmap;
     private Matrix matrix = new Matrix();
     private Context context;
 
@@ -78,7 +79,6 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
      */
     public void addZTab(ZTab tab) {
         llTabLay.addView(tab);
-        tabWidth = dm.widthPixels / llTabLay.getChildCount();
         tab.setOnClickListener(this);
         tab.tabIndex = llTabLay.getChildCount() - 1;
         tab.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f));
@@ -88,6 +88,13 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
             llTabLay.getChildAt(0)
                     .setSelected(true);
         }
+
+        tabWidth = dm.widthPixels / llTabLay.getChildCount();
+        if (tabMode == TAB_MODE_LINE && tabLineBitmap != null) {
+            int width = tabWidth > tabLineBitmap.getWidth() ? tabLineBitmap.getWidth() : tabWidth;
+            Bitmap b = Bitmap.createBitmap(tabLineBitmap, 0, 0, width, tabLineBitmap.getHeight());//设置tab的宽度和高度
+            tabLine.setImageBitmap(b);
+        }
     }
 
     /**
@@ -96,13 +103,14 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
     public ZTab getNewTextTab(String text) {
         return new ZTab(context, text);
     }
+
     /**
      * 获取新建的Tab对象
      */
     public ZTab getNewIconTab(int stateListDrawable, String text) {
         return new ZTab(context, stateListDrawable, text);
     }
-    
+
     /**
      * 获取新建的Tab对象
      */
@@ -134,17 +142,13 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
         LayoutInflater.from(context)
                       .inflate(R.layout.gui_view_tabview, this);
         llTabLay = (LinearLayout) findViewById(R.id.ll_tabview);
-        tabLine = (ImageView) findViewById(R.id.iv_tabivew);
+        tabLine = (ImageView) findViewById(R.id.iv_tabview);
         ((Activity) context).getWindowManager()
                             .getDefaultDisplay()
                             .getMetrics(dm);
 
-        if (tabLineRes != 0) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), tabLineRes);
-            int width = tabWidth > bitmap.getWidth() ? bitmap.getWidth() : tabWidth;
-            Bitmap b = Bitmap.createBitmap(bitmap, 0, 0, width, bitmap.getHeight());//设置tab的宽度和高度
-            tabLine.setImageBitmap(b);
-        }
+        tabLineRes = tabLineRes == 0 ? R.drawable.gui_bg_view_tabline : tabLineRes;
+        tabLineBitmap = BitmapFactory.decodeResource(getResources(), tabLineRes);
     }
 
     /**
@@ -300,6 +304,7 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
             this.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
             setText(text);
         }
+
         private ZTab(Context context, int stateListDrawable, String text) {
             super(context);
             this.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
