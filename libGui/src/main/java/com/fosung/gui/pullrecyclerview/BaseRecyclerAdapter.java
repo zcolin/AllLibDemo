@@ -37,6 +37,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     private View headerView;
     private View footerView;
     private View noMoreView;
+    private boolean isNoMoreVisible = false;
     private boolean isShowNoMore = true;
     private OnItemClickListener<T> itemClickListener;
 
@@ -115,8 +116,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
                                                 .inflate(R.layout.gui_view_pullrecycler_nomore, null);
                 this.notifyDataSetChanged();
             }
-
             noMoreView.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+            isNoMoreVisible = isVisible;
         }
     }
 
@@ -214,7 +215,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
                                                 .inflate(R.layout.gui_view_pullrecycler_nomore, null);
             }
             noMoreView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            noMoreView.setVisibility(isShowNoMore ? View.VISIBLE : View.GONE);
+            noMoreView.setVisibility(isShowNoMore && isNoMoreVisible ? View.VISIBLE : View.GONE);
             return new CommonHolder((RecyclerView) parent, noMoreView);
         }
 
