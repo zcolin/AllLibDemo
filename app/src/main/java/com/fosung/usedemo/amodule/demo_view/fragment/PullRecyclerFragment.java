@@ -75,6 +75,7 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
         //显示下拉刷新
         mPullRecyclerView.setLinearLayout();
 
+        mPullRecyclerView.setPullRefreshEnable(false);
         mPullRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreListener());
         mPullRecyclerView.setEmptyView(LayoutInflater.from(mActivity)
                                                      .inflate(R.layout.view_pullrecycler_empty, null));//setEmptyView

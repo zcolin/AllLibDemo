@@ -20,6 +20,7 @@ import com.fosung.frame.utils.ActivityUtil;
 import com.fosung.usedemo.R;
 import com.fosung.usedemo.amodule.demo_view.activity.DesignSupportActivity;
 import com.fosung.usedemo.amodule.demo_view.activity.DesignSupportActivity1;
+import com.fosung.usedemo.amodule.demo_view.activity.DesignSupportActivity2;
 import com.fosung.usedemo.amodule.demo_view.activity.DialogActivity;
 import com.fosung.usedemo.amodule.demo_view.activity.OtherViewActivity;
 import com.fosung.usedemo.amodule.demo_view.activity.PassDataActivity;
@@ -58,6 +59,7 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
         listButton.add(addButton("回传数据的Activity"));
         listButton.add(addButton("DemoDesignSupportActivity"));
         listButton.add(addButton("DemoDesignSupportActivity1"));
+        listButton.add(addButton("DemoDesignSupportActivity2"));
         listButton.add(addButton("WebViewDemo"));
         listButton.add(addButton("DialogDemo"));
         listButton.add(addButton("其他View示例"));
@@ -86,11 +88,13 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
             ActivityUtil.startActivity(mActivity, DesignSupportActivity.class);
         } else if (v == listButton.get(2)) {
             ActivityUtil.startActivity(mActivity, DesignSupportActivity1.class);
-        }else if (v == listButton.get(3)) {
-            ActivityUtil.startActivity(mActivity, WebViewActivity.class);
+        } else if (v == listButton.get(3)) {
+            ActivityUtil.startActivity(mActivity, DesignSupportActivity2.class);
         }else if (v == listButton.get(4)) {
-            ActivityUtil.startActivity(mActivity, DialogActivity.class);
+            ActivityUtil.startActivity(mActivity, WebViewActivity.class);
         }else if (v == listButton.get(5)) {
+            ActivityUtil.startActivity(mActivity, DialogActivity.class);
+        }else if (v == listButton.get(6)) {
             ActivityUtil.startActivity(mActivity, OtherViewActivity.class);
         }
     }

@@ -64,6 +64,7 @@
             android:launchMode="singleTask"/>
         <activity android:name=".amodule.demo_view.activity.DesignSupportActivity"/>
         <activity android:name=".amodule.demo_view.activity.DesignSupportActivity1"/>
+        <activity android:name=".amodule.demo_view.activity.DesignSupportActivity2"/>
         <activity android:name=".amodule.demo_video.RecordVideoActivity"/>
         <activity android:name=".amodule.demo_video.RecordVideoPreviewActivity"/>
         <activity android:name=".amodule.demo_video.QrCodeScanActivity"/>
