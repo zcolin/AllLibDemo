@@ -27,6 +27,7 @@ import com.fosung.usedemo.amodule.demo_image.ImageSelectorActivity;
 import com.fosung.usedemo.amodule.demo_image.ImageUtilActivity;
 import com.fosung.usedemo.amodule.demo_video.QrCodeScanActivity;
 import com.fosung.usedemo.amodule.demo_video.RecordVideoActivity;
+import com.fosung.usedemo.amodule.demo_video.ijkplayer.NavigationActivity;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,7 @@ public class VideoImageFragment extends BaseFrameLazyLoadFrag implements View.On
 
     private void init() {
         llContent = getView(R.id.ll_content);
+        listButton.add(addButton("ijk视频播放"));
         listButton.add(addButton("视频录制Demo"));
         listButton.add(addButton("扫码"));
         listButton.add(addButton("图片选择"));
@@ -80,7 +82,9 @@ public class VideoImageFragment extends BaseFrameLazyLoadFrag implements View.On
 
     @Override
     public void onClick(View v) {
-        if (v == listButton.get(0)) {
+        if(v == listButton.get(0)){
+            ActivityUtil.startActivity(mActivity, NavigationActivity.class);
+        }else if (v == listButton.get(1)) {
             PermissionHelper.requestPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO}, new PermissionsResultAction() {
                 @Override
                 public void onGranted() {
@@ -92,7 +96,7 @@ public class VideoImageFragment extends BaseFrameLazyLoadFrag implements View.On
                     ToastUtil.toastShort("请授予本程序拍照和录音权限!");
                 }
             });
-        } else if (v == listButton.get(1)) {
+        } else if (v == listButton.get(2)) {
             PermissionHelper.requestPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.VIBRATE}, new PermissionsResultAction() {
                 @Override
                 public void onGranted() {
@@ -104,11 +108,11 @@ public class VideoImageFragment extends BaseFrameLazyLoadFrag implements View.On
                     ToastUtil.toastShort("请授予本程序拍照和震动权限!");
                 }
             });
-        } else if (v == listButton.get(2)) {
+        } else if (v == listButton.get(3)) {
             ActivityUtil.startActivity(mActivity, ImageSelectorActivity.class);
-        }else if (v == listButton.get(3)) {
-            ActivityUtil.startActivity(mActivity, ImageUtilActivity.class);
         }else if (v == listButton.get(4)) {
+            ActivityUtil.startActivity(mActivity, ImageUtilActivity.class);
+        }else if (v == listButton.get(5)) {
             PermissionHelper.requestCameraPermission(this, new PermissionsResultAction() {
                 @Override
                 public void onGranted() {

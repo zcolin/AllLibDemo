@@ -33,7 +33,7 @@ public class ZDlg extends Dialog {
         super(context, R.style.style_dialog);
         this.context = context;
         setContentView(layResID);
-        setLayout((int) (ScreenUtil.getScreenWidth(context) / 4 * 3), 0);
+        setLayout(ScreenUtil.getScreenWidth(context) / 4 * 3, 0);
     }
 
     /**

@@ -2,7 +2,7 @@
 <manifest package="com.fosung.usedemo"
           xmlns:android="http://schemas.android.com/apk/res/android"
     >
-    
+
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
     <!-- 操作摄像头 -->
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -78,7 +78,19 @@
         <activity android:name=".amodule.demo_db.DbDemoActivity"/>
         <activity android:name=".amodule.demo_http.HttpDemoActivity"/>
         <activity android:name=".amodule.demo_video.EasyPRActivity"/>
-        
+        <activity android:name=".amodule.demo_video.ijkplayer.NavigationActivity"/>
+        <activity
+            android:name=".amodule.demo_video.ijkplayer.VideoRecyclerViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".amodule.demo_video.ijkplayer.VideoPlayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensor"/>
+        <activity
+            android:name=".amodule.demo_video.ijkplayer.VideoFragmentPlayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

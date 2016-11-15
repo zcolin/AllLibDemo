@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_live_play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/holo_blue_bright"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="视频直播"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/tv_demand_activity_play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/holo_orange_light"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Activity视频点播"
+        android:textColor="@android:color/white"/>
+
+
+    <TextView
+        android:id="@+id/tv_recycleview_activity_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/holo_red_light"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Activity列表播放"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/tv_demand_fragment_play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/holo_green_light"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Fragment视频点播"
+        android:textColor="@android:color/white"/>
+
+
+    <TextView
+        android:id="@+id/tv_recycleview_fragment_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/holo_purple"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Fragment列表播放"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

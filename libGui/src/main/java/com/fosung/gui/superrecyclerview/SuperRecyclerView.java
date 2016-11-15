@@ -340,11 +340,7 @@ public class SuperRecyclerView extends android.support.v7.widget.RecyclerView {
     }
 
     private boolean isOnTop() {
-        if (mRefreshHeader.getParent() != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return mRefreshHeader.getParent() != null;
     }
 
     public void setOnPullLoadMoreListener(SuperRecyclerView.PullLoadMoreListener listener) {
@@ -556,11 +552,7 @@ public class SuperRecyclerView extends android.support.v7.widget.RecyclerView {
 
         //判断是否是SuperRecyclerView保留的itemViewType
         private boolean isReservedItemViewType(int itemViewType) {
-            if (itemViewType == TYPE_REFRESH_HEADER || itemViewType == TYPE_LOADMORE_FOOTER) {
-                return true;
-            } else {
-                return false;
-            }
+            return itemViewType == TYPE_REFRESH_HEADER || itemViewType == TYPE_LOADMORE_FOOTER;
         }
 
 

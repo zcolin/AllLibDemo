@@ -87,16 +87,11 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        addDataToRecyclerView(setList(page), page == 1);
-                        mPullRecyclerView.setPullLoadMoreCompleted();
-                        if (page == 3) {
-                            mPullRecyclerView.setNoMore(true);
-                        }
-                    }
-                });
+                addDataToRecyclerView(setList(page), page == 1);
+                mPullRecyclerView.setPullLoadMoreCompleted();
+                if (page == 3) {
+                    mPullRecyclerView.setNoMore(true);
+                }
             }
         }, 1000);
     }
@@ -105,7 +100,7 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
         if (mRecyclerViewAdapter == null) {
             mRecyclerViewAdapter = new PullRecyclerAdapter();
             View bannerParent = LayoutInflater.from(mActivity)
-                                         .inflate(R.layout.view_banner, null);
+                                              .inflate(R.layout.view_banner, null);
             banner = (ZBanner) bannerParent.findViewById(R.id.view_banner);
             mRecyclerViewAdapter.setHeaderView(bannerParent);
             mRecyclerViewAdapter.addDatas(list);

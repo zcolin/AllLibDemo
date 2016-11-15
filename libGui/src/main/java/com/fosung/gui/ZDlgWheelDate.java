@@ -351,11 +351,7 @@ public class ZDlgWheelDate extends ZDlg implements View.OnClickListener, OnWheel
      */
     private void calDays(int year, int month) {
         boolean leayyear = false;
-        if (year % 4 == 0 && year % 100 != 0) {
-            leayyear = true;
-        } else {
-            leayyear = false;
-        }
+        leayyear = year % 4 == 0 && year % 100 != 0;
         for (int i = 1; i <= 12; i++) {
             switch (month) {
                 case 1:
@@ -389,6 +385,6 @@ public class ZDlgWheelDate extends ZDlg implements View.OnClickListener, OnWheel
 
 
     public interface OnDateSubmitListener {
-        public void onClick(int year, int month, int day);
+        void onClick(int year, int month, int day);
     }
 }

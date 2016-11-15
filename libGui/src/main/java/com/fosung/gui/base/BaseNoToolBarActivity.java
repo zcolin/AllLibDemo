@@ -18,6 +18,7 @@ import com.fosung.frame.utils.ScreenUtil;
  * 没有ToolBar的Activity, 不需要Toolbar可以继承此类（会空出顶部状态栏区域）
  */
 public class BaseNoToolBarActivity extends BaseFrameActivity {
+    private boolean isPaddingTop = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class BaseNoToolBarActivity extends BaseFrameActivity {
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
 
-        if (isImmerse()) {
+        if (isImmerse() && isPaddingTop) {
             setImmersePaddingTop();
         }
     }
@@ -40,5 +41,12 @@ public class BaseNoToolBarActivity extends BaseFrameActivity {
     protected void setImmersePaddingTop() {
         ViewGroup viewGroup = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
         viewGroup.setPadding(0, ScreenUtil.getStatusBarHeight(this), 0, 0);
+    }
+
+    /**
+     * 是否空出顶部距离
+     */
+    protected void setIsPaddingTop(boolean isPaddingTop) {
+        this.isPaddingTop = isPaddingTop;
     }
 }

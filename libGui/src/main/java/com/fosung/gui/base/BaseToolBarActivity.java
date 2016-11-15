@@ -15,8 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fosung.frame.app.BaseFrameActivity;
@@ -58,24 +60,35 @@ public class BaseToolBarActivity extends BaseFrameActivity {
         setSupportActionBar(toolbar);
     }
 
-    private FrameLayout initToolBar(int layoutResID) {
+    private ViewGroup initToolBar(int layoutResID) {
         View userView = LayoutInflater.from(this)
                                       .inflate(layoutResID, null);
         return initToolBar(userView);
     }
 
-    private FrameLayout initToolBar(View userView) {
-        /*直接创建一个帧布局，作为视图容器的父容器*/
-        FrameLayout contentView = new FrameLayout(this);
+    private ViewGroup initToolBar(View userView) {
+        TypedArray typedArray = getTheme().obtainStyledAttributes(ATTRS);
+        /*获取主题中定义的悬浮标志*/
+        boolean overly = typedArray.getBoolean(0, false);
+        typedArray.recycle();
+
+        /*直接创建一个布局，作为视图容器的父容器*/
+        ViewGroup contentView;
+        if (overly) {
+            contentView = new FrameLayout(this);
+        } else {
+            contentView = new LinearLayout(this);
+            ((LinearLayout) contentView).setOrientation(LinearLayout.VERTICAL);
+        }
 
 		/*将toolbar引入到父容器中*/
         View toolbarLay = LayoutInflater.from(this)
                                         .inflate(R.layout.gui_toolbar, null);
-        FrameLayout.LayoutParams layParam = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        LayoutParams layParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         contentView.addView(toolbarLay, layParam);
 
         //不明原因导致布局向右移动了一些，移动回来
-        //        ((FrameLayout.LayoutParams) toolbarLay.getLayoutParams()).leftMargin = -40;
+        //((ViewGroup.MarginLayoutParams) toolbarLay.getLayoutParams()).leftMargin = -40;
         toolbar = (Toolbar) toolbarLay.findViewById(R.id.id_tool_bar);
         if (isImmerse()) {
             int statusBarHeight = ScreenUtil.getStatusBarHeight(this);
@@ -94,17 +107,7 @@ public class BaseToolBarActivity extends BaseFrameActivity {
         toolbarRightBtn.setOnClickListener(clickListener);
 
 		/*将自定义的布局引入到父容器中*/
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        TypedArray typedArray = getTheme().obtainStyledAttributes(ATTRS);
-        /*获取主题中定义的悬浮标志*/
-        boolean overly = typedArray.getBoolean(0, false);
-        /*获取主题中定义的toolbar的高度*/
-        int toolBarSize = toolbar.getLayoutParams().height;
-        typedArray.recycle();
-        /*如果是悬浮状态，则不需要设置间距*/
-        params.topMargin = overly ? 0 : toolBarSize;
-        contentView.addView(userView, params);
-
+        contentView.addView(userView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         return contentView;
     }
 

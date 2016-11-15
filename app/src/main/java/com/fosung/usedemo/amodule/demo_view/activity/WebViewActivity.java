@@ -36,8 +36,8 @@ public class WebViewActivity extends BaseSecondLevelActivity implements OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
 
-        webView = (ZWebView) getView(R.id.webView);
-        button = (Button) getView(R.id.button);
+        webView = getView(R.id.webView);
+        button = getView(R.id.button);
         button.setOnClickListener(this);
 
         initWebView();

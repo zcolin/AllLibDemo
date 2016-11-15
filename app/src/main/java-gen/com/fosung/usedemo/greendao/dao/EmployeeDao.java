@@ -29,7 +29,7 @@ public class EmployeeDao extends AbstractDao<Employee, Long> {
         public final static Property Group = new Property(2, String.class, "group", false, "GROUP");
         public final static Property Company = new Property(3, String.class, "company", false, "COMPANY");
         public final static Property Date = new Property(4, java.util.Date.class, "date", false, "DATE");
-    };
+    }
 
     private DaoSession daoSession;
 

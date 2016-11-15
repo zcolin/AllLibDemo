@@ -116,8 +116,8 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
 		itemResourceId = itemResource;
 		itemTextResourceId = itemTextResource;
 		this.currentIndex = currentIndex;
-		this.maxsize = maxsize;
-		this.minsize = minsize;
+		AbstractWheelTextAdapter.maxsize = maxsize;
+		AbstractWheelTextAdapter.minsize = minsize;
 
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
