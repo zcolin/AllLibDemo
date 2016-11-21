@@ -49,8 +49,8 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
         <meta-data
-            android:name="GlideModule"
-            android:value="com.fosung.frame.imageloader.SimpleGlideModule"/>
+            android:name="com.fosung.frame.imageloader.SimpleGlideModule"
+            android:value="GlideModule"/>
 
         <activity android:name="com.fosung.usedemo.amodule.init.InitActivity">
             <intent-filter>
