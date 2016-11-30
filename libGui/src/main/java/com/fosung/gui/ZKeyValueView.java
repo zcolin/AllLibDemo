@@ -38,6 +38,7 @@ public class ZKeyValueView extends RelativeLayout {
 
     public ZKeyValueView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        this.context = context;
         LayoutInflater.from(context)
                       .inflate(R.layout.gui_view_keyvalue, this);
         tvKey = (TextView) findViewById(R.id.tv_key);
