@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.fosung.frame.imageloader.ImageLoaderUtils;
+
 
 /**
  * 封装的左边为说明右边为值的控件
@@ -129,5 +131,21 @@ public class ZKeyValueView extends RelativeLayout {
 
     public TextView getTvValue() {
         return tvValue;
+    }
+
+    public ImageView getKeyImage() {
+        return ivImg;
+    }
+
+    public void setKeyImage(String url) {
+        if (url != null) {
+            ivImg.setVisibility(View.VISIBLE);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) context.getResources()
+                                                                                .getDimension(R.dimen.gui_dimens_small);
+            ImageLoaderUtils.displayImage(context, url, ivImg);
+        } else {
+            ivImg.setVisibility(View.GONE);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
+        }
     }
 }
