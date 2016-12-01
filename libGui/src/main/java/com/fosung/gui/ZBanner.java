@@ -68,14 +68,14 @@ public class ZBanner extends FrameLayout {
     private boolean isResumePlay;
     private boolean isAutoPlay;
 
-    private ViewPager             viewPager;
-    private PageChangedListener   onPageChangedListener;
-    private ImageView.ScaleType   scaleType;
-    private LinearLayout          indicator;
-    private OnBannerClickListener listener;
-    private TextView              bannerTitle;
-    private TextView              numIndicator;
-    private Context               context;
+    private ViewPager                      viewPager;
+    private ViewPager.OnPageChangeListener onPageChangedListener;
+    private ImageView.ScaleType            scaleType;
+    private LinearLayout                   indicator;
+    private OnBannerClickListener          listener;
+    private TextView                       bannerTitle;
+    private TextView                       numIndicator;
+    private Context                        context;
 
     private int MAX_VALUE = 10000;
 
@@ -194,7 +194,7 @@ public class ZBanner extends FrameLayout {
     /**
      * 设置图片播放容器的PageChangedlistener
      */
-    public ZBanner setOnPageChangedListener(PageChangedListener onPageChangedListener) {
+    public ZBanner setOnPageChangedListener(ViewPager.OnPageChangeListener onPageChangedListener) {
         this.onPageChangedListener = onPageChangedListener;
         return this;
     }
