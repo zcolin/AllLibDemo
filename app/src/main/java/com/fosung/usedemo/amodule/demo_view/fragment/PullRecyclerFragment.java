@@ -75,10 +75,11 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
         //显示下拉刷新
         mPullRecyclerView.setLinearLayout();
 
-        mPullRecyclerView.setPullRefreshEnable(false);
+//        mPullRecyclerView.setPullRefreshEnable(true);
         mPullRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreListener());
         mPullRecyclerView.setEmptyView(LayoutInflater.from(mActivity)
                                                      .inflate(R.layout.view_pullrecycler_empty, null));//setEmptyView
+        addDataToRecyclerView(new ArrayList<String>(), false);
         mPullRecyclerView.setRefreshing(true);
         getDataFromShopList(mActivity, mPage);
     }
@@ -89,7 +90,7 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
             public void run() {
                 addDataToRecyclerView(setList(page), page == 1);
                 mPullRecyclerView.setPullLoadMoreCompleted();
-                if (page == 3) {
+                if (page == 2) {
                     mPullRecyclerView.setNoMore(true);
                 }
             }
@@ -151,8 +152,8 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
     //制造假数据
     private ArrayList<String> setList(int page) {
         ArrayList<String> dataList = new ArrayList<>();
-        int start = 20 * (page - 1);
-        for (int i = start; i < 20 * page; i++) {
+        int start = 10 * (page - 1);
+        for (int i = start; i < 10 * page; i++) {
             dataList.add("Frist" + i);
         }
         return dataList;

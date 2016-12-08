@@ -1,6 +1,7 @@
 package com.fosung.gui.pullrecyclerview;
 
-import android.support.v4.widget.SwipeRefreshLayout;
+
+import com.fosung.gui.swiperefreshlayout.SwipeRefreshLayout;
 
 /**
  * Created by WuXiaolong on 2015/7/7.

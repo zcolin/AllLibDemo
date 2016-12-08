@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.fosung.gui.ZSwipeRefreshLayout android:id="@+id/swipeRefreshLayout"
-                                    xmlns:android="http://schemas.android.com/apk/res/android"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+<com.fosung.gui.swiperefreshlayout.ZSwipeRefreshLayout android:id="@+id/swipeRefreshLayout"
+                                                       xmlns:android="http://schemas.android.com/apk/res/android"
+                                                       android:layout_width="match_parent"
+                                                       android:layout_height="match_parent">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -24,8 +24,6 @@
         <RelativeLayout
             android:id="@+id/emptyView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:orientation="vertical"/>
+            android:layout_height="match_parent"/>
     </FrameLayout>
-</com.fosung.gui.ZSwipeRefreshLayout>
+</com.fosung.gui.swiperefreshlayout.ZSwipeRefreshLayout>

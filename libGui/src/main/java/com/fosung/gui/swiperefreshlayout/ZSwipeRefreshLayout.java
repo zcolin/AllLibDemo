@@ -1,15 +1,14 @@
 /*
- * **********************************************************
+ * *********************************************************
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     16-10-8 下午3:55
- * *********************************************************
+ *   date     16-12-8 下午3:52
+ * ********************************************************
  */
-package com.fosung.gui;
+package com.fosung.gui.swiperefreshlayout;
 
 import android.content.Context;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
@@ -30,7 +29,7 @@ public class ZSwipeRefreshLayout extends SwipeRefreshLayout {
 
     public ZSwipeRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setColorSchemeColors(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark);
+        setColorSchemeResources(android.R.color.holo_green_dark, android.R.color.holo_blue_dark, android.R.color.holo_orange_dark);
         mTouchSlop = ViewConfiguration.get(context)
                                       .getScaledTouchSlop();
     }

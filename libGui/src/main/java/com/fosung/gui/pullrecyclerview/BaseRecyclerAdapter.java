@@ -109,8 +109,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         }
     }
 
-    void setNoMoreVisibility(Context context, boolean isVisible) {
-        if (isShowNoMore) {
+    public void setNoMoreVisibility(Context context, boolean isVisible) {
+        if (isShowNoMore && getRealItemCount() > 0) {
             if (noMoreView == null) {
                 this.noMoreView = LayoutInflater.from(context)
                                                 .inflate(R.layout.gui_view_pullrecycler_nomore, null);

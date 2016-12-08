@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -70,7 +71,7 @@ public class SuperRecyclerFragment extends BaseFrameLazyLoadFrag {
                     public void run() {
                         addDataToRecyclerView(setList(page), page == 1);
                         mPullRecyclerView.setPullLoadMoreCompleted();
-                        if (page == 3) {
+                        if (page == 2) {
                             mPullRecyclerView.setNoMore(true);
                         }
                     }
@@ -82,8 +83,8 @@ public class SuperRecyclerFragment extends BaseFrameLazyLoadFrag {
     //制造假数据
     private ArrayList<String> setList(int page) {
         ArrayList<String> dataList = new ArrayList<>();
-        int start = 20 * (page - 1);
-        for (int i = start; i < 20 * page; i++) {
+        int start = 10 * (page - 1);
+        for (int i = start; i < 10 * page; i++) {
             dataList.add("Frist" + i);
         }
         return dataList;
@@ -94,6 +95,8 @@ public class SuperRecyclerFragment extends BaseFrameLazyLoadFrag {
             mRecyclerViewAdapter = new PullRecyclerAdapter();
             TextView tvHeader = new TextView(mActivity);
             tvHeader.setText("我是Header");
+            tvHeader.setGravity(Gravity.CENTER);
+            tvHeader.setBackgroundColor(getResources().getColor(R.color.blue_mid));
             tvHeader.setPadding(50, 50, 50, 50);
             mRecyclerViewAdapter.setHeaderView(tvHeader);
             mRecyclerViewAdapter.addDatas(list);

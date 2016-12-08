@@ -15,7 +15,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +30,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fosung.gui.R;
-import com.fosung.gui.ZSwipeRefreshLayout;
+import com.fosung.gui.swiperefreshlayout.SwipeRefreshLayout;
+import com.fosung.gui.swiperefreshlayout.ZSwipeRefreshLayout;
 
 
 /**
@@ -192,6 +192,11 @@ public class PullRecyclerView extends LinearLayout {
             if (mEmptyViewContainer.getChildCount() != 0) {
                 if (adapter1.getRealItemCount() == 0) {
                     mFooterView.setVisibility(View.GONE);
+
+                    //使emptyview居中（除headerview之外）
+                    if (adapter1.getHeaderView() != null && mEmptyViewContainer.getLayoutParams() instanceof MarginLayoutParams) {
+                        ((MarginLayoutParams)mEmptyViewContainer.getLayoutParams()).topMargin = adapter1.getHeaderView().getHeight();
+                    }
                     mEmptyViewContainer.setVisibility(VISIBLE);
                 } else {
                     mEmptyViewContainer.setVisibility(GONE);

@@ -1,0 +1,1 @@
+官方提供的swiperefreshlayout会和appbarlayout有冲突，所以重写，加入了appbarlayout的判断

@@ -8,7 +8,6 @@
 package com.fosung.gui.webview;
 
 import android.content.Context;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.webkit.WebChromeClient;
@@ -18,7 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.fosung.gui.R;
-import com.fosung.gui.ZSwipeRefreshLayout;
+import com.fosung.gui.swiperefreshlayout.SwipeRefreshLayout;
+import com.fosung.gui.swiperefreshlayout.ZSwipeRefreshLayout;
 
 import java.util.Map;
 
@@ -48,7 +48,7 @@ public class ZRefreshWebView extends RelativeLayout {
         swipeLay = (ZSwipeRefreshLayout) findViewById(R.id.swipelayout);
         
 
-        swipeLay.setOnRefreshListener(new OnRefreshListener() {
+        swipeLay.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
             public void onRefresh() {

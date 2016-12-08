@@ -49,7 +49,7 @@ public class SuperRecyclerView extends android.support.v7.widget.RecyclerView {
     private SuperRecyclerView.PullLoadMoreListener mLoadingListener;
     private ArrowRefreshHeader                     mRefreshHeader;
     private View                                   mLoadMoreFootView;
-    private View                                   mEmptyView;
+    private RelativeLayout                         mEmptyViewContainer;
 
     private boolean refreshEnabled     = true;
     private boolean loadingMoreEnabled = true;
@@ -187,24 +187,25 @@ public class SuperRecyclerView extends android.support.v7.widget.RecyclerView {
      * 也就是说，在RecyclerView和其父布局中间添加了一次RelitiveLayout，用来盛放RecyclerView和emptyView<p/>
      */
     public void setEmptyView(View emptyView) {
-        RelativeLayout.LayoutParams emptyViewParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        emptyViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-
         ViewGroup group = (ViewGroup) getParent();
         RelativeLayout container = new RelativeLayout(getContext());
         int index = group.indexOfChild(this);
         group.removeView(this);
         group.addView(container, index, getLayoutParams());
-        container.addView(this, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        container.addView(emptyView, emptyViewParams);
+        container.addView(this, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        this.mEmptyView = emptyView;
-        this.mEmptyView.setVisibility(View.GONE);
+        RelativeLayout.LayoutParams emptyViewParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        emptyViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        mEmptyViewContainer = new RelativeLayout(getContext());
+        mEmptyViewContainer.addView(emptyView, emptyViewParams);
+        container.addView(mEmptyViewContainer, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        this.mEmptyViewContainer.setVisibility(View.GONE);
         //mEmptyDataObserver.onChanged();
     }
 
     public View getEmptyView() {
-        return mEmptyView;
+        return mEmptyViewContainer;
     }
 
     /**
@@ -253,11 +254,16 @@ public class SuperRecyclerView extends android.support.v7.widget.RecyclerView {
     public void setNoMore(boolean noMore) {
         isLoadingData = false;
         isNoMore = noMore;
-        if (mLoadMoreFootView instanceof LoadingMoreFooter) {
-            ((LoadingMoreFooter) mLoadMoreFootView).setState(isNoMore ? LoadingMoreFooter.STATE_NOMORE : LoadingMoreFooter.STATE_COMPLETE);
+        if (mWrapAdapter != null && mWrapAdapter.getAdapter() instanceof BaseRecyclerAdapter) {
+            ((BaseRecyclerAdapter) mWrapAdapter.getAdapter()).setNoMoreVisibility(getContext(), isNoMore);
+        }
+        mLoadMoreFootView.setVisibility(View.GONE);
+
+        /*if (mLoadMoreFootView instanceof LoadingMoreFooter) {
+            ((LoadingMoreFooter) mLoadMoreFootView).setState(isNoMore && mWrapAdapter.getRealItemCount() > 0? LoadingMoreFooter.STATE_NOMORE : LoadingMoreFooter.STATE_COMPLETE);
         } else {
             mLoadMoreFootView.setVisibility(View.GONE);
-        }
+        }*/
     }
 
     @Override
@@ -412,25 +418,23 @@ public class SuperRecyclerView extends android.support.v7.widget.RecyclerView {
     private class DataObserver extends AdapterDataObserver {
         @Override
         public void onChanged() {
-            Adapter<?> adapter = getAdapter();
-            if (adapter != null && mEmptyView != null) {
-                int emptyCount = 1;
-                if (refreshEnabled) {
-                    emptyCount++;
-                }
-                if (loadingMoreEnabled) {
-                    emptyCount++;
-                }
-                if (adapter.getItemCount() == emptyCount) {
-                    mEmptyView.setVisibility(View.VISIBLE);
-                    SuperRecyclerView.this.setVisibility(View.GONE);
+            if (mWrapAdapter != null && mEmptyViewContainer != null) {
+                if (mWrapAdapter.getRealItemCount() == 0) {
+                    mEmptyViewContainer.setVisibility(View.VISIBLE);
+
+                    //使emptyview居中（除headerview之外）
+                    if (mWrapAdapter.getAdapter() != null && mWrapAdapter.getAdapter() instanceof BaseRecyclerAdapter) {
+                        BaseRecyclerAdapter adapter = ((BaseRecyclerAdapter) mWrapAdapter.getAdapter());
+                        if (adapter.getHeaderView() != null && mEmptyViewContainer.getLayoutParams() instanceof MarginLayoutParams) {
+                            ((MarginLayoutParams) mEmptyViewContainer.getLayoutParams()).topMargin = adapter.getHeaderView()
+                                                                                                   .getHeight();
+                        }
+                    }
+                    //                   SuperRecyclerView.this.setVisibility(View.GONE);
                 } else {
-                    mEmptyView.setVisibility(View.GONE);
-                    SuperRecyclerView.this.setVisibility(View.VISIBLE);
+                    mEmptyViewContainer.setVisibility(View.GONE);
+                    //                    SuperRecyclerView.this.setVisibility(View.VISIBLE);
                 }
-            }
-            if (mWrapAdapter != null) {
-                mWrapAdapter.notifyDataSetChanged();
             }
         }
 
@@ -466,6 +470,10 @@ public class SuperRecyclerView extends android.support.v7.widget.RecyclerView {
 
         public WrapAdapter(Adapter adapter) {
             this.adapter = adapter;
+        }
+
+        public Adapter getAdapter() {
+            return adapter;
         }
 
         public boolean isHeader(int position) {
@@ -525,6 +533,13 @@ public class SuperRecyclerView extends android.support.v7.widget.RecyclerView {
                     return 1;
                 }
             }
+        }
+
+        public int getRealItemCount() {
+            if (adapter instanceof BaseRecyclerAdapter) {
+                return ((BaseRecyclerAdapter) adapter).getRealItemCount();
+            }
+            return adapter.getItemCount();
         }
 
         @Override
