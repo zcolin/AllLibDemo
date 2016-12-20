@@ -19,9 +19,9 @@ android {
 
         // dex突破65535的限制
         //multiDexEnabled true
-        
+
         ndk {
-            abiFilters  "armeabi-v7a"  // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
+            abiFilters "armeabi-v7a"  // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
         }
     }
 
@@ -76,15 +76,17 @@ android {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:recyclerview-v7:23.0.1'
-    compile 'com.android.support:cardview-v7:23.0.1'
-    compile 'com.android.support:design:23.0.1'
- 
-    compile 'com.github.zcolin:zcolin_IjkPlayerLib:1.0.8'//视频播放
-    compile 'com.github.zcolin:zcolin_EasyPRLib:1.0.5'//车牌识别
-    compile 'com.github.zcolin:zcolin_FrameTemplateLib:1.0.4'//程序框架 
-    compile 'com.github.zcolin:zcolin_BarcodeScannerLib:1.0.4'//二维码扫描
-    compile 'com.github.zcolin:zcolin_MultiImageSelectorLib:1.0.4'//多图选择    
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+
+    compile 'com.github.zcolin:ZIjkPlayer:1.1.0'//视频播放
+    compile 'com.github.zcolin:ZEasyPR:1.0.9'//车牌识别
+    compile 'com.github.zcolin:ZFrameTemplate:1.0.7'//程序框架 
+    compile 'com.github.zcolin:ZBarCodeScanner:1.0.6'//二维码扫描
+    compile 'com.github.zcolin:ZMultiImageSelector:1.0.6'//多图选择    
+    compile 'com.github.zcolin:PullRecyclerView:1.0.6'//下拉刷新
+    compile 'com.github.zcolin:ZRecyclerView:1.0.2'//下拉刷新
     compile project(path: ':libGui')
 }
 

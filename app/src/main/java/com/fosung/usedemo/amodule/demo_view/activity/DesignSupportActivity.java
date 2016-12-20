@@ -12,16 +12,15 @@ package com.fosung.usedemo.amodule.demo_view.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fosung.frame.app.BaseFrameActivity;
 import com.fosung.frame.utils.ToastUtil;
-import com.fosung.gui.pullrecyclerview.BaseRecyclerAdapter;
-import com.fosung.gui.pullrecyclerview.PullRecyclerView;
 import com.fosung.usedemo.R;
-import com.fosung.usedemo.amodule.demo_view.adapter.PullRecyclerMultiItemAdapter;
+import com.fosung.usedemo.amodule.demo_view.adapter.ZRecyclerMultiItemAdapter;
+import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
+import com.zcolin.gui.zrecyclerview.ZRecyclerView;
 
 import java.util.ArrayList;
 
@@ -31,8 +30,8 @@ import java.util.ArrayList;
  */
 public class DesignSupportActivity extends BaseFrameActivity {
 
-    private PullRecyclerView             mPullRecyclerView;
-    private PullRecyclerMultiItemAdapter mRecyclerViewAdapter;
+    private ZRecyclerView             recyclerView;
+    private ZRecyclerMultiItemAdapter mRecyclerViewAdapter;
     private int mPage = 1;
 
     @Override
@@ -57,48 +56,43 @@ public class DesignSupportActivity extends BaseFrameActivity {
         });
 
 
-        mPullRecyclerView = getView(R.id.pullLoadMoreRecyclerView);
-        //设置下拉刷新是否可见
-        //mPullRecyclerView.setRefreshing(true);
-        //设置是否可以下拉刷新
-        //mPullRecyclerView.setPullRefreshEnable(true);
-        //设置是否可以上拉刷新
-        //mPullRecyclerView.setPushRefreshEnable(false);
-        //设置是否处理和子view（如viewpager）的冲突，默认为false
-        //mPullRecyclerView.setIsProceeConflict(true);
-        //显示下拉刷新
-        mPullRecyclerView.setRefreshing(true);
-        mPullRecyclerView.setLinearLayout();
+        recyclerView = getView(R.id.pullLoadMoreRecyclerView);
+        recyclerView.setOnPullLoadMoreListener(new PullLoadMoreListener());
 
-        mPullRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreListener());
-        mPullRecyclerView.setEmptyView(LayoutInflater.from(this)
-                                                     .inflate(R.layout.view_pullrecycler_empty, null));//setEmptyView
+        //设置数据为空时的EmptyView，DataObserver是注册在adapter之上的，也就是setAdapter是注册上，notifyDataSetChanged的时候才会生效
+        recyclerView.setEmptyView(this, R.layout.view_pullrecycler_empty);
 
-        getDataFromShopList(mPage);
+        //设置HeaderView
+        recyclerView.setHeaderView(this, R.layout.view_recyclerheader);
+
+        //下拉和到底加载的进度条样式，默认为 ProgressStyle.BallSpinFadeLoaderIndicator
+        recyclerView.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
+            @Override
+            public void onItemClick(View covertView, int position, String data) {
+                Toast.makeText(mActivity, data, Toast.LENGTH_SHORT)
+                     .show();
+            }
+        });
+
+        //绑定Adapter
+        notifyData(new ArrayList<String>(), false);
+
+        recyclerView.refreshWithPull();     //有下拉效果的数据刷新
     }
 
 
-    public void addDataToRecyclerView(ArrayList<String> list, boolean isClear) {
+    public void notifyData(ArrayList<String> list, boolean isClear) {
         if (mRecyclerViewAdapter == null) {
-            mRecyclerViewAdapter = new PullRecyclerMultiItemAdapter();
-            TextView tvHeader = new TextView(this);
-            tvHeader.setText("我是Header");
-            tvHeader.setPadding(50, 50, 50, 50);
-            mRecyclerViewAdapter.setHeaderView(tvHeader);
+            mRecyclerViewAdapter = new ZRecyclerMultiItemAdapter();
             mRecyclerViewAdapter.addDatas(list);
-            mPullRecyclerView.setAdapter(mRecyclerViewAdapter);
-            mRecyclerViewAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
-                @Override
-                public void onItemClick(View covertView, int position, String data) {
-                    ToastUtil.toastShort(position + ":" + data);
-                }
-            });
+            recyclerView.setAdapter(mRecyclerViewAdapter);
         } else {
             if (isClear) {
                 mRecyclerViewAdapter.setDatas(list);
             } else {
                 mRecyclerViewAdapter.addDatas(list);
             }
+            mRecyclerViewAdapter.notifyDataSetChanged();
         }
     }
 
@@ -110,8 +104,8 @@ public class DesignSupportActivity extends BaseFrameActivity {
                 mActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        addDataToRecyclerView(setList(page), page == 1);
-                        mPullRecyclerView.setPullLoadMoreCompleted();
+                        notifyData(setList(page), page == 1);
+                        recyclerView.setPullLoadMoreCompleted();
                     }
                 });
             }
@@ -128,7 +122,7 @@ public class DesignSupportActivity extends BaseFrameActivity {
         return dataList;
     }
 
-    class PullLoadMoreListener implements PullRecyclerView.PullLoadMoreListener {
+    class PullLoadMoreListener implements ZRecyclerView.PullLoadMoreListener {
         @Override
         public void onRefresh() {
             mPage = 1;

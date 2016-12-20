@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.fosung.usedemo.amodule.demo_view.fragment.PullRecyclerFragment;
-import com.fosung.usedemo.amodule.demo_view.fragment.SuperRecyclerFragment;
+import com.fosung.usedemo.amodule.demo_view.fragment.ZRecyclerFragment;
 
 /**
  * 
@@ -20,7 +20,7 @@ public class DesignSupportPagerAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return PullRecyclerFragment.newInstance();
         } else {
-            return SuperRecyclerFragment.newInstance();
+            return ZRecyclerFragment.newInstance();
         }
     }
 

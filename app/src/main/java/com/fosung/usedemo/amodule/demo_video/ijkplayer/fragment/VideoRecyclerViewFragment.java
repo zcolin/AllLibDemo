@@ -14,13 +14,13 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 
-import com.fosung.gui.pullrecyclerview.PullRecyclerView;
 import com.fosung.usedemo.R;
 import com.fosung.usedemo.amodule.demo_video.ijkplayer.adapter.SuperVideoAdapter;
 import com.fosung.usedemo.amodule.demo_video.ijkplayer.base.BaseVideoRecycleViewFragment;
 import com.fosung.usedemo.amodule.demo_video.ijkplayer.bean.VideoListBean;
 import com.superplayer.library.SuperListPlayer;
 import com.superplayer.library.SuperPlayer;
+import com.zcolin.gui.pullrecyclerview.PullRecyclerView;
 
 import java.util.ArrayList;
 

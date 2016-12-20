@@ -11,16 +11,15 @@ package com.fosung.usedemo.amodule.demo_video.ijkplayer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 
-import com.fosung.gui.pullrecyclerview.PullRecyclerView;
 import com.fosung.usedemo.R;
 import com.fosung.usedemo.amodule.demo_video.ijkplayer.adapter.SuperVideoAdapter;
 import com.fosung.usedemo.amodule.demo_video.ijkplayer.base.BaseVideoRecycleViewActivity;
 import com.fosung.usedemo.amodule.demo_video.ijkplayer.bean.VideoListBean;
 import com.superplayer.library.SuperListPlayer;
 import com.superplayer.library.SuperPlayer;
+import com.zcolin.gui.zrecyclerview.ZRecyclerView;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ import java.util.ArrayList;
  * 列表播放
  */
 public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
-    private PullRecyclerView  pullRecyclerView;
+    private ZRecyclerView     zRecyclerView;
     private SuperVideoAdapter mRecyclerViewAdapter;
     private int mPage = 1;
 
@@ -37,8 +36,7 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
         super.onCreate(savedInstanceState);
         setToolbarTitle("视频播放列表");
 
-        pullRecyclerView.setRefreshing(true);
-        getDataFromShopList(mActivity, mPage);
+        zRecyclerView.refreshWithPull();
     }
 
     @Override
@@ -63,16 +61,15 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
     /**
      * 初始化自己定义的recyclerView
      */
-    private PullRecyclerView initPullRecyclerView() {
-        pullRecyclerView = new PullRecyclerView(mActivity);
-        pullRecyclerView.setEmptyView(LayoutInflater.from(mActivity)
-                                                    .inflate(R.layout.view_pullrecycler_empty, null));//setEmptyView
-        pullRecyclerView.setOnPullLoadMoreListener(new PullRecyclerView.PullLoadMoreListener() {
+    private ZRecyclerView initPullRecyclerView() {
+        zRecyclerView = new ZRecyclerView(mActivity);
+        zRecyclerView.setEmptyView(mActivity, R.layout.view_pullrecycler_empty);//setEmptyView
+        zRecyclerView.setOnPullLoadMoreListener(new ZRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
                 mPage = 1;
                 getDataFromShopList(mActivity, mPage);
-                pullRecyclerView.setNoMore(false);
+                zRecyclerView.setNoMore(false);
             }
 
             @Override
@@ -82,7 +79,7 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
             }
         });
 
-        return pullRecyclerView;
+        return zRecyclerView;
     }
 
     /**
@@ -93,9 +90,9 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
             @Override
             public void run() {
                 addDataToRecyclerView(setList(page), page == 1);
-                pullRecyclerView.setPullLoadMoreCompleted();
+                zRecyclerView.setPullLoadMoreCompleted();
                 if (page == 3) {
-                    pullRecyclerView.setNoMore(true);
+                    zRecyclerView.setNoMore(true);
                 }
             }
         }, 1500);
@@ -108,7 +105,7 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
         if (mRecyclerViewAdapter == null) {
             mRecyclerViewAdapter = new SuperVideoAdapter(mActivity);
             mRecyclerViewAdapter.addDatas(list);
-            pullRecyclerView.setAdapter(mRecyclerViewAdapter);
+            zRecyclerView.setAdapter(mRecyclerViewAdapter);
             mRecyclerViewAdapter.setPlayClick(new SuperVideoAdapter.PlayClickListener() {
                 @Override
                 public void onPlayClick(int position, VideoListBean data, RelativeLayout rlPlayControl) {

@@ -8,6 +8,7 @@
 package com.fosung.gui.webview;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.webkit.WebChromeClient;
@@ -17,8 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.fosung.gui.R;
-import com.fosung.gui.swiperefreshlayout.SwipeRefreshLayout;
-import com.fosung.gui.swiperefreshlayout.ZSwipeRefreshLayout;
 
 import java.util.Map;
 
@@ -31,7 +30,7 @@ public class ZRefreshWebView extends RelativeLayout {
 
     private ZWebView            webView;
     private ProgressBar         proBar;            //加载進度条
-    private ZSwipeRefreshLayout swipeLay;
+    private SwipeRefreshLayout swipeLay;
     private Context             context;
 
     public ZRefreshWebView(Context context, AttributeSet attrs) {
@@ -45,7 +44,7 @@ public class ZRefreshWebView extends RelativeLayout {
                       .inflate(R.layout.gui_view_swiperefresh_webview, this);
         webView = (ZWebView) findViewById(R.id.webview);
         proBar = (ProgressBar) findViewById(R.id.progressBar);
-        swipeLay = (ZSwipeRefreshLayout) findViewById(R.id.swipelayout);
+        swipeLay = (SwipeRefreshLayout) findViewById(R.id.swipelayout);
         
 
         swipeLay.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

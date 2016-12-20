@@ -10,16 +10,17 @@ package com.fosung.usedemo.amodule.demo_view.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import com.fosung.frame.app.BaseFrameLazyLoadFrag;
 import com.fosung.frame.utils.ToastUtil;
 import com.fosung.gui.ZBanner;
-import com.fosung.gui.pullrecyclerview.BaseRecyclerAdapter;
-import com.fosung.gui.pullrecyclerview.PullRecyclerView;
 import com.fosung.usedemo.R;
 import com.fosung.usedemo.amodule.demo_view.adapter.PullRecyclerAdapter;
+import com.zcolin.gui.pullrecyclerview.BaseRecyclerAdapter;
+import com.zcolin.gui.pullrecyclerview.PullRecyclerView;
+import com.zcolin.gui.pullrecyclerview.progressindicator.ProgressStyle;
 
 import java.util.ArrayList;
 
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  */
 public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
 
-    private PullRecyclerView    mPullRecyclerView;
+    private PullRecyclerView    recyclerView;
     private PullRecyclerAdapter mRecyclerViewAdapter;
     private ZBanner             banner;
     private int mPage = 1;
@@ -65,54 +66,62 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
     @Override
     protected void lazyLoad() {
 
-        mPullRecyclerView = getView(R.id.pullLoadMoreRecyclerView);
-        //设置下拉刷新是否可见
-        //mPullRecyclerView.setRefreshing(true);
-        //设置是否可以下拉刷新
-        //mPullRecyclerView.setPullRefreshEnable(true);
-        //设置是否可以上拉刷新
-        //mPullRecyclerView.setPushRefreshEnable(false);
-        //显示下拉刷新
-        mPullRecyclerView.setLinearLayout();
+        recyclerView = getView(R.id.pullLoadMoreRecyclerView);
+        // recyclerView.setGridLayout(false);//默认为LinearLayoutManager
+        recyclerView.setOnPullLoadMoreListener(new PullLoadMoreListener());
 
-//        mPullRecyclerView.setPullRefreshEnable(true);
-        mPullRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreListener());
-        mPullRecyclerView.setEmptyView(LayoutInflater.from(mActivity)
-                                                     .inflate(R.layout.view_pullrecycler_empty, null));//setEmptyView
-        addDataToRecyclerView(new ArrayList<String>(), false);
-        mPullRecyclerView.setRefreshing(true);
-        getDataFromShopList(mActivity, mPage);
+        //设置数据为空时的EmptyView，DataObserver是注册在adapter之上的，也就是setAdapter是注册上，notifyDataSetChanged的时候才会生效
+        recyclerView.setEmptyView(mActivity, R.layout.view_pullrecycler_empty);
+
+        //设置HeaderView和footerView
+        recyclerView.setHeaderView(mActivity, R.layout.view_recyclerheader);
+        recyclerView.setFooterView(mActivity, R.layout.view_recyclerfooter);
+
+        //下拉和到底加载的进度条样式，默认为 ProgressStyle.BallSpinFadeLoaderIndicator
+        recyclerView.setRefreshProgressStyle(ProgressStyle.LineScaleIndicator);
+        recyclerView.setLoadMoreProgressStyle(ProgressStyle.LineScaleIndicator);
+
+        recyclerView.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
+            @Override
+            public void onItemClick(View covertView, int position, String data) {
+                Toast.makeText(mActivity, data, Toast.LENGTH_SHORT)
+                     .show();
+            }
+        });
+
+        // recyclerView.setIsShowNoMore(false);//不显示《已加载全部》
+        // recyclerView.setIsLoadMoreEnabled(false);//到底加载是否可用
+        // recyclerView.setIsRefreshEnabled(false);//下拉刷新是否可用
+
+        //下拉刷新的文字显示
+        recyclerView.setRefreshHeaderText("下拉刷新", "释放立即刷新", "正在刷新", "刷新完成");
+
+        //绑定Adapter
+        notifyData(new ArrayList<String>(), false);
+
+        recyclerView.refreshWithPull();     //有下拉效果的数据刷新
+        // recyclerView.refresh();          //没有下拉刷新效果，直接刷新数据
+        // recyclerView.setRefreshing(true);//只有下拉刷新效果，不刷新数据
     }
 
     public void getDataFromShopList(final Activity activity, final int page) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                addDataToRecyclerView(setList(page), page == 1);
-                mPullRecyclerView.setPullLoadMoreCompleted();
+                notifyData(setList(page), page == 1);
+                recyclerView.setPullLoadMoreCompleted();
                 if (page == 2) {
-                    mPullRecyclerView.setNoMore(true);
+                    recyclerView.setNoMore(true);
                 }
             }
         }, 1000);
     }
 
-    public void addDataToRecyclerView(ArrayList<String> list, boolean isClear) {
+    public void notifyData(ArrayList<String> list, boolean isClear) {
         if (mRecyclerViewAdapter == null) {
             mRecyclerViewAdapter = new PullRecyclerAdapter();
-            View bannerParent = LayoutInflater.from(mActivity)
-                                              .inflate(R.layout.view_banner, null);
-            banner = (ZBanner) bannerParent.findViewById(R.id.view_banner);
-            mRecyclerViewAdapter.setHeaderView(bannerParent);
             mRecyclerViewAdapter.addDatas(list);
-            mPullRecyclerView.setAdapter(mRecyclerViewAdapter);
-            mRecyclerViewAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
-                @Override
-                public void onItemClick(View covertView, int position, String data) {
-                    ToastUtil.toastShort(position + ":" + data);
-                }
-            });
-            startBanner();
+            recyclerView.setAdapter(mRecyclerViewAdapter);
         } else {
             if (isClear) {
                 mRecyclerViewAdapter.setDatas(list);

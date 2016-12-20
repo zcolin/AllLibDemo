@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-18 下午5:25
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  fosung
+ *   email    wanglin2046@126.com
+ *   date     16-12-20 下午4:31
+ * ********************************************************
+ */
 package com.fosung.usedemo.amodule.demo_view.adapter;
 
 
@@ -12,7 +14,7 @@ import android.widget.TextView;
 
 import com.fosung.frame.imageloader.ImageLoaderUtils;
 import com.fosung.usedemo.R;
-import com.zcolin.gui.pullrecyclerview.BaseRecyclerAdapter;
+import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
 
 
 /**
@@ -20,7 +22,7 @@ import com.zcolin.gui.pullrecyclerview.BaseRecyclerAdapter;
  * <p>
  * pullrecyclerView的Adapter
  */
-public class PullRecyclerAdapter extends BaseRecyclerAdapter<String> {
+public class ZRecyclerAdapter extends BaseRecyclerAdapter<String> {
 
     @Override
     public int getItemLayoutId(int viewType) {

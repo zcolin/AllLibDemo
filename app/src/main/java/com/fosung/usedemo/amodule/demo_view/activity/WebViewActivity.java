@@ -70,7 +70,7 @@ public class WebViewActivity extends BaseSecondLevelActivity implements OnClickL
     }
 
     public void loadUrl() {
-        webView.loadUrl("file:///android_asset/demo.html");
+        webView.loadUrl("file:///android_asset/bridgewebview_html_demo.html");
     }
 
     public void callJsFunc(String funcName, String strParam) {

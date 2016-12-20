@@ -14,10 +14,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.fosung.gui.pullrecyclerview.BaseRecyclerAdapter;
 import com.fosung.usedemo.R;
 import com.fosung.usedemo.amodule.demo_video.ijkplayer.bean.VideoListBean;
 import com.superplayer.library.utils.SuperPlayerUtils;
+import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
 
 
 /**
