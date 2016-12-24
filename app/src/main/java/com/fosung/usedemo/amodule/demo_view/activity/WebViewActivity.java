@@ -19,7 +19,6 @@ import com.fosung.frame.utils.GsonUtil;
 import com.fosung.gui.ZAlert;
 import com.fosung.gui.ZDlg;
 import com.fosung.gui.base.BaseSecondLevelActivity;
-import com.fosung.gui.webview.ZWebChooseFileChromeClient;
 import com.fosung.gui.webview.ZWebView;
 import com.fosung.usedemo.R;
 
@@ -27,9 +26,8 @@ import com.fosung.usedemo.R;
  * 带JsBridge的webview的Demo
  */
 public class WebViewActivity extends BaseSecondLevelActivity implements OnClickListener {
-    private ZWebView                   webView;
-    private Button                     button;
-    private ZWebChooseFileChromeClient webChromeClient;
+    private ZWebView webView;
+    private Button   button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +45,6 @@ public class WebViewActivity extends BaseSecondLevelActivity implements OnClickL
     }
 
     public void initWebView() {
-        webChromeClient = new ZWebChooseFileChromeClient(this);
-        webView.setWebChromeClient(webChromeClient);
-
         webView.setDefaultHandler(new DefaultHandler());//如果JS调用send方法，会走到DefaultHandler里
         webView.registerHandler("submitFromWeb", new BridgeHandler() {
             @Override
@@ -67,10 +62,12 @@ public class WebViewActivity extends BaseSecondLevelActivity implements OnClickL
         });
         webView.registerStartActivity(mActivity);
         webView.registerFinishActivity(mActivity);
+        webView.setSupportChooeFile(this);
+        webView.setSupportProgressBar();
     }
 
     public void loadUrl() {
-        webView.loadUrl("file:///android_asset/bridgewebview_html_demo.html");
+        webView.loadUrl("http://www.sina.com");
     }
 
     public void callJsFunc(String funcName, String strParam) {
@@ -87,7 +84,7 @@ public class WebViewActivity extends BaseSecondLevelActivity implements OnClickL
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        webChromeClient.processResult(requestCode, resultCode, intent);
+        webView.processResult(requestCode, resultCode, intent);
     }
 
     @Override

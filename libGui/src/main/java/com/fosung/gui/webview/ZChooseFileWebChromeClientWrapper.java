@@ -14,19 +14,18 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import com.fosung.frame.app.BaseFrameActivity;
-import com.fosung.frame.app.BaseFrameFrag;
 import com.fosung.frame.utils.AndroidVersionUtil;
 
 /**
  * 如果网页有选择文件，请手动设置使用此cromeClient，
  * <p>
- * webview默认的chromeClient是{@link ZWebChromeClient}
+ * webview默认的chromeClient是{@link ZWebChromeClientWrapper}
  */
-public class ZWebChooseFileChromeClient extends ZWebChromeClient {
-    private static final int RESULT_CODE = 5200;
+public class ZChooseFileWebChromeClientWrapper extends ZWebChromeClientWrapper {
+    private static final int REQUEST_CODE = 5200;
 
     private ValueCallback<Uri[]> mUploadMessages;
     private ValueCallback<Uri>   mUploadMessage;
@@ -36,14 +35,16 @@ public class ZWebChooseFileChromeClient extends ZWebChromeClient {
     /**
      * Context 必须为Fragment或者Activity的子类
      */
-    public ZWebChooseFileChromeClient(BaseFrameFrag fragment) {
+    public ZChooseFileWebChromeClientWrapper(WebChromeClient webChromeClient, Fragment fragment) {
+        super(webChromeClient);
         this.fragment = fragment;
     }
 
     /**
      * Context 必须为Fragment或者Activity的子类
      */
-    public ZWebChooseFileChromeClient(BaseFrameActivity activity) {
+    public ZChooseFileWebChromeClientWrapper(WebChromeClient webChromeClient, Activity activity) {
+        super(webChromeClient);
         this.activity = activity;
     }
 
@@ -67,21 +68,20 @@ public class ZWebChooseFileChromeClient extends ZWebChromeClient {
     // For Android > 4.4
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public boolean onShowFileChooser(WebView webView,
-                                     ValueCallback<Uri[]> filePathCallback,
-                                     FileChooserParams fileChooserParams) {
-        String acceptType = null;
-        if (AndroidVersionUtil.hasLollipop() && fileChooserParams != null && fileChooserParams.getAcceptTypes() != null
-                && fileChooserParams.getAcceptTypes().length > 0) {
-            acceptType = fileChooserParams.getAcceptTypes()[0];
+    public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+        if (!super.onShowFileChooser(webView, filePathCallback, fileChooserParams)) {
+            String acceptType = null;
+            if (AndroidVersionUtil.hasLollipop() && fileChooserParams != null && fileChooserParams.getAcceptTypes() != null && fileChooserParams.getAcceptTypes().length > 0) {
+                acceptType = fileChooserParams.getAcceptTypes()[0];
+            }
+            acceptType = TextUtils.isEmpty(acceptType) ? "*/*" : acceptType;
+            pickFile(filePathCallback, null, acceptType);
         }
-        acceptType = TextUtils.isEmpty(acceptType) ? "*/*" : acceptType;
-        pickFile(filePathCallback, null, acceptType);
         return true;
     }
 
     /**
-     * 如果要实现选择文件，实现此方法
+     * 实现选择文件方法
      */
     private void pickFile(ValueCallback<Uri[]> filePathCallbacks, ValueCallback<Uri> filePathCallback, String acceptType) {
         mUploadMessage = filePathCallback;
@@ -90,18 +90,18 @@ public class ZWebChooseFileChromeClient extends ZWebChromeClient {
         chooserIntent.setType(acceptType);
 
         if (fragment != null) {
-            fragment.startActivityForResult(chooserIntent, RESULT_CODE);
+            fragment.startActivityForResult(chooserIntent, REQUEST_CODE);
         } else if (activity != null) {
-            activity.startActivityForResult(chooserIntent, RESULT_CODE);
+            activity.startActivityForResult(chooserIntent, REQUEST_CODE);
         }
     }
 
     /**
      * 在Activity或者fragment的onActivityResult中调用此函数
      */
-    public void processResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == RESULT_CODE) {
-            Uri result = intent == null || resultCode != Activity.RESULT_OK ? null : intent.getData();
+    public boolean processResult(int requestCode, int resultCode, Intent intent) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && intent != null) {
+            Uri result = intent.getData();
             if (mUploadMessage != null) {
                 mUploadMessage.onReceiveValue(result);
                 mUploadMessage = null;
@@ -109,6 +109,8 @@ public class ZWebChooseFileChromeClient extends ZWebChromeClient {
                 mUploadMessages.onReceiveValue(new Uri[]{result});
                 mUploadMessages = null;
             }
+            return true;
         }
+        return false;
     }
 }
