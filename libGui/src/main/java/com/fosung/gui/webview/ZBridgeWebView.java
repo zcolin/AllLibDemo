@@ -34,13 +34,13 @@ import com.fosung.gui.R;
 /**
  * 封装的Webview的控件
  */
-public class ZWebView extends WebView {
+public class ZBridgeWebView extends BridgeWebView {
 
     private ZWebViewClientWrapper   webViewClientWrapper;
     private ZWebChromeClientWrapper webChromeClientWrapper;
     private ProgressBar             proBar;            //加载進度条
 
-    public ZWebView(Context context, AttributeSet attrs) {
+    public ZBridgeWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initWebView();
     }
@@ -83,7 +83,7 @@ public class ZWebView extends WebView {
     /**
      * 支持文件选择
      */
-    public ZWebView setSupportChooeFile(Activity activity) {
+    public ZBridgeWebView setSupportChooeFile(Activity activity) {
         webChromeClientWrapper = new ZChooseFileWebChromeClientWrapper(webChromeClientWrapper.getWebChromeClient(), activity);
         setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
         return this;
@@ -92,7 +92,7 @@ public class ZWebView extends WebView {
     /**
      * 支持文件选择
      */
-    public ZWebView setSupportChooeFile(Fragment fragment) {
+    public ZBridgeWebView setSupportChooeFile(Fragment fragment) {
         webChromeClientWrapper = new ZChooseFileWebChromeClientWrapper(webChromeClientWrapper.getWebChromeClient(), fragment);
         setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
         return this;
@@ -101,7 +101,7 @@ public class ZWebView extends WebView {
     /**
      * 支持显示进度条
      */
-    public ZWebView setSupportProgressBar() {
+    public ZBridgeWebView setSupportProgressBar() {
         ViewGroup group = (ViewGroup) this.getParent();
         FrameLayout container = new FrameLayout(this.getContext());
         int index = group.indexOfChild(this);
@@ -122,6 +122,39 @@ public class ZWebView extends WebView {
 
     public WebChromeClient getWebChromeClient() {
         return webChromeClientWrapper.getWebChromeClient();
+    }
+
+    /**
+     * 注册启动Activity的web交互
+     */
+    public ZBridgeWebView registerStartActivity(final Activity activity) {
+        registerHandler("startActivity", new BridgeHandler() {
+            @Override
+            public void handler(String data, final CallBackFunction function) {
+                try {
+                    Intent intent = new Intent();
+                    ComponentName componentName = new ComponentName(activity.getPackageName(), activity.getPackageName() + "build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/res" + data);
+                    intent.setComponent(componentName);
+                    activity.startActivity(intent);
+                } catch (Exception e) {
+                    LogUtil.e("ZWebView.startActivity.handler", e);
+                }
+            }
+        });
+        return this;
+    }
+
+    /**
+     * 注册启动Activity的web交互
+     */
+    public ZBridgeWebView registerFinishActivity(final Activity activity) {
+        registerHandler("finishActivity", new BridgeHandler() {
+            @Override
+            public void handler(String data, final CallBackFunction function) {
+                activity.finish();
+            }
+        });
+        return this;
     }
 
     /**
