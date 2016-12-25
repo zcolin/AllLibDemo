@@ -25,6 +25,7 @@ import com.fosung.usedemo.amodule.demo_view.activity.DialogActivity;
 import com.fosung.usedemo.amodule.demo_view.activity.OtherViewActivity;
 import com.fosung.usedemo.amodule.demo_view.activity.PassDataActivity;
 import com.fosung.usedemo.amodule.demo_view.activity.WebViewActivity;
+import com.fosung.usedemo.amodule.demo_view.activity.WebViewVideoActivity;
 
 import java.util.ArrayList;
 
@@ -61,6 +62,7 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
         listButton.add(addButton("DemoDesignSupportActivity1"));
         listButton.add(addButton("DemoDesignSupportActivity2"));
         listButton.add(addButton("WebViewDemo"));
+        listButton.add(addButton("WebViewVideoFullScreenDemo"));
         listButton.add(addButton("DialogDemo"));
         listButton.add(addButton("其他View示例"));
         
@@ -93,8 +95,10 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
         }else if (v == listButton.get(4)) {
             ActivityUtil.startActivity(mActivity, WebViewActivity.class);
         }else if (v == listButton.get(5)) {
-            ActivityUtil.startActivity(mActivity, DialogActivity.class);
+            ActivityUtil.startActivity(mActivity, WebViewVideoActivity.class);
         }else if (v == listButton.get(6)) {
+            ActivityUtil.startActivity(mActivity, DialogActivity.class);
+        }else if (v == listButton.get(7)) {
             ActivityUtil.startActivity(mActivity, OtherViewActivity.class);
         }
     }

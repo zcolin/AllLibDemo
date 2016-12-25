@@ -23,7 +23,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.fosung.frame.jsbridge.BridgeWebViewClient;
+import com.fosung.gui.webview.jsbridge.BridgeWebViewClient;
+
 
 /**
  * WebViewClient主要帮助WebView处理各种通知、请求事件的.

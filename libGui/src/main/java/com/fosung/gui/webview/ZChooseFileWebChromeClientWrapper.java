@@ -20,7 +20,7 @@ import android.webkit.WebView;
 import com.fosung.frame.utils.AndroidVersionUtil;
 
 /**
- * 如果网页有选择文件，请手动设置使用此cromeClient，
+ * 支持文件选择的WebChormeClient
  * <p>
  * webview默认的chromeClient是{@link ZWebChromeClientWrapper}
  */

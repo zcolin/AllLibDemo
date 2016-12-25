@@ -71,6 +71,9 @@
         <activity android:name=".amodule.demo_image.ImageSelectorActivity"/>
         <activity android:name=".amodule.demo_image.ImageUtilActivity"/>
         <activity android:name=".amodule.demo_view.activity.WebViewActivity"/>
+        <activity
+            android:name=".amodule.demo_view.activity.WebViewVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".amodule.demo_view.activity.PassDataActivity"/>
         <activity android:name=".amodule.demo_view.activity.PassDataActivity1"/>
         <activity android:name=".amodule.demo_view.activity.DialogActivity"/>

@@ -11,10 +11,12 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -34,11 +36,12 @@ import com.fosung.gui.R;
 /**
  * 封装的Webview的控件
  */
-public class ZWebView extends WebView {
+public class ZWebView extends BridgeWebView {
 
     private ZWebViewClientWrapper   webViewClientWrapper;
     private ZWebChromeClientWrapper webChromeClientWrapper;
     private ProgressBar             proBar;            //加载進度条
+    private boolean                 isSupportJsBridge;
 
     public ZWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -58,12 +61,19 @@ public class ZWebView extends WebView {
         //webView.addJavascriptInterface(new JsInterUtil(), "javautil");
         setHorizontalScrollbarOverlay(true);
         setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
     }
 
     @Override
     public void setWebViewClient(@NonNull WebViewClient webViewClient) {
         this.webViewClientWrapper = new ZWebViewClientWrapper(webViewClient);
         webViewClientWrapper.setProgressBar(proBar);
+        if (isSupportJsBridge) {
+            webViewClientWrapper.setSupportJsBridge();
+        }
         super.setWebViewClient(webViewClientWrapper);
     }
 
@@ -71,7 +81,7 @@ public class ZWebView extends WebView {
     public void setWebChromeClient(@NonNull WebChromeClient webChromeClient) {
         if (webChromeClientWrapper == null) {
             this.webChromeClientWrapper = new ZWebChromeClientWrapper(webChromeClient);
-        } else if (webChromeClientWrapper instanceof ZChooseFileWebChromeClientWrapper) {
+        } else if (webChromeClientWrapper instanceof ZChooseFileWebChromeClientWrapper || webChromeClientWrapper instanceof ZVideoFullScreenWebChromeClient) {
             this.webChromeClientWrapper.setWebChromeClient(webChromeClient);
         } else {
             this.webChromeClientWrapper = new ZWebChromeClientWrapper(webChromeClient);
@@ -103,7 +113,7 @@ public class ZWebView extends WebView {
      */
     public ZWebView setSupportProgressBar() {
         ViewGroup group = (ViewGroup) this.getParent();
-        FrameLayout container = new FrameLayout(this.getContext());
+        FrameLayout container = new FrameLayout(getContext());
         int index = group.indexOfChild(this);
         group.removeView(this);
         group.addView(container, index, this.getLayoutParams());
@@ -114,6 +124,38 @@ public class ZWebView extends WebView {
         webChromeClientWrapper.setProgressBar(proBar);
         webViewClientWrapper.setProgressBar(proBar);
         return this;
+    }
+
+    /**
+     * 支持视频全屏
+     * <p>
+     * 必须在Activity的manifest文件中指定 android:configChanges="keyboardHidden|orientation|screenSize"
+     */
+    public ZWebView setSupportVideoFullScreen(Activity activity) {
+        ViewGroup group = (ViewGroup) this.getParent();
+        FrameLayout container = new FrameLayout(getContext());
+        int index = group.indexOfChild(this);
+
+        //将原来的布局之间添加一层，用来盛放webView和视频全屏控件
+        group.removeView(this);
+        group.addView(container, index, this.getLayoutParams());
+        container.addView(this, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        //添加视频ViewContainer
+        FrameLayout flCustomContainer = new FrameLayout(getContext());
+        flCustomContainer.setVisibility(View.INVISIBLE);
+        container.addView(flCustomContainer, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        View videoProgressView = LayoutInflater.from(activity)
+                                               .inflate(R.layout.gui_view_webview_video_progress, null);
+        webChromeClientWrapper = new ZVideoFullScreenWebChromeClient(webChromeClientWrapper.getWebChromeClient(), activity, this, flCustomContainer, videoProgressView);
+        setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
+        return this;
+    }
+
+    public void setSupportJsBridge() {
+        isSupportJsBridge = true;
+        webViewClientWrapper.setSupportJsBridge();
     }
 
     public WebViewClient getWebViewClient() {
@@ -132,5 +174,53 @@ public class ZWebView extends WebView {
             return ((ZChooseFileWebChromeClientWrapper) webChromeClientWrapper).processResult(requestCode, resultCode, intent);
         }
         return false;
+    }
+
+    /**
+     * 如果在视频全屏播放状态，取消全屏播放
+     */
+    public boolean hideCustomView() {
+        if (webChromeClientWrapper instanceof ZVideoFullScreenWebChromeClient) {
+            ZVideoFullScreenWebChromeClient client = ((ZVideoFullScreenWebChromeClient) webChromeClientWrapper);
+            if (client.isCustomViewShow()) {
+                client.onHideCustomView();
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * 注册启动Activity的web交互
+     */
+    public ZWebView registerStartActivity(final Activity activity) {
+        registerHandler("startActivity", new BridgeHandler() {
+            @Override
+            public void handler(String data, final CallBackFunction function) {
+                try {
+                    Intent intent = new Intent();
+                    ComponentName componentName = new ComponentName(activity.getPackageName(), activity.getPackageName() + "build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/res" + data);
+                    intent.setComponent(componentName);
+                    activity.startActivity(intent);
+                } catch (Exception e) {
+                    LogUtil.e("ZWebView.startActivity.handler", e);
+                }
+            }
+        });
+        return this;
+    }
+
+    /**
+     * 注册启动Activity的web交互
+     */
+    public ZWebView registerFinishActivity(final Activity activity) {
+        registerHandler("finishActivity", new BridgeHandler() {
+            @Override
+            public void handler(String data, final CallBackFunction function) {
+                activity.finish();
+            }
+        });
+        return this;
     }
 }
