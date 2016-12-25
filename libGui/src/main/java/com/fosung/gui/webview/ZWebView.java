@@ -109,24 +109,6 @@ public class ZWebView extends BridgeWebView {
     }
 
     /**
-     * 支持显示进度条
-     */
-    public ZWebView setSupportProgressBar() {
-        ViewGroup group = (ViewGroup) this.getParent();
-        FrameLayout container = new FrameLayout(getContext());
-        int index = group.indexOfChild(this);
-        group.removeView(this);
-        group.addView(container, index, this.getLayoutParams());
-        container.addView(this, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        proBar = (ProgressBar) LayoutInflater.from(getContext())
-                                             .inflate(R.layout.gui_view_webview_progressbar, null);
-        container.addView(proBar, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, DisplayUtil.dip2px(getContext(), 2)));
-        webChromeClientWrapper.setProgressBar(proBar);
-        webViewClientWrapper.setProgressBar(proBar);
-        return this;
-    }
-
-    /**
      * 支持视频全屏
      * <p>
      * 必须在Activity的manifest文件中指定 android:configChanges="keyboardHidden|orientation|screenSize"
@@ -153,9 +135,41 @@ public class ZWebView extends BridgeWebView {
         return this;
     }
 
+    /**
+     * 支持显示进度条
+     */
+    public ZWebView setSupportProgressBar() {
+        ViewGroup group = (ViewGroup) this.getParent();
+        FrameLayout container = new FrameLayout(getContext());
+        int index = group.indexOfChild(this);
+        group.removeView(this);
+        group.addView(container, index, this.getLayoutParams());
+        container.addView(this, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        proBar = (ProgressBar) LayoutInflater.from(getContext())
+                                             .inflate(R.layout.gui_view_webview_progressbar, null);
+        container.addView(proBar, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, DisplayUtil.dip2px(getContext(), 2)));
+        webChromeClientWrapper.setProgressBar(proBar);
+        webViewClientWrapper.setProgressBar(proBar);
+        return this;
+    }
+
+    /**
+     * 设置是否支持JsBridge
+     */
     public void setSupportJsBridge() {
         isSupportJsBridge = true;
         webViewClientWrapper.setSupportJsBridge();
+    }
+
+    /**
+     * 设置是否支持自动缩放
+     */
+    public void setSupportAutoZoom() {
+        WebSettings webSettings = getSettings();
+        webSettings.setUseWideViewPort(true);//关键点  
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setSupportZoom(true);
     }
 
     public WebViewClient getWebViewClient() {
