@@ -36,7 +36,6 @@ public class BaseToolBarActivity extends BaseFrameActivity {
     * 1、toolbar是否悬浮在窗口之上
     * 2、toolbar的高度获取
     * */
-    public static int[] ATTRS = {R.attr.windowActionBarOverlay, R.attr.actionBarSize};
     public  Toolbar  toolbar;
     private View     toolBarView;        //自定义的toolBar的布局
     private TextView toolbarTitleView;   //标题
@@ -67,25 +66,15 @@ public class BaseToolBarActivity extends BaseFrameActivity {
     }
 
     private ViewGroup initToolBar(View userView) {
-        TypedArray typedArray = getTheme().obtainStyledAttributes(ATTRS);
-        /*获取主题中定义的悬浮标志*/
-        boolean overly = typedArray.getBoolean(0, false);
+                 /*获取主题中定义的悬浮标志*/
+        TypedArray typedArray = getTheme().obtainStyledAttributes(R.styleable.ToolBarTheme);
+        boolean overly = typedArray.getBoolean(R.styleable.ToolBarTheme_android_windowActionBarOverlay, false);
         typedArray.recycle();
 
-        /*直接创建一个布局，作为视图容器的父容器*/
-        ViewGroup contentView;
-        if (overly) {
-            contentView = new FrameLayout(this);
-        } else {
-            contentView = new LinearLayout(this);
-            ((LinearLayout) contentView).setOrientation(LinearLayout.VERTICAL);
-        }
-
-		/*将toolbar引入到父容器中*/
+        	/*将toolbar引入到父容器中*/
         View toolbarLay = LayoutInflater.from(this)
                                         .inflate(R.layout.gui_toolbar, null);
         LayoutParams layParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        contentView.addView(toolbarLay, layParam);
 
         //不明原因导致布局向右移动了一些，移动回来
         //((ViewGroup.MarginLayoutParams) toolbarLay.getLayoutParams()).leftMargin = -40;
@@ -106,8 +95,19 @@ public class BaseToolBarActivity extends BaseFrameActivity {
         toolbarLeftBtn.setOnClickListener(clickListener);
         toolbarRightBtn.setOnClickListener(clickListener);
 
-		/*将自定义的布局引入到父容器中*/
-        contentView.addView(userView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        /*直接创建一个布局，作为视图容器的父容器*/
+        ViewGroup contentView;
+        if (overly) {
+            contentView = new FrameLayout(this);
+            contentView.addView(userView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            contentView.addView(toolbarLay, layParam);
+        } else {
+            contentView = new LinearLayout(this);
+            ((LinearLayout) contentView).setOrientation(LinearLayout.VERTICAL);
+            contentView.addView(toolbarLay, layParam);
+            contentView.addView(userView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        }
+        
         return contentView;
     }
 

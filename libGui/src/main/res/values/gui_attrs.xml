@@ -1,4 +1,12 @@
 <resources>
+    <declare-styleable name="FlowLayout">
+        <attr name="android:gravity"/>
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout_Layout">
+        <attr name="android:layout_gravity"/>
+    </declare-styleable>
+
     <attr name="key_text" format="string"/>
     <attr name="is_arrow" format="boolean"/>
     <attr name="is_bottomline" format="boolean"/>
@@ -39,7 +47,7 @@
         <attr name="value_text_color"/>
         <attr name="key_text_color"/>
     </declare-styleable>
-    
+
     <declare-styleable name="ZKeySwitchView">
         <attr name="key_img"/>
         <attr name="key_ems"/>
@@ -49,7 +57,7 @@
         <attr name="key_text_color"/>
         <attr name="is_checked" format="boolean"/>
     </declare-styleable>
-    
+
     <declare-styleable name="SwitchButton">
         <attr name="frameDrawable" format="reference|color"/>
         <attr name="stateDrawable" format="reference|color"/>
@@ -72,5 +80,9 @@
         <attr name="record_max_time" format="integer"/> <!-- 一次拍摄最长时间 -->
         <attr name="record_width" format="integer"/>    <!-- 视频分辨率宽度 -->
         <attr name="record_height" format="integer"/>   <!-- 视频分辨率高度 -->
+    </declare-styleable>
+
+    <declare-styleable name="ToolBarTheme">
+        <attr name="android:windowActionBarOverlay"/>
     </declare-styleable>
 </resources>

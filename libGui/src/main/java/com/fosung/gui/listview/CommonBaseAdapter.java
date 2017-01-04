@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * BaseAdapter的封装，需要实现抽象函数
  */
-
 public abstract class CommonBaseAdapter<T> extends android.widget.BaseAdapter {
     private   List<T> listData;
     protected Context context;
@@ -36,7 +35,6 @@ public abstract class CommonBaseAdapter<T> extends android.widget.BaseAdapter {
 
     /**
      * 替换List数据，将内置的list替换为传入的list
-     * @param list
      */
     public void setListData(List<T> list) {
         this.listData = list;
@@ -49,7 +47,6 @@ public abstract class CommonBaseAdapter<T> extends android.widget.BaseAdapter {
 
     /**
      * 追加条目数据
-     * @param datas
      */
     public void addDatas(List<T> datas) {
         if (listData != null) {
@@ -60,7 +57,6 @@ public abstract class CommonBaseAdapter<T> extends android.widget.BaseAdapter {
 
     /**
      * 将数据替换为传入的数据集
-     * @param datas
      */
     public void setDatas(List<T> datas) {
         listData.clear();
@@ -72,7 +68,6 @@ public abstract class CommonBaseAdapter<T> extends android.widget.BaseAdapter {
 
     /**
      * 追加单条数据
-     * @param data
      */
     public void addData(T data) {
         if (listData != null) {
