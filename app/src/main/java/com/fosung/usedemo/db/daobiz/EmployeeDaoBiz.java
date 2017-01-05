@@ -20,6 +20,7 @@ public class EmployeeDaoBiz extends BaseDaoBiz<Employee, DaoSession> {
 
     @Override
     public DaoSession getDaoSession() {
+        //return DaoManager.getDaoSession(context, "alias");//指定路径和别名的数据库
         return DaoManager.getDaoSession();
     }
 }

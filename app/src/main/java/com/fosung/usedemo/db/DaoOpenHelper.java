@@ -12,6 +12,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.fosung.usedemo.greendao.dao.DaoMaster;
 
+import org.greenrobot.greendao.database.Database;
+
+import static com.fosung.usedemo.greendao.dao.DaoMaster.dropAllTables;
+
 
 /**
  * 默认的DaoMaster.OpenHelper在碰到数据库升级的时候会删除旧的表来创建新的表，
@@ -24,10 +28,14 @@ public class DaoOpenHelper extends DaoMaster.OpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(Database db, int oldVersion, int newVersion) {
+        dropAllTables(db, true);
+        onCreate(db);
+
+        //TODO 如果需要保存数据， 数据库升级时需要在此写升级语句
         switch (oldVersion) {
             case 1:
-                //TODO 数据库升级时需要在此写升级语句
+
                 //创建新表，注意createTable()是静态方法
                 // SchoolDao.createTable(db, true);     
 
