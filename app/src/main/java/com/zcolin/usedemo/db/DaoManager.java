@@ -11,24 +11,26 @@ package com.zcolin.usedemo.db;
 import android.content.Context;
 
 import com.fosung.frame.app.BaseApp;
-import com.fosung.usedemo.greendao.dao.DaoMaster;
-import com.fosung.usedemo.greendao.dao.DaoSession;
+import com.fosung.frame.db.DaoHelper;
+import com.zcolin.usedemo.db.entity.DaoMaster;
+import com.zcolin.usedemo.db.entity.DaoSession;
 
 /**
  * 数据库管理类，管理session,helper,master对象
  */
 public class DaoManager {
 
-    private static DaoSession    DAO_SESSION;
-    private static DaoOpenHelper DAO_HELPER;
-    private static DaoMaster     DAO_MASTER;
+    private static DaoOpenHelper         DAO_OPENHELPER;
+    private static DaoHelper<DaoSession> DAO_HELPER;
+    private static DaoSession            DAO_SESSION;
+    private static DaoMaster             DAO_MASTER;
 
     /**
      * 得到数据库管理者
      */
     public static DaoMaster getDaoMaster() {
         if (DAO_MASTER == null) {
-            DAO_MASTER = new DaoMaster(getDaoHelper(BaseApp.APP_CONTEXT, "default").getWritableDatabase());
+            DAO_MASTER = new DaoMaster(getDaoOpenHelper(BaseApp.APP_CONTEXT, "default").getWritableDatabase());
         }
         return DAO_MASTER;
     }
@@ -41,7 +43,7 @@ public class DaoManager {
      */
     public static DaoMaster getDaoMaster(Context context, String name) {
         if (DAO_MASTER == null) {
-            DAO_MASTER = new DaoMaster(getDaoHelper(context, name).getWritableDatabase());
+            DAO_MASTER = new DaoMaster(getDaoOpenHelper(context, name).getWritableDatabase());
         }
         return DAO_MASTER;
     }
@@ -67,22 +69,42 @@ public class DaoManager {
     }
 
     /**
-     * 得到daoSession，可以执行增删改查操作
+     * 获取DaoHelper
      */
-    public static DaoOpenHelper getDaoHelper(Context context, String name) {
+    public static DaoHelper<DaoSession> getDaoHelper(Context context, String name) {
         if (DAO_HELPER == null) {
-            DAO_HELPER = new DaoOpenHelper(context, name, null);
+            DAO_HELPER = new DaoHelper<>(getDaoSession(context, name));
         }
         return DAO_HELPER;
+    }
+
+    /**
+     * 获取DaoHelper
+     */
+    public static DaoHelper<DaoSession> getDaoHelper() {
+        if (DAO_HELPER == null) {
+            DAO_HELPER = new DaoHelper<>(getDaoSession());
+        }
+        return DAO_HELPER;
+    }
+
+    /**
+     * 获取DaoOpenHelper
+     */
+    private static DaoOpenHelper getDaoOpenHelper(Context context, String name) {
+        if (DAO_OPENHELPER == null) {
+            DAO_OPENHELPER = new DaoOpenHelper(context, name, null);
+        }
+        return DAO_OPENHELPER;
     }
 
     /**
      * 关闭数据库
      */
     public static void closeDataBase() {
-        if (DAO_HELPER != null) {
-            DAO_HELPER.close();
-            DAO_HELPER = null;
+        if (DAO_OPENHELPER != null) {
+            DAO_OPENHELPER.close();
+            DAO_OPENHELPER = null;
         }
         if (null != DAO_SESSION) {
             DAO_SESSION.clear();

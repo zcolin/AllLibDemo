@@ -9,12 +9,9 @@ package com.zcolin.usedemo.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.fosung.usedemo.greendao.dao.DaoMaster;
-
+import com.zcolin.usedemo.db.entity.DaoMaster;
 import org.greenrobot.greendao.database.Database;
-
-import static com.fosung.usedemo.greendao.dao.DaoMaster.dropAllTables;
+import static com.zcolin.usedemo.db.entity.DaoMaster.dropAllTables;
 
 
 /**

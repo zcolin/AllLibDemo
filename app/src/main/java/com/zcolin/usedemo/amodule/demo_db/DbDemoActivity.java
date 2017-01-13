@@ -12,15 +12,18 @@ import android.widget.TextView;
 import com.fosung.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
-import com.zcolin.usedemo.db.daobiz.EmployeeDaoBiz;
-import com.fosung.usedemo.greendao.dao.EmployeeDao;
-import com.fosung.usedemo.greendao.entity.Employee;
+import com.zcolin.usedemo.db.DaoManager;
+import com.zcolin.usedemo.db.entity.DaoSession;
+import com.zcolin.usedemo.db.entity.Employee;
+import com.zcolin.usedemo.db.entity.EmployeeDao;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.zcolin.usedemo.db.DaoManager.getDaoHelper;
 
 /**
  * DBDemo
@@ -71,8 +74,7 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
      */
     public Employee insertObject() {
         Employee employee = getEmployee();
-        EmployeeDaoBiz employeeDaoBiz = new EmployeeDaoBiz();
-        boolean b = employeeDaoBiz.insertObject(employee);
+        boolean b = getDaoHelper().insertObject(employee);
         ToastUtil.toastShort(b ? "插入成功" : "插入失败-主键重复");
         return employee;
     }
@@ -82,8 +84,7 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
      */
     public Employee insertOrReplaceObject() {
         Employee employee = getEmployee();
-        EmployeeDaoBiz employeeDaoBiz = new EmployeeDaoBiz();
-        boolean b = employeeDaoBiz.insertOrReplaceObject(employee);
+        boolean b = getDaoHelper().insertOrReplaceObject(employee);
         ToastUtil.toastShort(b ? "插入成功" : "插入失败-主键重复");
         return employee;
     }
@@ -92,8 +93,7 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
      * 查询所有数据的数据列表
      */
     public void queryObject() {
-        EmployeeDaoBiz biz = new EmployeeDaoBiz();
-        List<Employee> list = biz.queryAll(Employee.class);
+        List<Employee> list = getDaoHelper().queryAll(Employee.class);
         setText(list);
     }
 
@@ -102,8 +102,7 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
      * <p>
      */
     public void queryObjectWithCondition() {
-        EmployeeDaoBiz biz = new EmployeeDaoBiz();
-        QueryBuilder queryBuilder = biz.getQueryBuilder(Employee.class);
+        QueryBuilder queryBuilder = getDaoHelper().getQueryBuilder(Employee.class);
         queryBuilder.where(EmployeeDao.Properties.Group.eq("部门二"));
         queryBuilder.offset(1);
         queryBuilder.limit(3);
@@ -114,7 +113,7 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
             currentSortType = 0;
             queryBuilder.orderAsc(EmployeeDao.Properties.Date);
         }
-        List<Employee> list = biz.queryAll(Employee.class);
+        List<Employee> list = DaoManager.getDaoHelper().queryAll(Employee.class);
         setText(list);
     }
 
@@ -122,8 +121,9 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
      * 删除所有数据
      */
     public void deleteAllObject(){
-        EmployeeDaoBiz biz = new EmployeeDaoBiz();
-        boolean b = biz.deleteAll(Employee.class);
+        boolean b = getDaoHelper().deleteAll(Employee.class);
+
+        DaoSession daoSession = DaoManager.getDaoMaster().newSession();
     }
 
     private Employee getEmployee() {
@@ -149,6 +149,8 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
                        .append(o.getName())
                        .append("  group:")
                        .append(o.getGroup())
+                       .append("  time")
+                       .append(o.getDate())
                        .append("\n");
             }
             textView.setText(builder);

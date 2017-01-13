@@ -1,8 +1,15 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+
+    greendao {
+        schemaVersion 1
+        //daoPackage 'com.greendao.gen'  //dao包名
+        //targetGenDir 'src/main/java'  //生成目录
+    }
 
     //lint配置
     lintOptions {
@@ -70,7 +77,7 @@ android {
     }
     sourceSets {
         main {
-            java.srcDirs = ['src/main/java', 'src/main/java-gen']
+            java.srcDirs = ['src/main/java']
         }
     }
 }
@@ -82,7 +89,7 @@ dependencies {
 
     compile 'com.github.zcolin:ZIjkPlayer:latest.release'//视频播放
     compile 'com.github.zcolin:ZEasyPR:latest.release'//车牌识别
-    compile 'com.github.zcolin:ZFrameTemplate:latest.release'//程序框架 
+    compile 'com.github.zcolin:ZFrameTemplate:1.1.7'//程序框架 
     compile 'com.github.zcolin:ZBarCodeScanner:latest.release'//二维码扫描
     compile 'com.github.zcolin:ZMultiImageSelector:latest.release'//多图选择    
     compile 'com.github.zcolin:PullRecyclerView:1.0.9'//下拉刷新
