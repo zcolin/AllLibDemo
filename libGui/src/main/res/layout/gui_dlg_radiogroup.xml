@@ -18,7 +18,7 @@
         android:visibility="gone">
     </TextView>
 
-    <com.fosung.gui.MaxHeightScrollView
+    <com.zcolin.gui.MaxHeightScrollView
         android:id="@+id/dialogradiogroup_sc"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:id="@+id/dialogradiogroup_radiogroup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
-    </com.fosung.gui.MaxHeightScrollView>
+    </com.zcolin.gui.MaxHeightScrollView>
 
     <include
         android:id="@+id/dialogradiogroup_bottom"

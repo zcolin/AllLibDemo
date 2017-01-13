@@ -1,4 +1,4 @@
-package com.fosung.gui.webview;
+package com.zcolin.gui.webview;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;

@@ -39,7 +39,7 @@
         android:textSize="@dimen/gui_textsize_normal"
         android:visibility="gone" />
 
-    <com.fosung.gui.ZEditText
+    <com.zcolin.gui.ZEditText
         android:id="@+id/dlgeditone_edit"
         style="@style/Gui_TextStyle_BlackLight_Big"
         android:layout_width="fill_parent"
@@ -52,7 +52,7 @@
         android:layout_marginTop="10dp" >
 
         <requestFocus />
-    </com.fosung.gui.ZEditText>
+    </com.zcolin.gui.ZEditText>
 
     <include
         android:id="@+id/dlgeditone_bottom"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.fosung.usedemo"
+<manifest package="com.zcolin.usedemo"
           xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
@@ -42,7 +42,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
-        android:name="com.fosung.usedemo.app.App"
+        android:name="com.zcolin.usedemo.app.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -52,7 +52,7 @@
             android:name="com.fosung.frame.imageloader.SimpleGlideModule"
             android:value="GlideModule"/>
 
-        <activity android:name="com.fosung.usedemo.amodule.init.InitActivity">
+        <activity android:name="com.zcolin.usedemo.amodule.init.InitActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -60,38 +60,38 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".amodule.main.activity.MainActivity"
+            android:name="com.zcolin.usedemo.amodule.main.activity.MainActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".amodule.demo_view.activity.DesignSupportActivity"/>
-        <activity android:name=".amodule.demo_view.activity.DesignSupportActivity1"/>
-        <activity android:name=".amodule.demo_view.activity.DesignSupportActivity2"/>
-        <activity android:name=".amodule.demo_video.RecordVideoActivity"/>
-        <activity android:name=".amodule.demo_video.RecordVideoPreviewActivity"/>
-        <activity android:name=".amodule.demo_video.QrCodeScanActivity"/>
-        <activity android:name=".amodule.demo_image.ImageSelectorActivity"/>
-        <activity android:name=".amodule.demo_image.ImageUtilActivity"/>
-        <activity android:name=".amodule.demo_view.activity.WebViewActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity1"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity2"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_video.RecordVideoActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_video.RecordVideoPreviewActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_video.QrCodeScanActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_image.ImageSelectorActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_image.ImageUtilActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.WebViewActivity"/>
         <activity
-            android:name=".amodule.demo_view.activity.WebViewVideoActivity"
+            android:name="com.zcolin.usedemo.amodule.demo_view.activity.WebViewVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
-        <activity android:name=".amodule.demo_view.activity.PassDataActivity"/>
-        <activity android:name=".amodule.demo_view.activity.PassDataActivity1"/>
-        <activity android:name=".amodule.demo_view.activity.DialogActivity"/>
-        <activity android:name=".amodule.demo_view.activity.OtherViewActivity"/>
-        <activity android:name=".amodule.demo_db.DbDemoActivity"/>
-        <activity android:name=".amodule.demo_http.HttpDemoActivity"/>
-        <activity android:name=".amodule.demo_video.EasyPRActivity"/>
-        <activity android:name=".amodule.demo_video.ijkplayer.NavigationActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.PassDataActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.PassDataActivity1"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.DialogActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.OtherViewActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_db.DbDemoActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_http.HttpDemoActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_video.EasyPRActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.NavigationActivity"/>
         <activity
-            android:name=".amodule.demo_video.ijkplayer.VideoRecyclerViewActivity"
+            android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.VideoRecyclerViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".amodule.demo_video.ijkplayer.VideoPlayActivity"
+            android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.VideoPlayActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensor"/>
         <activity
-            android:name=".amodule.demo_video.ijkplayer.VideoFragmentPlayActivity"
+            android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.VideoFragmentPlayActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"/>
     </application>

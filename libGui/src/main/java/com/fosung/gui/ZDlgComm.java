@@ -7,7 +7,7 @@
  * *********************************************************
  */
 
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.content.Context;
 import android.text.method.ScrollingMovementMethod;

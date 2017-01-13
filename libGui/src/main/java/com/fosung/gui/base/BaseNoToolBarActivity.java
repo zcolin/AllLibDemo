@@ -5,7 +5,7 @@
  * date     16-7-18 下午1:41
  **********************************************************/
 
-package com.fosung.gui.base;
+package com.zcolin.gui.base;
 
 import android.os.Bundle;
 import android.view.ViewGroup;

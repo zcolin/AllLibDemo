@@ -5,7 +5,7 @@
  * date     16-7-18 下午1:41
  **********************************************************/
 
-package com.fosung.gui.base;
+package com.zcolin.gui.base;
 
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.fosung.frame.app.BaseFrameActivity;
 import com.fosung.frame.utils.ScreenUtil;
 import com.fosung.frame.utils.StringUtil;
-import com.fosung.gui.R;
+import com.zcolin.gui.R;
 
 
 /**

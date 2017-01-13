@@ -7,7 +7,7 @@
  * *********************************************************
  */
 
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.app.ProgressDialog;
 import android.content.Context;

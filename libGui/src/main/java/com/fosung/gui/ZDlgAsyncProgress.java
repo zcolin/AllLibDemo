@@ -5,7 +5,7 @@
  * date     16-7-15 上午9:54
  **********************************************************/
 
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.content.Context;
 import android.os.AsyncTask;

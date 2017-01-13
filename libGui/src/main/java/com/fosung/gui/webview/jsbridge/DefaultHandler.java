@@ -4,7 +4,7 @@
  * email    wanglin2046@126.com
  * date     16-7-15 下午4:41
  **********************************************************/
-package com.fosung.gui.webview.jsbridge;
+package com.zcolin.gui.webview.jsbridge;
 
 
 public class DefaultHandler implements BridgeHandler {

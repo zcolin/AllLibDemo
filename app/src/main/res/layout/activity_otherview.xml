@@ -18,28 +18,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.fosung.gui.ZBanner
+        <com.zcolin.gui.ZBanner
             android:id="@+id/view_banner"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             app:indicator_height="@dimen/dimens_small"
             app:indicator_width="@dimen/dimens_small"/>
 
-        <com.fosung.gui.ZTextSwitcher
+        <com.zcolin.gui.ZTextSwitcher
             android:id="@+id/view_textswitcher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimens_big"
             android:background="@color/blue_mid"/>
 
-        <com.fosung.gui.ZEditTextWithClear
+        <com.zcolin.gui.ZEditTextWithClear
             android:id="@+id/et_clear"
             android:layout_width="match_parent"
             android:layout_height="@dimen/gui_dimens_item_height_small"
             android:layout_marginTop="@dimen/dimens_big"
             android:text="带清除按钮的Edittext"/>
 
-        <com.fosung.gui.ZEditTextWithPassword
+        <com.zcolin.gui.ZEditTextWithPassword
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/gui_dimens_item_height_small"
@@ -61,46 +61,46 @@
             android:textAllCaps="false"/>
 
         <!--def  is_bottomline=true, is_arrow=true   -->
-        <com.fosung.gui.ZKeyValueView
+        <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            app:is_arrow="true"
-            app:is_bottomline="true"
-            app:key_img="@drawable/ic_launcher"
-            app:key_text="KEY"
-            app:key_text_color="@color/black_dark"
-            app:key_text_size="20dp"
-            app:value_text="VALUE"
-            app:value_text_color="@color/black_dark"
-            app:value_text_size="20dp"/>
+            app:zkv_is_arrow="true"
+            app:zkv_is_bottomline="true"
+            app:zkv_key_img="@drawable/ic_launcher"
+            app:zkv_key_text="KEY"
+            app:zkv_key_text_color="@color/black_dark"
+            app:zkv_key_text_size="20dp"
+            app:zkv_value_text="VALUE"
+            app:zkv_value_text_color="@color/black_dark"
+            app:zkv_value_text_size="20dp"/>
 
         <!--def  is_bottomline=true, is_checked=false   -->
-        <com.fosung.gui.ZKeySwitchView
+        <com.zcolin.gui.ZKeySwitchView
             android:id="@+id/zkv_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            app:is_bottomline="true"
-            app:is_checked="true"
-            app:key_img="@drawable/ic_launcher"
-            app:key_text="KEY"
-            app:key_text_color="@color/black_dark"
-            app:key_text_size="20dp"/>
+            app:zksv_is_bottomline="true"
+            app:zksv_is_checked="true"
+            app:zksv_key_img="@drawable/ic_launcher"
+            app:zksv_key_text="KEY"
+            app:zksv_key_text_color="@color/black_dark"
+            app:zksv_key_text_size="20dp"/>
 
         <!--def  is_bottomline=true, is_arrow=true   -->
-        <com.fosung.gui.ZKeyValueEditView
+        <com.zcolin.gui.ZKeyValueEditView
             android:id="@+id/zkv_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            app:is_bottomline="true"
-            app:is_arrow="true"
-            app:key_text="KEY"
-            app:key_text_color="@color/black_dark"
-            app:key_text_size="20dp"
-            app:value_hint="这是Edittext"
-            app:value_singleline="true"/>
+            app:zkve_is_bottomline="true"
+            app:zkve_is_arrow="true"
+            app:zkve_key_text="KEY"
+            app:zkve_key_text_color="@color/black_dark"
+            app:zkve_key_text_size="20dp"
+            app:zkve_value_hint="这是Edittext"
+            app:zkve_value_maxline="1"/>
     </LinearLayout>
 </ScrollView>

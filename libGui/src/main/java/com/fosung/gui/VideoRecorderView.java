@@ -7,7 +7,7 @@
  * *********************************************************
  */
 
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

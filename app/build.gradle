@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.fosung.usedemo"
+        applicationId "com.zcolin.usedemo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -85,9 +85,9 @@ dependencies {
     compile 'com.github.zcolin:ZFrameTemplate:latest.release'//程序框架 
     compile 'com.github.zcolin:ZBarCodeScanner:latest.release'//二维码扫描
     compile 'com.github.zcolin:ZMultiImageSelector:latest.release'//多图选择    
-    compile 'com.github.zcolin:PullRecyclerView:latest.release'//下拉刷新
+    compile 'com.github.zcolin:PullRecyclerView:1.0.9'//下拉刷新
     compile 'com.github.zcolin:ZRecyclerView:latest.release'//下拉刷新
-    compile project(path: ':libGui')
+    compile 'com.github.zcolin:ZUILib:1.0.1'//UI库 
 }
 
 

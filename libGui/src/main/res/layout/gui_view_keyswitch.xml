@@ -15,7 +15,7 @@
         android:layout_marginLeft="@dimen/gui_dimens_small"
         android:layout_marginRight="@dimen/gui_dimens_small"/>
 
-    <com.fosung.gui.SwitchButton
+    <com.zcolin.gui.SwitchButton
         android:id="@+id/switchButton"
         style="@style/Gui_TextStyle_BlackLight_Normal"
         android:layout_width="match_parent"

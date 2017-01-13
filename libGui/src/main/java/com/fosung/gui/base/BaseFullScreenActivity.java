@@ -7,7 +7,7 @@
  * *********************************************************
  */
 
-package com.fosung.gui.base;
+package com.zcolin.gui.base;
 
 import android.os.Build;
 import android.os.Bundle;

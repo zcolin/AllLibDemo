@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--录制视频控件-->
+    <declare-styleable name="VideoRecorderView">
+        <attr name="is_open_camera" format="boolean"/>  <!-- 开始是否打开摄像头 -->
+        <attr name="record_max_time" format="integer"/> <!-- 一次拍摄最长时间 -->
+        <attr name="record_width" format="integer"/>    <!-- 视频分辨率宽度 -->
+        <attr name="record_height" format="integer"/>   <!-- 视频分辨率高度 -->
+    </declare-styleable>
+
+
+    <declare-styleable name="ToolBarTheme">
+        <attr name="android:windowActionBarOverlay"/>
+    </declare-styleable>
+</resources>

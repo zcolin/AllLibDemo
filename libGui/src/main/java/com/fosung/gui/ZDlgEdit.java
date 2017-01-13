@@ -6,7 +6,7 @@
  *   date     16-10-20 上午10:48
  * *********************************************************
  */
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.app.Activity;
 import android.text.InputFilter;

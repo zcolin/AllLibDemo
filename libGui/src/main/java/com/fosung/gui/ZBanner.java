@@ -6,7 +6,7 @@
  *   date     16-10-18 上午10:00
  * *********************************************************
  */
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.TypedArray;

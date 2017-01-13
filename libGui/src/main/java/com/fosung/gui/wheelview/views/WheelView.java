@@ -26,7 +26,7 @@
  *  limitations under the License.
  */
 
-package com.fosung.gui.wheelview.views;
+package com.zcolin.gui.wheelview.views;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -41,8 +41,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
-import com.fosung.gui.R;
-import com.fosung.gui.wheelview.adapters.WheelViewAdapter;
+import com.zcolin.gui.R;
+import com.zcolin.gui.wheelview.adapters.WheelViewAdapter;
 
 import java.util.LinkedList;
 import java.util.List;

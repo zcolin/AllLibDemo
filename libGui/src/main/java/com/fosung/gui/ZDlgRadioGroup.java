@@ -6,7 +6,7 @@
  *   date     16-10-8 下午4:47
  * *********************************************************
  */
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.app.Activity;
 import android.content.Context;

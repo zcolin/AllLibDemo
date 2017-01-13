@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         />
 
-    <com.fosung.gui.ZEditTextWithClear
+    <com.zcolin.gui.ZEditTextWithClear
         android:id="@+id/edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

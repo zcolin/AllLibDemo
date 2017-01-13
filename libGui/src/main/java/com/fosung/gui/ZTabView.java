@@ -4,7 +4,7 @@
  * email    wanglin2046@126.com
  * date     16-7-15 上午9:54
  **********************************************************/
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.app.Activity;
 import android.content.Context;

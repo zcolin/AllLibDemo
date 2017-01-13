@@ -4,7 +4,7 @@
  * email    wanglin2046@126.com
  * date     16-7-15 上午11:26
  **********************************************************/
-package com.fosung.gui.webview;
+package com.zcolin.gui.webview;
 
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -24,9 +24,9 @@ import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
-import com.fosung.gui.ZAlert;
-import com.fosung.gui.ZDlg;
-import com.fosung.gui.ZDlgComm;
+import com.zcolin.gui.ZAlert;
+import com.zcolin.gui.ZDlg;
+import com.zcolin.gui.ZDlgComm;
 
 
 /**

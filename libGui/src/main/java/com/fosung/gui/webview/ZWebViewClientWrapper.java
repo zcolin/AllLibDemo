@@ -4,7 +4,7 @@
  * email    wanglin2046@126.com
  * date     16-7-15 上午11:26
  **********************************************************/
-package com.fosung.gui.webview;
+package com.zcolin.gui.webview;
 
 import android.graphics.Bitmap;
 import android.net.http.SslError;
@@ -23,7 +23,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.fosung.gui.webview.jsbridge.BridgeWebViewClient;
+import com.zcolin.gui.webview.jsbridge.BridgeWebViewClient;
 
 
 /**

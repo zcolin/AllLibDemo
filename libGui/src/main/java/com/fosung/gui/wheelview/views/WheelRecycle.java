@@ -26,7 +26,7 @@
  *  limitations under the License.
  */
 
-package com.fosung.gui.wheelview.views;
+package com.zcolin.gui.wheelview.views;
 
 import android.view.View;
 import android.widget.LinearLayout;

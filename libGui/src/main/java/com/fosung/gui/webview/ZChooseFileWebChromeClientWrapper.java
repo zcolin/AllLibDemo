@@ -4,7 +4,7 @@
  * email    wanglin2046@126.com
  * date     16-7-15 上午11:26
  **********************************************************/
-package com.fosung.gui.webview;
+package com.zcolin.gui.webview;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

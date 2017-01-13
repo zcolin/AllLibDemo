@@ -4,7 +4,7 @@
  * email    wanglin2046@126.com
  * date     16-7-15 上午11:26
  **********************************************************/
-package com.fosung.gui.webview;
+package com.zcolin.gui.webview;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -30,7 +30,7 @@ import com.fosung.frame.jsbridge.BridgeWebView;
 import com.fosung.frame.jsbridge.CallBackFunction;
 import com.fosung.frame.utils.DisplayUtil;
 import com.fosung.frame.utils.LogUtil;
-import com.fosung.gui.R;
+import com.zcolin.gui.R;
 
 
 /**

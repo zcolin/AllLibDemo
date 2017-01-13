@@ -7,17 +7,17 @@
  * *********************************************************
  */
 
-package com.fosung.gui;
+package com.zcolin.gui;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.fosung.gui.wheelview.adapters.AbstractWheelTextAdapter;
-import com.fosung.gui.wheelview.views.OnWheelChangedListener;
-import com.fosung.gui.wheelview.views.OnWheelScrollListener;
-import com.fosung.gui.wheelview.views.WheelView;
+import com.zcolin.gui.wheelview.adapters.AbstractWheelTextAdapter;
+import com.zcolin.gui.wheelview.views.OnWheelChangedListener;
+import com.zcolin.gui.wheelview.views.OnWheelScrollListener;
+import com.zcolin.gui.wheelview.views.WheelView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
