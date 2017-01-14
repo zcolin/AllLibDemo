@@ -24,8 +24,11 @@ import com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity2;
 import com.zcolin.usedemo.amodule.demo_view.activity.DialogActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.OtherViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.PassDataActivity;
+import com.zcolin.usedemo.amodule.demo_view.activity.RichEditTextViewActivity;
+import com.zcolin.usedemo.amodule.demo_view.activity.RichTextViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.WebViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.WebViewVideoActivity;
+import com.zcolin.usedemo.views.richtext.RichEditTextView;
 
 import java.util.ArrayList;
 
@@ -64,6 +67,8 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
         listButton.add(addButton("WebViewDemo"));
         listButton.add(addButton("WebViewVideoFullScreenDemo"));
         listButton.add(addButton("DialogDemo"));
+        listButton.add(addButton("RichTextView"));
+        listButton.add(addButton("RichEditTextView"));
         listButton.add(addButton("其他View示例"));
         
         for (Button btn : listButton) {
@@ -99,6 +104,10 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
         }else if (v == listButton.get(6)) {
             ActivityUtil.startActivity(mActivity, DialogActivity.class);
         }else if (v == listButton.get(7)) {
+            ActivityUtil.startActivity(mActivity, RichTextViewActivity.class);
+        }else if (v == listButton.get(8)) {
+            ActivityUtil.startActivity(mActivity, RichEditTextViewActivity.class);
+        }else if (v == listButton.get(9)) {
             ActivityUtil.startActivity(mActivity, OtherViewActivity.class);
         }
     }

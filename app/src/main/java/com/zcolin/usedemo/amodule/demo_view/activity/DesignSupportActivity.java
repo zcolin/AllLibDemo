@@ -101,7 +101,7 @@ public class DesignSupportActivity extends BaseFrameActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mActivity.runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         notifyData(setList(page), page == 1);
