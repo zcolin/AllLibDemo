@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.fosung.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
 import com.zcolin.usedemo.R;
 
 import java.util.ArrayList;

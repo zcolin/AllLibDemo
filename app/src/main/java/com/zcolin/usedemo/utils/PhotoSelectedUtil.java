@@ -11,12 +11,12 @@ package com.zcolin.usedemo.utils;
 
 import android.content.Intent;
 
-import com.fosung.frame.app.BaseFrameActivity;
-import com.fosung.frame.app.BaseFrameFrag;
-import com.fosung.frame.app.ResultActivityHelper;
-import com.fosung.frame.permission.PermissionHelper;
-import com.fosung.frame.permission.PermissionsResultAction;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.app.BaseFrameActivity;
+import com.zcolin.frame.app.BaseFrameFrag;
+import com.zcolin.frame.app.ResultActivityHelper;
+import com.zcolin.frame.permission.PermissionHelper;
+import com.zcolin.frame.permission.PermissionsResultAction;
+import com.zcolin.frame.utils.ToastUtil;
 
 import me.nereo.multi_image_selector.MultiImageSelector;
 

@@ -13,7 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.fosung.frame.app.BaseFrameActivity;
+import com.zcolin.frame.app.BaseFrameActivity;
 
 
 /**

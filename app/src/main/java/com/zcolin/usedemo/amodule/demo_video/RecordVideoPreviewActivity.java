@@ -23,8 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
-import com.fosung.frame.utils.ScreenUtil;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.utils.ScreenUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 

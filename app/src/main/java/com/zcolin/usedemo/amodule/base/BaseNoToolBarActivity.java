@@ -13,8 +13,8 @@ package com.zcolin.usedemo.amodule.base;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
-import com.fosung.frame.app.BaseFrameActivity;
-import com.fosung.frame.utils.ScreenUtil;
+import com.zcolin.frame.app.BaseFrameActivity;
+import com.zcolin.frame.utils.ScreenUtil;
 
 
 /**

@@ -28,11 +28,11 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.widget.LinearLayout;
 
-import com.fosung.frame.app.FramePathConst;
-import com.fosung.frame.utils.CalendarUtil;
-import com.fosung.frame.utils.FileUtil;
-import com.fosung.frame.utils.LogUtil;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.app.FramePathConst;
+import com.zcolin.frame.utils.CalendarUtil;
+import com.zcolin.frame.utils.FileUtil;
+import com.zcolin.frame.utils.LogUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 
 import java.io.File;

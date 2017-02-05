@@ -12,7 +12,7 @@ package com.zcolin.usedemo.amodule.demo_view.adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fosung.frame.imageloader.ImageLoaderUtils;
+import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.usedemo.R;
 import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
 

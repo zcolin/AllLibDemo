@@ -9,11 +9,11 @@ package com.zcolin.usedemo.app;
 
 import android.content.Context;
 
-import com.fosung.frame.app.BaseApp;
-import com.fosung.frame.http.okhttp.OkHttpUtils;
-import com.fosung.frame.http.okhttp.cookie.CookieJarImpl;
-import com.fosung.frame.http.okhttp.cookie.store.MemoryCookieStore;
-import com.fosung.frame.http.okhttp.https.HttpsUtils;
+import com.zcolin.frame.app.BaseApp;
+import com.zcolin.frame.http.okhttp.OkHttpUtils;
+import com.zcolin.frame.http.okhttp.cookie.CookieJarImpl;
+import com.zcolin.frame.http.okhttp.cookie.store.MemoryCookieStore;
+import com.zcolin.frame.http.okhttp.https.HttpsUtils;
 
 import java.util.concurrent.TimeUnit;
 

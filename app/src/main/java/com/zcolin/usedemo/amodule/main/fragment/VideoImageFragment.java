@@ -17,11 +17,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.zcolin.usedemo.amodule.demo_video.EasyPRActivity;
-import com.fosung.frame.app.BaseFrameLazyLoadFrag;
-import com.fosung.frame.permission.PermissionHelper;
-import com.fosung.frame.permission.PermissionsResultAction;
-import com.fosung.frame.utils.ActivityUtil;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.permission.PermissionHelper;
+import com.zcolin.frame.permission.PermissionsResultAction;
+import com.zcolin.frame.utils.ActivityUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_image.ImageSelectorActivity;
 import com.zcolin.usedemo.amodule.demo_image.ImageUtilActivity;

@@ -16,7 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.fosung.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_view.adapter.ZRecyclerAdapter;
 import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;

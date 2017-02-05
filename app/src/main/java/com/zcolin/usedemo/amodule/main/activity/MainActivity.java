@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 
-import com.fosung.frame.app.BaseFrameFrag;
-import com.fosung.frame.utils.DisplayUtil;
+import com.zcolin.frame.app.BaseFrameFrag;
+import com.zcolin.frame.utils.DisplayUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseFullScreenActivity;
 import com.zcolin.usedemo.amodule.base.BaseNoToolBarActivity;

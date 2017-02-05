@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.fosung.frame.http.response.StringResponse;
+import com.zcolin.frame.http.response.StringResponse;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.usedemo.amodule.main.entity.BaiduWeather;

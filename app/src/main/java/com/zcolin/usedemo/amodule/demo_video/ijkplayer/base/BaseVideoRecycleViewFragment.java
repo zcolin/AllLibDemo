@@ -11,7 +11,7 @@ package com.zcolin.usedemo.amodule.demo_video.ijkplayer.base;
 import android.content.res.Configuration;
 import android.widget.RelativeLayout;
 
-import com.fosung.frame.app.BaseFrameFrag;
+import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.adapter.SuperVideoAdapter;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.bean.VideoListBean;
 import com.superplayer.library.SuperListPlayer;

@@ -22,10 +22,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.fosung.frame.app.ResultActivityHelper;
-import com.fosung.frame.utils.FileUtil;
-import com.fosung.frame.utils.ScreenUtil;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.app.ResultActivityHelper;
+import com.zcolin.frame.utils.FileUtil;
+import com.zcolin.frame.utils.ScreenUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.usedemo.views.VideoRecorderView;

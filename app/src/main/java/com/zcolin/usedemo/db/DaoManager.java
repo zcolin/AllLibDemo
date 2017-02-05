@@ -10,8 +10,8 @@ package com.zcolin.usedemo.db;
 
 import android.content.Context;
 
-import com.fosung.frame.app.BaseApp;
-import com.fosung.frame.db.DaoHelper;
+import com.zcolin.frame.app.BaseApp;
+import com.zcolin.frame.db.DaoHelper;
 import com.zcolin.usedemo.db.entity.DaoMaster;
 import com.zcolin.usedemo.db.entity.DaoSession;
 

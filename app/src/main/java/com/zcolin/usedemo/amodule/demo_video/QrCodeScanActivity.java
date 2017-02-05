@@ -3,7 +3,7 @@ package com.zcolin.usedemo.amodule.demo_video;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 

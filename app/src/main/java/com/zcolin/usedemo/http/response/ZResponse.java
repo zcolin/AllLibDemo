@@ -12,8 +12,8 @@ package com.zcolin.usedemo.http.response;
 
 import android.app.Activity;
 
-import com.fosung.frame.utils.LogUtil;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.utils.LogUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.http.entity.HttpBaseReplyBean;
 
 import okhttp3.Response;

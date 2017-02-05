@@ -9,10 +9,10 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.fosung.frame.app.ResultActivityHelper;
-import com.fosung.frame.permission.PermissionHelper;
-import com.fosung.frame.permission.PermissionsResultAction;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.app.ResultActivityHelper;
+import com.zcolin.frame.permission.PermissionHelper;
+import com.zcolin.frame.permission.PermissionsResultAction;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 

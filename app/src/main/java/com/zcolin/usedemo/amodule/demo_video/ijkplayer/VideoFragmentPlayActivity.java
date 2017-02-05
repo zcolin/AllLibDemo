@@ -12,7 +12,7 @@ package com.zcolin.usedemo.amodule.demo_video.ijkplayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.fosung.frame.app.BaseFrameFrag;
+import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.base.BaseVideoPlayFragment;

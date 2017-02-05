@@ -12,15 +12,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.fosung.frame.jsbridge.BridgeHandler;
-import com.fosung.frame.jsbridge.CallBackFunction;
-import com.fosung.frame.jsbridge.DefaultHandler;
-import com.fosung.frame.utils.GsonUtil;
-import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.frame.utils.GsonUtil;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZDialog;
 import com.zcolin.gui.webview.ZWebView;
+import com.zcolin.gui.webview.jsbridge.BridgeHandler;
+import com.zcolin.gui.webview.jsbridge.CallBackFunction;
+import com.zcolin.gui.webview.jsbridge.DefaultHandler;
+import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 
 /**
  * 带JsBridge的webview的Demo

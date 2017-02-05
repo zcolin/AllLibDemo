@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.fosung.frame.app.BaseFrameLazyLoadFrag;
-import com.fosung.frame.utils.ActivityUtil;
+import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.utils.ActivityUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity1;

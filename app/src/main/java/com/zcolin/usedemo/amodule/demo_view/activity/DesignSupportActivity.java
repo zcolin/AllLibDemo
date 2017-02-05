@@ -15,8 +15,8 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Toast;
 
-import com.fosung.frame.app.BaseFrameActivity;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.app.BaseFrameActivity;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_view.adapter.ZRecyclerMultiItemAdapter;
 import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;

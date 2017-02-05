@@ -13,8 +13,8 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
-import com.fosung.frame.app.BaseFrameLazyLoadFrag;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_view.adapter.PullRecyclerAdapter;
 import com.zcolin.gui.ZBanner;

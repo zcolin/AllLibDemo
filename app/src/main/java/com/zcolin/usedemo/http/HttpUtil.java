@@ -9,9 +9,9 @@
 
 package com.zcolin.usedemo.http;
 
-import com.fosung.frame.http.okhttp.OkHttpUtils;
-import com.fosung.frame.http.response.FileResponse;
-import com.fosung.frame.http.response.StringResponse;
+import com.zcolin.frame.http.okhttp.OkHttpUtils;
+import com.zcolin.frame.http.response.FileResponse;
+import com.zcolin.frame.http.response.StringResponse;
 import com.zcolin.usedemo.http.entity.HttpBaseReplyBean;
 import com.zcolin.usedemo.http.response.ZResponse;
 

@@ -10,7 +10,7 @@ package com.zcolin.usedemo.amodule.demo_video.ijkplayer.base;
 
 import android.content.res.Configuration;
 
-import com.fosung.frame.app.BaseFrameFrag;
+import com.zcolin.frame.app.BaseFrameFrag;
 import com.superplayer.library.SuperPlayer;
 
 /**

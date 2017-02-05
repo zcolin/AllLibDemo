@@ -11,7 +11,7 @@ package com.zcolin.usedemo.amodule.demo_video.ijkplayer.fragment;
 
 import android.os.Bundle;
 
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.base.BaseVideoPlayFragment;
 import com.superplayer.library.SuperPlayer;

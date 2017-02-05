@@ -15,7 +15,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.gui.ZBanner;

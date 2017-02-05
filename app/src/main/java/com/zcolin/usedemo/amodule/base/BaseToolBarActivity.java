@@ -23,9 +23,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.fosung.frame.app.BaseFrameActivity;
-import com.fosung.frame.utils.ScreenUtil;
-import com.fosung.frame.utils.StringUtil;
+import com.zcolin.frame.app.BaseFrameActivity;
+import com.zcolin.frame.utils.ScreenUtil;
+import com.zcolin.frame.utils.StringUtil;
 import com.zcolin.usedemo.R;
 
 

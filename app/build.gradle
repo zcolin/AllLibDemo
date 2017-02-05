@@ -89,7 +89,7 @@ dependencies {
 
     compile 'com.github.zcolin:ZIjkPlayer:latest.release'//视频播放
     compile 'com.github.zcolin:ZEasyPR:latest.release'//车牌识别
-    compile 'com.github.zcolin:ZFrameTemplate:latest.release'//程序框架 
+    compile 'com.github.zcolin:ZFrame:latest.release'//程序框架 
     compile 'com.github.zcolin:ZBarCodeScanner:latest.release'//二维码扫描
     compile 'com.github.zcolin:ZMultiImageSelector:latest.release'//多图选择    
     compile 'com.github.zcolin:PullRecyclerView:latest.release'//下拉刷新

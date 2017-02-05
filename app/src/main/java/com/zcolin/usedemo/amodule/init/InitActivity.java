@@ -9,7 +9,7 @@ package com.zcolin.usedemo.amodule.init;
 
 import android.os.Bundle;
 
-import com.fosung.frame.utils.ActivityUtil;
+import com.zcolin.frame.utils.ActivityUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseFullScreenActivity;
 import com.zcolin.usedemo.amodule.main.activity.MainActivity;

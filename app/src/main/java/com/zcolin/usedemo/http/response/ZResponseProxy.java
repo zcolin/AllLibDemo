@@ -11,10 +11,10 @@ package com.zcolin.usedemo.http.response;
 
 import android.app.Activity;
 
-import com.fosung.frame.app.BaseApp;
-import com.fosung.frame.http.response.GsonResponse;
-import com.fosung.frame.utils.LogUtil;
-import com.fosung.frame.utils.NetworkUtil;
+import com.zcolin.frame.app.BaseApp;
+import com.zcolin.frame.http.response.GsonResponse;
+import com.zcolin.frame.utils.LogUtil;
+import com.zcolin.frame.utils.NetworkUtil;
 import com.zcolin.usedemo.http.entity.HttpBaseReplyBean;
 
 import java.net.SocketTimeoutException;

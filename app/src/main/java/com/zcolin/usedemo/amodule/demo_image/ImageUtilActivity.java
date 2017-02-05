@@ -11,7 +11,7 @@ package com.zcolin.usedemo.amodule.demo_image;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.fosung.frame.imageloader.ImageLoaderUtils;
+import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 
