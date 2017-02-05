@@ -94,6 +94,8 @@
             android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.VideoFragmentPlayActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.RichTextViewActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.RichEditTextViewActivity"/>
     </application>
 
 </manifest>
