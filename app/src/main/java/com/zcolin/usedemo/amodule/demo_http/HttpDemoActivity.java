@@ -9,14 +9,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.zcolin.frame.http.response.StringResponse;
+import com.zcolin.frame.http.ZHttp;
+import com.zcolin.frame.http.response.ZResponse;
+import com.zcolin.frame.http.response.ZStringResponse;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.usedemo.amodule.main.entity.BaiduWeather;
 import com.zcolin.usedemo.http.HttpUrl;
-import com.zcolin.usedemo.http.HttpUtil;
 import com.zcolin.usedemo.http.entity.HttpCommonReply;
-import com.zcolin.usedemo.http.response.ZResponse;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class HttpDemoActivity extends BaseSecondLevelActivity implements View.On
      * 此处为Demo，实际使用一般使用{@link #getObject()}
      */
     public void getBaiduStringData() {
-        HttpUtil.get(HttpUrl.URL_BAIDU_TEST, new StringResponse(mActivity, "正在获取数据") {
+        ZHttp.get(HttpUrl.URL_BAIDU_TEST, new ZStringResponse(mActivity, "正在获取数据") {
             @Override
             public void onError(int code, Call call, Exception e) {
                 //TODO 错误处理  ToastUtil.toastShort(LogUtil.ExceptionToString(e));
@@ -94,7 +94,7 @@ public class HttpDemoActivity extends BaseSecondLevelActivity implements View.On
      * ZResponse的参数，第二个参数是显示旋转进度条则传入，第三个参数是进度条文字，如果不需要进度条则只需要传入第一个参数
      */
     public void getObject() {
-        HttpUtil.get(HttpUrl.URL_BAIDU_TEST, new ZResponse<BaiduWeather>(BaiduWeather.class, mActivity, "正在获取数据……") {
+        ZHttp.get(HttpUrl.URL_BAIDU_TEST, new ZResponse<BaiduWeather>(BaiduWeather.class, mActivity, "正在获取数据……") {
             @Override
             public void onError(int code, String error) {
                 //TODO 错误处理   ToastUtil.toastShort(error);
@@ -118,7 +118,7 @@ public class HttpDemoActivity extends BaseSecondLevelActivity implements View.On
     public void postWithBarResponse() {
         HashMap<String, String> params = new HashMap<>();
         params.put("param1", "sss");
-        HttpUtil.post(HttpUrl.URL_BAIDU_TEST, params, new ZResponse<HttpCommonReply>(HttpCommonReply.class, mActivity, "正在加载……") {
+        ZHttp.post(HttpUrl.URL_BAIDU_TEST, params, new ZResponse<HttpCommonReply>(HttpCommonReply.class, mActivity, "正在加载……") {
             @Override
             public void onSuccess(Response response, HttpCommonReply httpBaseBean) {
                 textView.setText(String.valueOf(httpBaseBean));
@@ -139,7 +139,7 @@ public class HttpDemoActivity extends BaseSecondLevelActivity implements View.On
         params.put("param1", "sss");
         HashMap<String, File> fileParams = new HashMap<>();
         fileParams.put("key", new File(""));
-        HttpUtil.uploadFile(HttpUrl.URL_BAIDU_TEST, params, fileParams, new ZResponse<HttpCommonReply>(HttpCommonReply.class, mActivity, "正在加载……") {
+        ZHttp.uploadFile(HttpUrl.URL_BAIDU_TEST, params, fileParams, new ZResponse<HttpCommonReply>(HttpCommonReply.class, mActivity, "正在加载……") {
             @Override
             public void onSuccess(Response response, HttpCommonReply httpBaseBean) {
             }
