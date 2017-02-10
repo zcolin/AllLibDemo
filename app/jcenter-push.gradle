@@ -1,0 +1,90 @@
+/**
+ * 开源库上传jcenter使用
+ *
+ * 使用方法
+ * 1 在app-moudle的 build.gralde中最末尾处使用 apply from: './jcenter-push.gradle'
+ * 2 在跟目录的build.gradle中buildscript->dependencies-> 配置  
+ * classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5'
+ * classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+ * 3 在local.properties中配置bintray.user 和 bintray.apikey(bintray网站中查询)
+ */
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+def siteUrl = 'https://github.com'
+def gitUrl = 'https://github.com'
+
+group = 'com.fosung'
+version = '1.1.1'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'FosungFrame'
+                url siteUrl
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'colin'
+                        name 'colin'
+                        email 'wanglin2046@126.com'
+                    }
+                }
+
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    failOnError false
+    options.encoding = "UTF-8"
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        userOrg = "colin"
+        repo = "maven"
+        name = "libFosungFrame"    //发布到JCenter上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}

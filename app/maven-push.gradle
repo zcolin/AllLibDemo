@@ -1,0 +1,54 @@
+/**
+ * 开源库上传maven私服使用
+ * 
+ * 使用方法
+ * 1 在app-moudle的 build.gralde中最末尾处使用 apply from: './maven-push.gradle'
+ * 2 在跟目录的build.gradle中buildscript->dependencies-> 配置  
+ * classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+ */
+apply plugin: 'maven'
+
+task androidJavadocs(type: Javadoc) {
+    options.encoding = "UTF-8"
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://localhost:8081/nexus/content/repositories/releases/") {
+                authentication(userName: "admin", password: "admin123")
+            }
+
+            pom.project {
+                groupId 'com.fosung'
+                artifactId 'libFosungFrame'
+                version '1.0.0'
+                packaging 'aar'
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+            }
+        }
+    }
+}
