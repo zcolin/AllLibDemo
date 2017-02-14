@@ -111,19 +111,21 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
 
         @Override
         public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            try {
-                // 实现自动对焦
-                camera.autoFocus(new Camera.AutoFocusCallback() {
-                    @Override
-                    public void onAutoFocus(boolean success, Camera arg1) {
-                        if (success) {
-                            startPreView();
-                            camera.cancelAutoFocus();// 只有加上了这一句，才会自动对焦。
+            if (camera != null) {
+                try {
+                    // 实现自动对焦
+                    camera.autoFocus(new Camera.AutoFocusCallback() {
+                        @Override
+                        public void onAutoFocus(boolean success, Camera arg1) {
+                            if (success) {
+                                startPreView();
+                                camera.cancelAutoFocus();// 只有加上了这一句，才会自动对焦。
+                            }
                         }
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -158,18 +160,20 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
             startPreView();
             camera.unlock();
         } catch (Exception e) {
-            ToastUtil.toastShort("摄像头初始化失败!");
+            ToastUtil.toastShort("摄像头初始化失败, 可能是未获取摄像头权限,请检查.");
             releaseCameraResource();
             ((Activity) context).finish();
         }
     }
 
     private void startPreView() {
-        try {
-            camera.setPreviewDisplay(surfaceHolder);
-            camera.startPreview();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (camera != null) {
+            try {
+                camera.setPreviewDisplay(surfaceHolder);
+                camera.startPreview();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -295,18 +299,18 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
      * 释放摄像头资源
      */
     private void releaseCameraResource() {
-        try {
-            if (camera != null) {
+        if (camera != null) {
+            try {
                 camera.setPreviewCallback(null);
                 camera.stopPreview();
                 camera.lock();
                 camera.release();
                 camera = null;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                camera = null;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            camera = null;
         }
     }
 
@@ -319,30 +323,31 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
         }
         mediaRecorder.reset();
 
-        if (camera != null)
+        if (camera != null) {
             mediaRecorder.setCamera(camera);
 
-        mediaRecorder.setOnErrorListener(this);
-        mediaRecorder.setPreviewDisplay(surfaceHolder.getSurface());
-        mediaRecorder.setVideoSource(VideoSource.CAMERA);//视频源
-        mediaRecorder.setAudioSource(AudioSource.MIC);//音频源
-        mediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
-        mediaRecorder.setVideoSize(mWidth, mHeight);//设置分辨率
-        //mediaRecorder.setVideoFrameRate(25);//设置每秒帧数 这个设置有可能会出问题，有的手机不支持这种帧率就会录制失败，这里使用默认的帧率，当然视频的大小肯定会受影响
+            mediaRecorder.setOnErrorListener(this);
+            mediaRecorder.setPreviewDisplay(surfaceHolder.getSurface());
+            mediaRecorder.setVideoSource(VideoSource.CAMERA);//视频源
+            mediaRecorder.setAudioSource(AudioSource.MIC);//音频源
+            mediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
+            mediaRecorder.setVideoSize(mWidth, mHeight);//设置分辨率
+            //mediaRecorder.setVideoFrameRate(25);//设置每秒帧数 这个设置有可能会出问题，有的手机不支持这种帧率就会录制失败，这里使用默认的帧率，当然视频的大小肯定会受影响
 
-        //设置编码比特率
-        if (sizePicture <= 8000000) {
-            mediaRecorder.setVideoEncodingBitRate(8 * 1024 * 512);
-        } else {
-            mediaRecorder.setVideoEncodingBitRate(5 * 1024 * 512);
+            //设置编码比特率
+            if (sizePicture <= 8000000) {
+                mediaRecorder.setVideoEncodingBitRate(8 * 1024 * 512);
+            } else {
+                mediaRecorder.setVideoEncodingBitRate(5 * 1024 * 512);
+            }
+
+            mediaRecorder.setVideoSize(mWidth, mHeight);
+            mediaRecorder.setOrientationHint(90);//输出旋转90度，保持竖屏录制
+            //mediaRecorder.setMaxDuration(Constant.MAXVEDIOTIME * 1000);
+            mediaRecorder.setOutputFile(recordFile.getAbsolutePath());
+            mediaRecorder.prepare();
+            mediaRecorder.start();
         }
-
-        mediaRecorder.setVideoSize(mWidth, mHeight);
-        mediaRecorder.setOrientationHint(90);//输出旋转90度，保持竖屏录制
-        //mediaRecorder.setMaxDuration(Constant.MAXVEDIOTIME * 1000);
-        mediaRecorder.setOutputFile(recordFile.getAbsolutePath());
-        mediaRecorder.prepare();
-        mediaRecorder.start();
     }
 
     public boolean isRecordFinish() {
