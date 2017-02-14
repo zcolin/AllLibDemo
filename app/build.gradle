@@ -95,6 +95,15 @@ dependencies {
     compile 'com.github.zcolin:PullRecyclerView:latest.release'//下拉刷新
     compile 'com.github.zcolin:ZRecyclerView:latest.release'//下拉刷新
     compile 'com.github.zcolin:ZUILib:latest.release'//UI库 
+
+//    facebook调试工具 使用chrome查看，可以进行数据库和http报文查看
+//    compile 'com.facebook.stetho:stetho:1.4.2'
+//    compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
+
+    //leakcanary
+//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+//    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }
 
 
