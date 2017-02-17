@@ -5,6 +5,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
+    //GreenDao配置
     greendao {
         schemaVersion 1
         //daoPackage 'com.greendao.gen'  //dao包名
@@ -17,6 +18,7 @@ android {
         abortOnError false
     }
 
+    //打包默认配置
     defaultConfig {
         applicationId "com.zcolin.usedemo"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -27,26 +29,30 @@ android {
         // dex突破65535的限制
         //multiDexEnabled true
 
-        ndk {
-            abiFilters "armeabi-v7a"  // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
-        }
+//        ndk {
+//            abiFilters "armeabi-v7a"  // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
+//        }
     }
 
-//    signingConfigs {
-//        def pFile = file("../key.properties")
-//        def Properties p = new Properties()
-//        p.load(new FileInputStream(pFile))
-//
-//        debug {
-//            storeFile file(p['DEBUG_STORE_FILE'])
-//        }
-//        release {
-//            storeFile file(p['RELEASE_STORE_FILE'])
-//            storePassword p['RELEASE_STORE_PASSWORD']
-//            keyAlias p['RELEASE_KEY_ALIAS']
-//            keyPassword p['RELEASE_KEY_PASSWORD']
-//        }
-//    }
+    //签名配置
+    signingConfigs {
+        def pFile = file("../key.properties")
+        def Properties p = new Properties()
+        p.load(new FileInputStream(pFile))
+
+        debug {
+            storeFile file(p['RELEASE_STORE_FILE'])
+            storePassword p['RELEASE_STORE_PASSWORD']
+            keyAlias p['RELEASE_KEY_ALIAS']
+            keyPassword p['RELEASE_KEY_PASSWORD']
+        }
+        release {
+            storeFile file(p['RELEASE_STORE_FILE'])
+            storePassword p['RELEASE_STORE_PASSWORD']
+            keyAlias p['RELEASE_KEY_ALIAS']
+            keyPassword p['RELEASE_KEY_PASSWORD']
+        }
+    }
 
     buildTypes {
         debug {
@@ -68,9 +74,43 @@ android {
             shrinkResources false  //移除无用的resource文件（如果使用getIdentifier函数的需要关闭）
             zipAlignEnabled false  //Zipalign优化
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
+//    //多渠道
+//    productFlavors {
+//        kfb {
+//              buildConfigField "boolean", "PRO_CONDITION", "true"//生产环境
+//              applicationId "com.zcolin.userdemo"
+//              resValue "string", "app_name", "版本1"
+//          }
+//        kfb1 {
+//              buildConfigField "boolean", "PRO_CONDITION", "false"//
+//              applicationId "com.zcolin.userdemo.test"
+//              resValue "string", "app_name", "版本2"
+//          }
+//
+//    }
+//    //多渠道文件占位符替换
+//    productFlavors.all {
+//        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name, UMENG_CHANNEL2_VALUE: name]//menifest中使用${UMENG_CHANNEL_VALUE}
+//    }
+
+//    //修改输出文件的文件名
+//    applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            def outputFile = output.outputFile
+//            def apkName = "${defaultConfig.versionName}_build-${defaultConfig.versionCode}"
+//            if (outputFile != null && variant.buildType.name == "release") {
+//                variant.productFlavors.each { flavor ->  //多渠道包名前缀
+//                    def fileName = flavor.name + "_AllLibDemo_" + apkName + ".apk"
+//                    def destPath = outputFile.getParentFile().getParentFile().getParentFile().getParentFile().getParent();
+//                    output.outputFile = new File(destPath + rootProject.ext.release_path, fileName)
+//                }
+//            }
+//        }
+//    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
