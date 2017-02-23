@@ -8,7 +8,7 @@
                 android:paddingTop="@dimen/activity_vertical_margin">
 
 
-    <com.zcolin.usedemo.views.richtext.RichTextView
+    <com.zcolin.outlib.views.richtext.RichTextView
 
         android:id="@+id/tv_news_detail_body"
         android:layout_width="match_parent"

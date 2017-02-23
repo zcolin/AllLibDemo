@@ -1,4 +1,4 @@
-package com.zcolin.usedemo.views.richtext;
+package com.zcolin.outlib.views.richtext;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,7 +16,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.zcolin.frame.utils.DisplayUtil;
 import com.zcolin.frame.utils.ScreenUtil;
-import com.zcolin.usedemo.R;
+import com.zcolin.outlib.R;
 
 import java.util.HashSet;
 

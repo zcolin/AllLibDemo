@@ -28,7 +28,6 @@ import com.zcolin.usedemo.amodule.demo_view.activity.RichEditTextViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.RichTextViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.WebViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.WebViewVideoActivity;
-import com.zcolin.usedemo.views.richtext.RichEditTextView;
 
 import java.util.ArrayList;
 

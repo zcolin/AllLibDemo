@@ -1,4 +1,4 @@
-package com.zcolin.usedemo.views.richtext;
+package com.zcolin.outlib.views.richtext;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -6,31 +6,31 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
 /**
  * 支持包含图片的富文本显示
  */
-public class RichTextView extends TextView implements Drawable.Callback, View.OnAttachStateChangeListener {
+public class RichEditTextView extends EditText implements Drawable.Callback, View.OnAttachStateChangeListener {
 
-    private RichView richView = new RichView();
+    private RichViewUtil richView = new RichViewUtil();
 
-    public RichTextView(Context context) {
+    public RichEditTextView(Context context) {
         this(context, null);
     }
 
-    public RichTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    public RichEditTextView(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 
-    public RichTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RichEditTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     /**
      * 设置图片点击监听
      */
-    public void setOnImageClickListener(RichView.OnImageClickListener onImageClickListener) {
+    public void setOnImageClickListener(OnRichImageClickListener onImageClickListener) {
         richView.setOnImageClickListener(onImageClickListener);
     }
 
@@ -45,7 +45,7 @@ public class RichTextView extends TextView implements Drawable.Callback, View.On
 
     @Override
     public void onViewAttachedToWindow(View v) {
-        
+
     }
 
     @Override

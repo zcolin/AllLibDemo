@@ -13,7 +13,6 @@ import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.usedemo.db.DaoManager;
-import com.zcolin.usedemo.db.entity.DaoSession;
 import com.zcolin.usedemo.db.entity.Employee;
 import com.zcolin.usedemo.db.entity.EmployeeDao;
 
@@ -102,7 +101,7 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
      * <p>
      */
     public void queryObjectWithCondition() {
-        QueryBuilder queryBuilder = getDaoHelper().getQueryBuilder(Employee.class);
+        QueryBuilder<Employee> queryBuilder = getDaoHelper().getQueryBuilder(Employee.class);
         queryBuilder.where(EmployeeDao.Properties.Group.eq("部门二"));
         queryBuilder.offset(1);
         queryBuilder.limit(3);
@@ -113,7 +112,7 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
             currentSortType = 0;
             queryBuilder.orderAsc(EmployeeDao.Properties.Date);
         }
-        List<Employee> list = DaoManager.getDaoHelper().queryAll(Employee.class);
+        List<Employee> list = DaoManager.getDaoHelper().queryObjects(queryBuilder);
         setText(list);
     }
 
@@ -122,8 +121,6 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
      */
     public void deleteAllObject(){
         boolean b = getDaoHelper().deleteAll(Employee.class);
-
-        DaoSession daoSession = DaoManager.getDaoMaster().newSession();
     }
 
     private Employee getEmployee() {

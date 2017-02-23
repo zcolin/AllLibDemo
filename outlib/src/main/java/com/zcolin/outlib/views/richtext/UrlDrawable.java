@@ -1,4 +1,4 @@
-package com.zcolin.usedemo.views.richtext;
+package com.zcolin.outlib.views.richtext;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;

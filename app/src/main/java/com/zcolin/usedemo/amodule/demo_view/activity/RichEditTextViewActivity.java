@@ -3,8 +3,8 @@ package com.zcolin.usedemo.amodule.demo_view.activity;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.zcolin.outlib.views.richtext.RichEditTextView;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.views.richtext.RichEditTextView;
 
 public class RichEditTextViewActivity extends Activity {
 

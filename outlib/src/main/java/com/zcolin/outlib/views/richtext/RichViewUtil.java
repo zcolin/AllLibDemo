@@ -1,4 +1,4 @@
-package com.zcolin.usedemo.views.richtext;
+package com.zcolin.outlib.views.richtext;
 
 import android.content.Context;
 import android.text.Html;
@@ -12,15 +12,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RichView {
+class RichViewUtil {
 
-    private OnImageClickListener onImageClickListener;//图片点击回调
-    private GlideImageGeter      glideImageGeter;
+    private OnRichImageClickListener onImageClickListener;//图片点击回调
+    private GlideImageGeter          glideImageGeter;
+
 
     /**
      * 设置图片点击监听
      */
-    void setOnImageClickListener(OnImageClickListener onImageClickListener) {
+    void setOnImageClickListener(OnRichImageClickListener onImageClickListener) {
         this.onImageClickListener = onImageClickListener;
     }
 
@@ -75,15 +76,5 @@ public class RichView {
     void recycle() {
         glideImageGeter.recycle();
         glideImageGeter = null;
-    }
-
-    public interface OnImageClickListener {
-        /**
-         * 图片被点击后的回调方法
-         *
-         * @param imageUrls 本篇富文本内容里的全部图片
-         * @param position  点击处图片在imageUrls中的位置
-         */
-        void onImageClick(List<String> imageUrls, int position);
     }
 }

@@ -3,11 +3,11 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-1-13 上午11:27
+ *   date     17-2-23 下午3:36
  * ********************************************************
  */
 
-package com.zcolin.usedemo.views;
+package com.zcolin.outlib.views;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -33,7 +33,7 @@ import com.zcolin.frame.utils.CalendarUtil;
 import com.zcolin.frame.utils.FileUtil;
 import com.zcolin.frame.utils.LogUtil;
 import com.zcolin.frame.utils.ToastUtil;
-import com.zcolin.usedemo.R;
+import com.zcolin.outlib.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -92,7 +92,7 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
         a.recycle();
 
         LayoutInflater.from(context)
-                      .inflate(R.layout.gui_view_videorecorder, this);
+                      .inflate(R.layout.view_videorecorder, this);
         surfaceView = (SurfaceView) findViewById(R.id.surface_view);
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(new CustomCallBack());

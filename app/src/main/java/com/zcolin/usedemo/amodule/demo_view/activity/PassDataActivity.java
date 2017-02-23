@@ -50,4 +50,9 @@ public class PassDataActivity extends BaseToolBarActivity {
             }
         });
     }
+
+    @Override
+    protected void onToolBarLeftBtnClick() {
+        super.onToolBarLeftBtnClick();
+    }
 }

@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.zcolin.outlib.views.richtext.OnRichImageClickListener;
+import com.zcolin.outlib.views.richtext.RichTextView;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.views.richtext.RichTextView;
-import com.zcolin.usedemo.views.richtext.RichView;
 
 import java.util.List;
 
@@ -72,7 +72,7 @@ public class RichTextViewActivity extends Activity {
         setContentView(R.layout.activity_richtextview);
         mRichText = (RichTextView) findViewById(R.id.tv_news_detail_body);
         mRichText.setRichText(body);
-        mRichText.setOnImageClickListener(new RichView.OnImageClickListener() {
+        mRichText.setOnImageClickListener(new OnRichImageClickListener() {
             @Override
             public void onImageClick(List<String> imageUrls, int position) {
                 Toast.makeText(RichTextViewActivity.this, imageUrls.get(position), Toast.LENGTH_SHORT)
