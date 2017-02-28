@@ -11,14 +11,14 @@ package com.zcolin.usedemo.amodule.demo_video.ijkplayer.base;
 import android.content.res.Configuration;
 
 import com.zcolin.frame.app.BaseFrameFrag;
-import com.superplayer.library.SuperPlayer;
+import com.zplayer.library.ZPlayer;
 
 /**
  * 视频播放页面基类
  */
 public abstract class BaseVideoPlayFragment extends BaseFrameFrag {
 
-    protected SuperPlayer player;
+    protected ZPlayer player;
 
     @Override
     protected void createView() {
@@ -28,7 +28,7 @@ public abstract class BaseVideoPlayFragment extends BaseFrameFrag {
     /**
      * 初始化Player操作
      */
-    protected abstract SuperPlayer initPlayer();
+    protected abstract ZPlayer initPlayer();
 
     @Override
     public void onResume() {

@@ -13,14 +13,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
-import com.superplayer.library.SuperPlayer;
+import com.zplayer.library.ZPlayer;
 
 /**
  * 视频播放页面基类
  */
 public abstract class BaseVideoPlayActivity extends BaseSecondLevelActivity {
 
-    protected SuperPlayer player;
+    protected ZPlayer player;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public abstract class BaseVideoPlayActivity extends BaseSecondLevelActivity {
     /**
      * 初始化Player操作
      */
-    protected abstract SuperPlayer initPlayer();
+    protected abstract ZPlayer initPlayer();
 
     @Override
     protected void onResume() {

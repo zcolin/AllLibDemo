@@ -15,13 +15,13 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.zcolin.gui.zrecyclerview.ZRecyclerView;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.adapter.SuperVideoAdapter;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.base.BaseVideoRecycleViewFragment;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.bean.VideoListBean;
-import com.superplayer.library.SuperListPlayer;
-import com.superplayer.library.SuperPlayer;
-import com.zcolin.gui.zrecyclerview.ZRecyclerView;
+import com.zplayer.library.ZListPlayer;
+import com.zplayer.library.ZPlayer;
 
 import java.util.ArrayList;
 
@@ -55,13 +55,13 @@ public class VideoRecyclerViewFragment extends BaseVideoRecycleViewFragment {
     }
 
     @Override
-    protected SuperListPlayer initPlayer() {
-        SuperListPlayer player = getView(R.id.superlistplayer);
+    protected ZListPlayer initPlayer() {
+        ZListPlayer player = getView(R.id.superlistplayer);
         player.getPlayer()
               .setNetChangeListener(true)//设置监听手机网络的变化,这个参数是内部是否处理网络监听，和setOnNetChangeListener没有关系
               .setShowTopControl(false)
               .setSupportGesture(false)
-              .setScaleType(SuperPlayer.SCALETYPE_FILLPARENT);
+              .setScaleType(ZPlayer.SCALETYPE_FILLPARENT);
 
         //如果设置则使用指定的RecyclerView，否则使用默认的RecyclerView
         player.setRecyclerView(initPullRecyclerView());

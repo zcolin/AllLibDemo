@@ -15,13 +15,13 @@ import android.widget.RelativeLayout;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.adapter.SuperVideoAdapter;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.bean.VideoListBean;
-import com.superplayer.library.SuperListPlayer;
+import com.zplayer.library.ZListPlayer;
 
 /**
  * 视频列表播放基类
  */
 public abstract class BaseVideoRecycleViewActivity extends BaseSecondLevelActivity {
-    protected SuperListPlayer player;
+    protected ZListPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public abstract class BaseVideoRecycleViewActivity extends BaseSecondLevelActivi
     /**
      * 初始化Player操作
      */
-    protected abstract SuperListPlayer initPlayer();
+    protected abstract ZListPlayer initPlayer();
 
     @Override
     protected void onResume() {

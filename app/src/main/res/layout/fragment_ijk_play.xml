@@ -1,5 +1,6 @@
-<com.superplayer.library.SuperPlayer android:id="@+id/view_super_player"
-                                     xmlns:android="http://schemas.android.com/apk/res/android"
-                                     android:layout_width="match_parent"
-                                     android:layout_height="match_parent">
-</com.superplayer.library.SuperPlayer>
+<com.zplayer.library.ZPlayer
+    android:id="@+id/view_super_player"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+</com.zplayer.library.ZPlayer>

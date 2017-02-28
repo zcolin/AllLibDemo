@@ -14,10 +14,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.bean.VideoListBean;
-import com.superplayer.library.utils.SuperPlayerUtils;
-import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
+import com.zplayer.library.utils.ZPlayerUtils;
 
 
 /**
@@ -52,7 +52,7 @@ public class SuperVideoAdapter extends BaseRecyclerAdapter<VideoListBean> {
 
         if (rlayPlayer != null) {
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) rlayPlayer.getLayoutParams();
-            layoutParams.height = (int) (SuperPlayerUtils.getScreenWidth(activity) * 0.5652f);//这值是网上抄来的，我设置了这个之后就没有全屏回来拉伸的效果，具体为什么我也不太清楚
+            layoutParams.height = (int) (ZPlayerUtils.getScreenWidth(activity) * 0.5652f);//这值是网上抄来的，我设置了这个之后就没有全屏回来拉伸的效果，具体为什么我也不太清楚
             rlayPlayer.setLayoutParams(layoutParams);
         }
 
