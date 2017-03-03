@@ -85,7 +85,6 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
         return button;
     }
 
-
     @Override
     public void onClick(View v) {
         if (v == listButton.get(0)) {

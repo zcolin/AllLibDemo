@@ -15,8 +15,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.zcolin.frame.utils.ToastUtil;
-import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZConfirm;
 import com.zcolin.gui.ZDialog;
@@ -24,6 +22,9 @@ import com.zcolin.gui.ZDialogEdit;
 import com.zcolin.gui.ZDialogMenu;
 import com.zcolin.gui.ZDialogRadioGroup;
 import com.zcolin.gui.ZDialogWheelDate;
+import com.zcolin.gui.ZDialogWheelTime;
+import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 
 import java.util.ArrayList;
 
@@ -51,12 +52,13 @@ public class DialogActivity extends BaseSecondLevelActivity implements OnClickLi
 
     private void init() {
         llContent = getView(R.id.ll_content);
-        listButton.add(addButton("Alert"));
-        listButton.add(addButton("DlgCommon"));
-        listButton.add(addButton("DlgRadio"));
-        listButton.add(addButton("DlgMenu"));
-        listButton.add(addButton("DateSelect"));
-        listButton.add(addButton("DlgEdit"));
+        listButton.add(addButton("ZAlert"));
+        listButton.add(addButton("ZConfirm"));
+        listButton.add(addButton("ZDialogRadio"));
+        listButton.add(addButton("ZDialogMenu"));
+        listButton.add(addButton("ZDialogWheelDate"));
+        listButton.add(addButton("ZDialogWheelTime"));
+        listButton.add(addButton("ZDialogEdit"));
 
         for (Button btn : listButton) {
             btn.setOnClickListener(this);
@@ -129,6 +131,16 @@ public class DialogActivity extends BaseSecondLevelActivity implements OnClickLi
                     })
                     .show();
         } else if (v == listButton.get(5)) {
+            new ZDialogWheelTime(mActivity)
+                    .setTitle("DlgWheelDate")
+                    .setDataSubmitListener(new ZDialogWheelTime.OnTimeSubmitListener() {
+                        @Override
+                        public void onClick(int hour, int min) {
+                            ToastUtil.toastShort(hour + ":" + min);
+                        }
+                    })
+                    .show();
+        } else if (v == listButton.get(6)) {
             new ZDialogEdit(mActivity)
                     .setTitle("ZDlgEdit")
                     .setEditText("回填数据")

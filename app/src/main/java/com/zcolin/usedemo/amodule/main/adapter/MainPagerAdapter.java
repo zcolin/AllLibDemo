@@ -18,28 +18,50 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.zcolin.usedemo.amodule.main.activity.MainActivity;
+import com.zcolin.frame.app.BaseFrameFrag;
+import com.zcolin.usedemo.amodule.main.fragment.ApiFragment;
+import com.zcolin.usedemo.amodule.main.fragment.HttpDBFragment;
+import com.zcolin.usedemo.amodule.main.fragment.VideoImageFragment;
+import com.zcolin.usedemo.amodule.main.fragment.ViewFragment;
 
 
 /**
  * 主页面 ViewPager适配器
  */
 public class MainPagerAdapter extends FragmentPagerAdapter {
+    private BaseFrameFrag[] arrTabFrag = new BaseFrameFrag[4];
 
-    private MainActivity mainActivity;
-
-    public MainPagerAdapter(MainActivity mainPresenter, FragmentManager fm) {
+    public MainPagerAdapter(FragmentManager fm) {
         super(fm);
-        this.mainActivity = mainPresenter;
     }
 
     @Override
     public int getCount() {
-        return MainActivity.TAB_POSITION.length;
+        return arrTabFrag.length;
     }
 
     @Override
     public Fragment getItem(int arg0) {
-        return mainActivity.getFragByPosition(arg0);
+        return getFragByPosition(arg0);
+    }
+
+    /**
+     * 根据位置获取Frag
+     *
+     * @param pos frag在viewpager中的位置
+     */
+    public BaseFrameFrag getFragByPosition(int pos) {
+        if (arrTabFrag[pos] == null) {
+            if (pos == 0) {
+                arrTabFrag[pos] = ViewFragment.newInstance();
+            } else if (pos == 1) {
+                arrTabFrag[pos] = HttpDBFragment.newInstance();
+            } else if (pos == 2) {
+                arrTabFrag[pos] = VideoImageFragment.newInstance();
+            } else if (pos == 3) {
+                arrTabFrag[pos] = ApiFragment.newInstance();
+            }
+        }
+        return arrTabFrag[pos];
     }
 }

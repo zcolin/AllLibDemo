@@ -11,20 +11,15 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 
-import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.utils.DisplayUtil;
+import com.zcolin.gui.ZTabView;
+import com.zcolin.gui.ZViewPager;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseFullScreenActivity;
 import com.zcolin.usedemo.amodule.base.BaseNoToolBarActivity;
 import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.usedemo.amodule.base.BaseToolBarActivity;
 import com.zcolin.usedemo.amodule.main.adapter.MainPagerAdapter;
-import com.zcolin.usedemo.amodule.main.fragment.HttpDBFragment;
-import com.zcolin.usedemo.amodule.main.fragment.MineFragment;
-import com.zcolin.usedemo.amodule.main.fragment.VideoImageFragment;
-import com.zcolin.usedemo.amodule.main.fragment.ViewFragment;
-import com.zcolin.gui.ZTabView;
-import com.zcolin.gui.ZViewPager;
 
 /**
  * 程序主页面
@@ -37,9 +32,7 @@ import com.zcolin.gui.ZViewPager;
  * 需要全屏的继承 {@link BaseFullScreenActivity}
  */
 public class MainActivity extends BaseNoToolBarActivity {
-    public static final int[] TAB_POSITION = new int[]{0, 1, 2};
-
-    private BaseFrameFrag[] arrTabFrag = new BaseFrameFrag[TAB_POSITION.length];
+   
     private ZViewPager mViewPager;
     private ZTabView   tabView;
 
@@ -63,7 +56,7 @@ public class MainActivity extends BaseNoToolBarActivity {
     }
 
     private void initData() {
-        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(this, getSupportFragmentManager());
+        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mainPagerAdapter);
         setUpTab();
     }
@@ -75,6 +68,7 @@ public class MainActivity extends BaseNoToolBarActivity {
         tabView.addZTab(getNewTab("View"));
         tabView.addZTab(getNewTab("Db_Http"));
         tabView.addZTab(getNewTab("Video_Image"));
+        tabView.addZTab(getNewTab("Api"));
     }
 
     /*
@@ -91,34 +85,7 @@ public class MainActivity extends BaseNoToolBarActivity {
         return tab;
     }
 
-    /**
-     * 根据位置获取Frag
-     *
-     * @param pos frag在viewpager中的位置
-     */
-    public BaseFrameFrag getFragByPosition(int pos) {
-        if (arrTabFrag[pos] == null) {
-            arrTabFrag[pos] = getNewFragByPos(pos);
-        }
-        return arrTabFrag[pos];
-    }
 
-    /*
-     * 根据传入的位置创建新的Frag
-     */
-    private BaseFrameFrag getNewFragByPos(int i) {
-        BaseFrameFrag frag = null;
-        if (i == TAB_POSITION[0]) {
-            frag = ViewFragment.newInstance();
-        } else if (i == TAB_POSITION[1]) {
-            frag = HttpDBFragment.newInstance();
-        } else if (i == TAB_POSITION[2]) {
-            frag = VideoImageFragment.newInstance();
-        } else if (i == TAB_POSITION[3]) {
-            frag = MineFragment.newInstance();
-        }
-        return frag;
-    }
 
     /*
     * ViewPager监听类 
@@ -135,7 +102,7 @@ public class MainActivity extends BaseNoToolBarActivity {
 
         @Override
         public void onPageSelected(int arg0) {
-            if (arg0 == TAB_POSITION[1]) {
+            if (arg0 == 0) {
 
             } else {
 
