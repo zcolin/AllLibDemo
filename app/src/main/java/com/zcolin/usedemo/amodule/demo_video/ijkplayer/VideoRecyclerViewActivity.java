@@ -54,7 +54,7 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
               .setScaleType(ZPlayer.SCALETYPE_FILLPARENT);
 
         //如果设置则使用指定的RecyclerView，否则使用默认的RecyclerView
-        player.setRecyclerView(initPullRecyclerView());
+        player.setRecyclerViewLayout(initPullRecyclerView());
         return player;
     }
 
@@ -68,6 +68,7 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
             @Override
             public void onRefresh() {
                 mPage = 1;
+                player.onRefresh();
                 getDataFromShopList(mActivity, mPage);
                 zRecyclerView.setNoMore(false);
             }
