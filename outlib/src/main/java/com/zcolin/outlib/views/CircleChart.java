@@ -22,7 +22,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.zcolin.frame.utils.DisplayUtil;
 
-
+/**
+ * 圆环进度条View
+ */
 public class CircleChart extends View {
     private Paint  paint;
     private RectF  oval;

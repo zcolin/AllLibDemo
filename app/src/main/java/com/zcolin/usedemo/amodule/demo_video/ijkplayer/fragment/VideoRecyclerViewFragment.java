@@ -64,7 +64,7 @@ public class VideoRecyclerViewFragment extends BaseVideoRecycleViewFragment {
               .setScaleType(ZPlayer.SCALETYPE_FILLPARENT);
 
         //如果设置则使用指定的RecyclerView，否则使用默认的RecyclerView
-        player.setRecyclerView(initPullRecyclerView());
+        player.setRecyclerViewLayout(initPullRecyclerView());
         return player;
     }
 
