@@ -28,7 +28,7 @@ import java.util.ArrayList;
  */
 public class ItemArrangeDragActivity extends BaseSecondLevelActivity implements AppsAdapter.OnAppsItemClickListener, AppsAdapter.OnItemEditListener {
 
-    private RecyclerView recyclerviewApp;
+    private RecyclerView              recyclerviewApp;
     private AppsAdapter               adapter;
     private ArrayList<AppsItemEntity> listMyItems;
     private ArrayList<AppsItemEntity> listOtherItems;
@@ -78,7 +78,7 @@ public class ItemArrangeDragActivity extends BaseSecondLevelActivity implements 
             appId = listOtherItems.get(position).appId;
         }
 
-        ToastUtil.toastShort(appId);
+        ToastUtil.toastShort("appId:" +appId);
     }
 
     @Override

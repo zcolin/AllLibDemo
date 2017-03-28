@@ -1,87 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingBottom="10dp">
-
-    <TextView
-        style="@style/TextStyle_BlackLight_Big"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="@dimen/dimens_small"
-        android:text="仿支付宝"/>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/ll_operate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
 
-        <LinearLayout
-            android:id="@+id/ll_operate_top"
+        <TextView
+            style="@style/TextStyle_BlackLight_Big"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/dimens_small"
-            android:paddingRight="@dimen/dimens_small"
-            android:paddingTop="@dimen/dimens_big"
-            >
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/dimens_small"
+            android:text="仿支付宝界面"/>
 
         <LinearLayout
-            android:id="@+id/ll_operate_bottom"
+            android:id="@+id/ll_operate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimens_mid"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/dimens_mid"
-            android:paddingLeft="@dimen/dimens_small"
-            android:paddingRight="@dimen/dimens_small"
-            >
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_operate_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimens_small"
+                android:paddingRight="@dimen/dimens_small"
+                android:paddingTop="@dimen/dimens_big">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_operate_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_mid"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimens_mid"
+                android:paddingLeft="@dimen/dimens_small"
+                android:paddingRight="@dimen/dimens_small">
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            style="@style/TextStyle_BlackLight_Big"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/dimens_small"
+            android:text="可拖拽界面"/>
+
+        <LinearLayout
+            android:id="@+id/ll_operate_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_operate_top_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimens_small"
+                android:paddingRight="@dimen/dimens_small"
+                android:paddingTop="@dimen/dimens_big">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_operate_bottom_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_mid"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimens_mid"
+                android:paddingLeft="@dimen/dimens_small"
+                android:paddingRight="@dimen/dimens_small">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <TextView
-        style="@style/TextStyle_BlackLight_Big"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimens_large"
-        android:gravity="center"
-        android:padding="@dimen/dimens_small"
-        android:text="拖拽"/>
-
-    <LinearLayout
-        android:id="@+id/ll_operate_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/ll_operate_top_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/dimens_small"
-            android:paddingRight="@dimen/dimens_small"
-            android:paddingTop="@dimen/dimens_big"
-            >
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_operate_bottom_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimens_mid"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/dimens_mid"
-            android:paddingLeft="@dimen/dimens_small"
-            android:paddingRight="@dimen/dimens_small"
-            >
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>
