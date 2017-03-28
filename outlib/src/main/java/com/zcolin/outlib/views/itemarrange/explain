@@ -1,0 +1,4 @@
+zfb.adapter 是仿支付宝样式的Item增加、删除、排序
+drag.adapter 是带增加删除动画的
+
+两者只使用一种即可

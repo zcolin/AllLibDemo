@@ -3,11 +3,11 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-3-22 下午4:20
+ *   date     17-3-27 上午9:16
  * ********************************************************
  */
 
-package com.zcolin.outlib.views;
+package com.zcolin.outlib.views.chart;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;

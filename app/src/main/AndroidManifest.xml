@@ -71,6 +71,9 @@
         <activity android:name="com.zcolin.usedemo.amodule.demo_image.ImageSelectorActivity"/>
         <activity android:name="com.zcolin.usedemo.amodule.demo_image.ImageUtilActivity"/>
         <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.WebViewActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.itemarrange.ItemActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.itemarrange.ItemArrangeDragActivity"/>
+        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.itemarrange.ItemArrangeZFBActivity"/>
         <activity
             android:name="com.zcolin.usedemo.amodule.demo_view.activity.WebViewVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>

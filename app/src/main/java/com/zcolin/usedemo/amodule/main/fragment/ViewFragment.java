@@ -28,6 +28,7 @@ import com.zcolin.usedemo.amodule.demo_view.activity.RichEditTextViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.RichTextViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.WebViewActivity;
 import com.zcolin.usedemo.amodule.demo_view.activity.WebViewVideoActivity;
+import com.zcolin.usedemo.amodule.demo_view.activity.itemarrange.ItemActivity;
 
 import java.util.ArrayList;
 
@@ -69,6 +70,7 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
         listButton.add(addButton("RichTextView"));
         listButton.add(addButton("RichEditTextView"));
         listButton.add(addButton("其他View示例"));
+        listButton.add(addButton("Item增加移除排序"));
         
         for (Button btn : listButton) {
             btn.setOnClickListener(this);
@@ -107,6 +109,8 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
             ActivityUtil.startActivity(mActivity, RichEditTextViewActivity.class);
         }else if (v == listButton.get(9)) {
             ActivityUtil.startActivity(mActivity, OtherViewActivity.class);
+        }else if (v == listButton.get(10)) {
+            ActivityUtil.startActivity(mActivity, ItemActivity.class);
         }
     }
 }
