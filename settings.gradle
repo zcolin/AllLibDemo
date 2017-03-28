@@ -1,1 +1,1 @@
-include ':app', ':outlib', ':libShareSdk', ':libAmapLocation1' 
+include ':app', ':outlib', ':libShareSdk', ':libAmapLocation' 
