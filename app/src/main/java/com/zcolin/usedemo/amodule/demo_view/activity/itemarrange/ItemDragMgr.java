@@ -85,10 +85,10 @@ public class ItemDragMgr {
             otherAppsStr = "7,8,9";
         }
 
-        String[] myAppsArray = otherAppsStr.split(",");
-        List<String> listMyAppsOrder = Arrays.asList(myAppsArray);
+        String[] otherAppsArray = otherAppsStr.split(",");
+        List<String> listOtherAppsOrder = Arrays.asList(otherAppsArray);
         ArrayList<AppsItemEntity> listOtherItems = new ArrayList<>();
-        for (String s : listMyAppsOrder) {
+        for (String s : listOtherAppsOrder) {
             for (AppsItemEntity appsEntity : listAllItems) {
                 if (appsEntity.appId.equals(s)) {
                     listOtherItems.add(appsEntity);
