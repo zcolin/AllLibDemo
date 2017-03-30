@@ -166,7 +166,7 @@ public class RecordVideoActivity extends BaseSecondLevelActivity implements View
             intent.putExtra("data", videoRecorderView.getRecordFile().getAbsolutePath());
             startActivityWithCallback(intent, new ResultActivityHelper.ResultActivityListener() {
                 @Override
-                public void onResult(int requestCode, int resultCode, Intent data) {
+                public void onResult(int resultCode, Intent data) {
                     if (resultCode == RESULT_OK) {
                         finish();
                     }

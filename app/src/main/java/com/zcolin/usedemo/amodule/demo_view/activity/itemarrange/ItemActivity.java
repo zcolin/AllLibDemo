@@ -81,7 +81,7 @@ public class ItemActivity extends BaseSecondLevelActivity {
             public void onClick(View v) {
                 startActivityWithCallback(new Intent(mActivity, ItemArrangeZFBActivity.class), new ResultActivityHelper.ResultActivityListener() {
                     @Override
-                    public void onResult(int requestCode, int resultCode, Intent data) {
+                    public void onResult(int resultCode, Intent data) {
                         if (resultCode == Activity.RESULT_OK) {
                             initZFBItem();
                         }
@@ -144,7 +144,7 @@ public class ItemActivity extends BaseSecondLevelActivity {
             public void onClick(View v) {
                 startActivityWithCallback(new Intent(mActivity, ItemArrangeDragActivity.class), new ResultActivityHelper.ResultActivityListener() {
                     @Override
-                    public void onResult(int requestCode, int resultCode, Intent data) {
+                    public void onResult(int resultCode, Intent data) {
                         if (resultCode == Activity.RESULT_OK) {
                             initDragItem();
                         }
