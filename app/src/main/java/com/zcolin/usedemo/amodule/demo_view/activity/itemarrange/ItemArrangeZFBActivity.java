@@ -31,6 +31,7 @@ public class ItemArrangeZFBActivity extends BaseSecondLevelActivity implements A
     private RecyclerView              recyclerviewApp;
     private AppsAdapter               adapter;
     private ArrayList<AppsItemEntity> listAllItems;
+    private ArrayList<AppsItemEntity> listMyItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class ItemArrangeZFBActivity extends BaseSecondLevelActivity implements A
     }
 
     private void initData() {
-        ArrayList<AppsItemEntity> listMyItems = ItemZFBMgr.getMyItems(listAllItems);
+        listMyItems = ItemZFBMgr.getMyItems(listAllItems);
         adapter = new AppsAdapter(recyclerviewApp, listMyItems, listAllItems);
         recyclerviewApp.setAdapter(adapter);
         adapter.setOnMyAppsItemClickListener(this);
@@ -68,9 +69,17 @@ public class ItemArrangeZFBActivity extends BaseSecondLevelActivity implements A
     }
 
     @Override
-    public void onItemClick(View v, int position) {
-        AppsItemEntity entity = listAllItems.get(position);
-        ItemZFBMgr.onItemClick(mActivity, entity);
+    public void onItemClick(View v, int position, int itemType) {
+        AppsItemEntity entity = null;
+        if (itemType == 0) {
+            listMyItems.get(position);
+        } else if (itemType == 1) {
+            entity = listAllItems.get(position);
+        }
+        
+        if (entity != null) {
+            ItemZFBMgr.onItemClick(mActivity, entity);
+        }
     }
 
     @Override

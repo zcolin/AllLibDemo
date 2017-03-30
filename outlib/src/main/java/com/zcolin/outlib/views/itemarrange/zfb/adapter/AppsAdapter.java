@@ -98,7 +98,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                         if (isEditMode) {
                             removeMyApps(myHolder.getAdapterPosition());
                         } else if (mAppsItemClickListener != null) {
-                            mAppsItemClickListener.onItemClick(v, myHolder.getAdapterPosition() - COUNT_PRE_MY_HEADER);
+                            mAppsItemClickListener.onItemClick(v, myHolder.getAdapterPosition() - COUNT_PRE_MY_HEADER, 0);
                         }
                     }
                 });
@@ -147,7 +147,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                                 addAppToMy(pos);
                             }
                         } else if (mAppsItemClickListener != null) {
-                            mAppsItemClickListener.onItemClick(v, allHolder.getAdapterPosition() - COUNT_PRE_ALL_HEADER - listMyAppsItems.size());
+                            mAppsItemClickListener.onItemClick(v, allHolder.getAdapterPosition() - COUNT_PRE_ALL_HEADER - listMyAppsItems.size(), 1);
                         }
                     }
                 });
@@ -320,7 +320,10 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     }
 
     public interface OnAppsItemClickListener {
-        void onItemClick(View v, int position);
+        /**
+         * @param itemType 按钮类型　0 我的 1 其他
+         */
+        void onItemClick(View v, int position, int itemType);
     }
 
     public interface OnItemEditListener {
