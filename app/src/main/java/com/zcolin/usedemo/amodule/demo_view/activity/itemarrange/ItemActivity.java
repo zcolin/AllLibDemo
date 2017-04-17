@@ -41,12 +41,12 @@ public class ItemActivity extends BaseSecondLevelActivity {
         initZFBItem();
         initDragItem();
     }
-    
-    
-    private void initZFBItem(){
+
+
+    private void initZFBItem() {
         int columnCount = 4;//列数
         int fixedCount = 1;//固定图标的数量
-        
+
         LinearLayout llOperateTop = getView(R.id.ll_operate_top);
         LinearLayout llOperateBottom = getView(R.id.ll_operate_bottom);
 
@@ -105,11 +105,11 @@ public class ItemActivity extends BaseSecondLevelActivity {
             }
         }
     }
-    
-    private void initDragItem(){
+
+    private void initDragItem() {
         int columnCount = 4;//列数
         int fixedCount = 1;//固定图标的数量
-        
+
         LinearLayout llOperateTop = getView(R.id.ll_operate_top_1);
         LinearLayout llOperateBottom = getView(R.id.ll_operate_bottom_1);
 

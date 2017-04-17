@@ -14,6 +14,7 @@ import android.app.Activity;
 import com.zcolin.frame.utils.SPUtil;
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.outlib.views.itemarrange.AppsItemEntity;
+import com.zcolin.usedemo.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +32,7 @@ public class ItemDragMgr {
         AppsItemEntity entity = new AppsItemEntity();
         entity.appId = "QB";
         entity.name = "全部";
-        entity.iconDrawable = com.zcolin.usedemo.R.drawable.ic_launcher;
+        entity.iconDrawable = R.drawable.icon_all_apps;
         return entity;
     }
 
@@ -101,13 +102,68 @@ public class ItemDragMgr {
 
     public static ArrayList<AppsItemEntity> getAllItems() {
         ArrayList<AppsItemEntity> listAllItems = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            AppsItemEntity entity = new AppsItemEntity();
-            entity.appId = String.valueOf(i);
-            entity.name = "item" + i;
-            entity.iconDrawable = com.zcolin.usedemo.R.drawable.ic_launcher;
-            listAllItems.add(entity);
-        }
+
+        AppsItemEntity entity01 = new AppsItemEntity();
+        entity01.appId = String.valueOf(0);
+        entity01.name = "item" + 1;
+        entity01.iconDrawable = R.drawable.icon_app_01;
+
+        AppsItemEntity entity02 = new AppsItemEntity();
+        entity02.appId = String.valueOf(1);
+        entity02.name = "item" + 2;
+        entity02.iconDrawable = R.drawable.icon_app_02;
+
+        AppsItemEntity entity03 = new AppsItemEntity();
+        entity03.appId = String.valueOf(2);
+        entity03.name = "item" + 3;
+        entity03.iconDrawable = R.drawable.icon_app_03;
+
+        AppsItemEntity entity04 = new AppsItemEntity();
+        entity04.appId = String.valueOf(3);
+        entity04.name = "item" + 4;
+        entity04.iconDrawable = R.drawable.icon_app_04;
+
+        AppsItemEntity entity05 = new AppsItemEntity();
+        entity05.appId = String.valueOf(4);
+        entity05.name = "item" + 5;
+        entity05.iconDrawable = R.drawable.icon_app_05;
+
+        AppsItemEntity entity06 = new AppsItemEntity();
+        entity06.appId = String.valueOf(5);
+        entity06.name = "item" + 6;
+        entity06.iconDrawable = R.drawable.icon_app_06;
+
+        AppsItemEntity entity07 = new AppsItemEntity();
+        entity07.appId = String.valueOf(6);
+        entity07.name = "item" + 7;
+        entity07.iconDrawable = R.drawable.icon_app_07;
+
+        AppsItemEntity entity08 = new AppsItemEntity();
+        entity08.appId = String.valueOf(7);
+        entity08.name = "item" + 8;
+        entity08.iconDrawable = R.drawable.icon_app_08;
+
+        AppsItemEntity entity09 = new AppsItemEntity();
+        entity09.appId = String.valueOf(8);
+        entity09.name = "item" + 9;
+        entity09.iconDrawable = R.drawable.icon_app_09;
+
+        AppsItemEntity entity10 = new AppsItemEntity();
+        entity10.appId = String.valueOf(9);
+        entity10.name = "item" + 10;
+        entity10.iconDrawable = R.drawable.icon_app_10;
+
+        listAllItems.add(entity01);
+        listAllItems.add(entity02);
+        listAllItems.add(entity03);
+        listAllItems.add(entity04);
+        listAllItems.add(entity05);
+        listAllItems.add(entity06);
+        listAllItems.add(entity07);
+        listAllItems.add(entity08);
+        listAllItems.add(entity09);
+        listAllItems.add(entity10);
+
         return listAllItems;
     }
 
@@ -143,6 +199,6 @@ public class ItemDragMgr {
      * Item 点击事件
      */
     public static void onItemClick(Activity activity, AppsItemEntity entity) {
-        ToastUtil.toastShort(entity.appId);
+        ToastUtil.toastShort("appId:" + entity.appId);
     }
 }
