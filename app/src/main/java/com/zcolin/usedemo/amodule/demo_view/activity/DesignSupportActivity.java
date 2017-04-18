@@ -63,7 +63,7 @@ public class DesignSupportActivity extends BaseFrameActivity {
         recyclerView.setEmptyView(this, R.layout.view_pullrecycler_empty);
 
         //设置HeaderView
-        recyclerView.setHeaderView(this, R.layout.view_recyclerheader);
+        recyclerView.addHeaderView(this, R.layout.view_recyclerheader);
 
         //下拉和到底加载的进度条样式，默认为 ProgressStyle.BallSpinFadeLoaderIndicator
         recyclerView.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {

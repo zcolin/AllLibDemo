@@ -58,8 +58,8 @@ public class ZRecyclerFragment extends BaseFrameLazyLoadFrag {
         zRecyclerView.setEmptyView(mActivity, R.layout.view_pullrecycler_empty);
 
         //设置HeaderView和footerView
-        zRecyclerView.setHeaderView(mActivity, R.layout.view_recyclerheader);
-        zRecyclerView.setFooterView(mActivity, R.layout.view_recyclerfooter);
+        zRecyclerView.addHeaderView(mActivity, R.layout.view_recyclerheader);
+        zRecyclerView.addFooterView(mActivity, R.layout.view_recyclerfooter);
 
         //recyclerView.setLoadMoreProgressView(view);
         //recyclerView.setIsShowNoMore(false);      //不显示已加载全部

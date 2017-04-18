@@ -41,7 +41,7 @@ public class PassDataActivity extends BaseToolBarActivity {
                 intent.setClass(PassDataActivity.this, PassDataActivity1.class);
                 startActivityWithCallback(intent, new ResultActivityHelper.ResultActivityListener() {
                     @Override
-                    public void onResult(int requestCode, int resultCode, Intent data) {
+                    public void onResult(int resultCode, Intent data) {
                         if (data != null) {
                             ToastUtil.toastShort("ActivityResult返回数据：" + data.getStringExtra("data"));
                         }

@@ -107,7 +107,7 @@ public class ImageSelectorActivity extends BaseSecondLevelActivity {
 
         startActivityWithCallback(intent, new ResultActivityHelper.ResultActivityListener() {
             @Override
-            public void onResult(int requestCode, int resultCode, Intent data) {
+            public void onResult(int resultCode, Intent data) {
                 if (resultCode == RESULT_OK) {
                     mSelectPath = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
                     StringBuilder sb = new StringBuilder();

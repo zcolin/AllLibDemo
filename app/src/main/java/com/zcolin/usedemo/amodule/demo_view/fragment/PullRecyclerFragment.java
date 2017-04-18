@@ -73,8 +73,8 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
         recyclerView.setEmptyView(mActivity, R.layout.view_pullrecycler_empty);
 
         //设置HeaderView和footerView
-        recyclerView.setHeaderView(mActivity, R.layout.view_recyclerheader);
-        recyclerView.setFooterView(mActivity, R.layout.view_recyclerfooter);
+        recyclerView.addHeaderView(mActivity, R.layout.view_recyclerheader);
+        recyclerView.addFooterView(mActivity, R.layout.view_recyclerfooter);
 
         //下拉和到底加载的进度条样式，默认为 ProgressStyle.BallSpinFadeLoaderIndicator
         recyclerView.setRefreshProgressStyle(ProgressStyle.LineScaleIndicator);

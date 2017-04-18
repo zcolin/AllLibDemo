@@ -128,12 +128,14 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.github.zcolin:ZIjkPlayer:1.1.9'//视频播放
     compile 'com.github.zcolin:ZEasyPR:1.1.2'//车牌识别
-    compile 'com.github.zcolin:ZFrame:latest.release'//程序框架 
+    compile 'com.github.zcolin:ZFrame:1.2.5'//程序框架 
     compile 'com.github.zcolin:ZBarCodeScanner:latest.release'//二维码扫描
     compile 'com.github.zcolin:ZMultiImageSelector:latest.release'//多图选择    
     compile 'com.github.zcolin:PullRecyclerView:latest.release'//下拉刷新
     compile 'com.github.zcolin:ZRecyclerView:latest.release'//下拉刷新
     compile 'com.github.zcolin:ZUILib:latest.release'//UI库 
+    compile 'com.github.zcolin.TPartyLibs:libShareSdk:1.0.2'
+    compile 'com.github.zcolin.TPartyLibs:libAmapLocation:1.0.2'
     //    facebook调试工具 使用chrome查看，可以进行数据库和http报文查看
     //    compile 'com.facebook.stetho:stetho:1.4.2'
     //    compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
@@ -142,8 +144,6 @@ dependencies {
     //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     //    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile project(':outlib')
-    compile project(':libAmapLocation')
-    compile project(':libShareSdk')
 }
 
 
