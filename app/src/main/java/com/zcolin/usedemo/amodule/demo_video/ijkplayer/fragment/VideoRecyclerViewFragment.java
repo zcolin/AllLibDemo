@@ -11,6 +11,7 @@ package com.zcolin.usedemo.amodule.demo_video.ijkplayer.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -42,8 +43,8 @@ public class VideoRecyclerViewFragment extends BaseVideoRecycleViewFragment {
     }
 
     @Override
-    protected void createView() {
-        super.createView();
+    protected void createView(@Nullable Bundle savedInstanceState) {
+        super.createView(savedInstanceState);
 
         zRecyclerView.setRefreshing(true);
         getDataFromShopList(mActivity, mPage);

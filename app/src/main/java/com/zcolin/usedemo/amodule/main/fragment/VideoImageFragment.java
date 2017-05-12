@@ -10,14 +10,14 @@ package com.zcolin.usedemo.amodule.main.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.zcolin.usedemo.amodule.demo_video.EasyPRActivity;
-import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
 import com.zcolin.frame.utils.ActivityUtil;
@@ -25,6 +25,7 @@ import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_image.ImageSelectorActivity;
 import com.zcolin.usedemo.amodule.demo_image.ImageUtilActivity;
+import com.zcolin.usedemo.amodule.demo_video.EasyPRActivity;
 import com.zcolin.usedemo.amodule.demo_video.QrCodeScanActivity;
 import com.zcolin.usedemo.amodule.demo_video.RecordVideoActivity;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.NavigationActivity;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 /**
  * 视频图片Demo展示
  */
-public class VideoImageFragment extends BaseFrameLazyLoadFrag implements View.OnClickListener {
+public class VideoImageFragment extends BaseFrameFrag implements View.OnClickListener {
     private LinearLayout llContent;
     private ArrayList<Button> listButton = new ArrayList<>();
 
@@ -52,7 +53,7 @@ public class VideoImageFragment extends BaseFrameLazyLoadFrag implements View.On
     }
 
     @Override
-    protected void lazyLoad() {
+    protected void lazyLoad(@Nullable Bundle savedInstanceState) {
         init();
     }
 

@@ -18,7 +18,7 @@ import android.view.View;
 import com.zcolin.outlib.views.itemarrange.AppsItemEntity;
 import com.zcolin.outlib.views.itemarrange.zfb.adapter.AppsAdapter;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 /**
  * 应用图标排序
  */
-public class ItemArrangeZFBActivity extends BaseSecondLevelActivity implements AppsAdapter.OnAppsItemClickListener, AppsAdapter.OnItemEditListener {
+public class ItemArrangeZFBActivity extends BaseActivity implements AppsAdapter.OnAppsItemClickListener, AppsAdapter.OnItemEditListener {
 
     private RecyclerView              recyclerviewApp;
     private AppsAdapter               adapter;
@@ -36,17 +36,26 @@ public class ItemArrangeZFBActivity extends BaseSecondLevelActivity implements A
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_itemarrange);
 
         setToolbarTitle("应用");
         setToolbarRightBtnText("编辑");
 
-        initView();
         listAllItems = ItemZFBMgr.getAllItems();
         initData();
     }
 
-    private void initView() {
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_itemarrange;
+    }
+
+    @Override
+    protected void initView() {
         recyclerviewApp = getView(R.id.recyclerview_app);
 
         GridLayoutManager manager = new GridLayoutManager(this, 4);
@@ -76,7 +85,7 @@ public class ItemArrangeZFBActivity extends BaseSecondLevelActivity implements A
         } else if (itemType == 1) {
             entity = listAllItems.get(position);
         }
-        
+
         if (entity != null) {
             ItemZFBMgr.onItemClick(mActivity, entity);
         }

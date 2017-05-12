@@ -3,7 +3,7 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-1-13 上午11:48
+ *   date     17-5-4 下午3:45
  * ********************************************************
  */
 
@@ -11,14 +11,13 @@ package com.zcolin.usedemo.amodule.base;
 
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,38 +27,130 @@ import com.zcolin.frame.utils.ScreenUtil;
 import com.zcolin.frame.utils.StringUtil;
 import com.zcolin.usedemo.R;
 
-
-
 /**
- * 有ToolBar的页面继承此类， 默认包含了两个操作按钮（）左侧一个，右侧一个）和标题
+ * 客户端Activity的基类
+ * <p>
+ * 是否需要沉浸式的  {@link #isImmerse()}   default true}
+ * <p>
+ * 是否需要带ToolBar的 {@link #isShowToolBar()}  default true}
+ * <p/>
+ * 是否需要ToolBar带返回按钮并且实现了返回的 {@link #isSecondLevelAcitivty()}   default false}
+ * <p/>
+ * 是否需要全屏的 {@link #isFullScreen()}   default false}
  */
-public class BaseToolBarActivity extends BaseFrameActivity {
-    /*
-    * 两个属性
-    * 1、toolbar是否悬浮在窗口之上
-    * 2、toolbar的高度获取
-    * */
-    public  Toolbar  toolbar;
-    private View     toolBarView;        //自定义的toolBar的布局
-    private TextView toolbarTitleView;   //标题
-    private TextView toolbarLeftBtn;     //预制按钮一
-    private TextView toolbarRightBtn;    //预制按钮二
+public abstract class BaseActivity extends BaseFrameActivity {
+    private Toolbar  toolbar;
+    private View     toolBarView;           //自定义的toolBar的布局
+    private TextView toolbarTitleView;       //标题 居中
+    private TextView toolbarLeftBtn;        //最左侧预制按钮，一般防止返回
+    private TextView toolbarRightBtn;        //最右侧预制按钮
+    private boolean isCallContenView = false;//防止客户端调用两次setContentView
+
+
+    /**
+     * 返回此Actiivty使用的布局xml文件Id
+     * ex: R.layout.main
+     */
+    protected abstract int getRootViewLayId();
+
+    /**
+     * 初始化View操作
+     */
+    protected abstract void initView();
+
+    /**
+     * 是否显示toolbar
+     */
+    public boolean isShowToolBar() {
+        return true;
+    }
+
+    /**
+     * 是否全屏
+     */
+    public boolean isFullScreen() {
+        return false;
+    }
+
+    /**
+     * 如果是沉浸式状态栏，是否空出顶部距离
+     */
+    protected boolean isImmersePaddingTop() {
+        return false;
+    }
+
+    /**
+     * 是否为二级页面，默认实现了带ToolBar，带返回按钮，带返回操作
+     */
+    protected boolean isSecondLevelAcitivty() {
+        return false;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //如果用户需要自己设置RootViewLay,此处返回0，然后自己调用setContentView即可
+        if (getRootViewLayId() != 0) {
+            setContentView(getRootViewLayId());
+            isCallContenView = true;
+        }
+
+        initView();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //activity异常重启是仍需要调用setContentView
+        isCallContenView = false;
     }
 
     @Override
     public void setContentView(int layoutResID) {
-        super.setContentView(initToolBar(layoutResID));
-        setSupportActionBar(toolbar);
+        if (!isCallContenView) {
+            if (isShowToolBar() && !isFullScreen()) {
+                super.setContentView(initToolBar(layoutResID));
+                setSupportActionBar(toolbar);
+            } else {
+                super.setContentView(layoutResID);
+            }
+            init();
+        }
     }
 
     @Override
     public void setContentView(View view) {
-        super.setContentView(initToolBar(view));
-        setSupportActionBar(toolbar);
+        if (!isCallContenView) {
+            if (isShowToolBar() && !isFullScreen()) {
+                super.setContentView(initToolBar(view));
+                setSupportActionBar(toolbar);
+            } else {
+                super.setContentView(view);
+            }
+            init();
+        }
+    }
+
+    /**
+     * 根据用户设定初始化ToolBar
+     */
+    private void init() {
+        if (isFullScreen()) {
+            if (Build.VERSION.SDK_INT >= 19) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            }
+        } else if (isImmerse() && isImmersePaddingTop() && !isShowToolBar()) {
+            ViewGroup viewGroup = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+            viewGroup.setPadding(0, ScreenUtil.getStatusBarHeight(this), 0, 0);
+        }
+
+        if (isSecondLevelAcitivty() && isShowToolBar()) {
+            setToolbarLeftBtnText("返回");
+            setToolbarLeftBtnBackground(R.drawable.gui_btn_actionbar_back_sel);
+            setToolbarLeftBtnCompoundDrawableLeft(R.drawable.gui_icon_arrow_back);
+        }
     }
 
     private ViewGroup initToolBar(int layoutResID) {
@@ -77,7 +168,7 @@ public class BaseToolBarActivity extends BaseFrameActivity {
         	/*将toolbar引入到父容器中*/
         View toolbarLay = LayoutInflater.from(this)
                                         .inflate(R.layout.gui_toolbar, null);
-        LayoutParams layParam = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        ViewGroup.LayoutParams layParam = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         //不明原因导致布局向右移动了一些，移动回来
         //((ViewGroup.MarginLayoutParams) toolbarLay.getLayoutParams()).leftMargin = -40;
@@ -102,15 +193,15 @@ public class BaseToolBarActivity extends BaseFrameActivity {
         ViewGroup contentView;
         if (overly) {
             contentView = new FrameLayout(this);
-            contentView.addView(userView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            contentView.addView(userView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             contentView.addView(toolbarLay, layParam);
         } else {
             contentView = new LinearLayout(this);
             ((LinearLayout) contentView).setOrientation(LinearLayout.VERTICAL);
             contentView.addView(toolbarLay, layParam);
-            contentView.addView(userView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            contentView.addView(userView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
-        
+
         return contentView;
     }
 
@@ -287,6 +378,9 @@ public class BaseToolBarActivity extends BaseFrameActivity {
      * 预制按钮一点击回调，子类如需要处理点击事件，重写此方法
      */
     protected void onToolBarLeftBtnClick() {
+        if (isSecondLevelAcitivty()) {
+            this.finish();
+        }
     }
 
     /**
@@ -310,7 +404,7 @@ public class BaseToolBarActivity extends BaseFrameActivity {
     /*
      * 预置按钮的点击事件类 
      */
-    private class BaseClickListener implements OnClickListener {
+    private class BaseClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -325,7 +419,7 @@ public class BaseToolBarActivity extends BaseFrameActivity {
     /*
      * 预制按钮的 长按事件类
      */
-    private class BaseLongClickListener implements OnLongClickListener {
+    private class BaseLongClickListener implements View.OnLongClickListener {
 
         @Override
         public boolean onLongClick(View v) {

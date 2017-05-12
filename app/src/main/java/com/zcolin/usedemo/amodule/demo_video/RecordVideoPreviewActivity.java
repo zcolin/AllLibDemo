@@ -26,7 +26,7 @@ import android.widget.VideoView;
 import com.zcolin.frame.utils.ScreenUtil;
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 import java.io.File;
 import java.util.TimerTask;
@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 视频认证上传界面
  */
-public class RecordVideoPreviewActivity extends BaseSecondLevelActivity implements View.OnClickListener {
+public class RecordVideoPreviewActivity extends BaseActivity implements View.OnClickListener {
     private VideoView                videoViewShow;
     private ImageView                imageViewShow;
     private Button                   buttonDone;
@@ -52,7 +52,6 @@ public class RecordVideoPreviewActivity extends BaseSecondLevelActivity implemen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recordvideo_preview);
         String path = getIntent().getStringExtra("data");
         setToolbarTitle("视频预览");
         if (path == null) {
@@ -77,6 +76,17 @@ public class RecordVideoPreviewActivity extends BaseSecondLevelActivity implemen
         }
     }
 
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_recordvideo_preview;
+    }
+
+    @Override
     public void initView() {
         videoViewShow = getView(R.id.videoView_show);
         imageViewShow = getView(R.id.imageView_show);

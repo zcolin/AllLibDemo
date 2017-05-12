@@ -26,13 +26,8 @@ import com.zplayer.library.ZPlayer;
  * update by colin on 2016-10-18
  */
 public class VideoPlayActivity extends BaseVideoPlayActivity implements View.OnClickListener, ZPlayer.OnNetChangeListener {
-
     private boolean isLive;
-
-    /**
-     * 测试地址
-     */
-    private String url;
+    private String  url;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +46,7 @@ public class VideoPlayActivity extends BaseVideoPlayActivity implements View.OnC
     }
 
     @Override
-    protected int getContentViewId() {
+    protected int getRootViewLayId() {
         return R.layout.activity_ijk_videoplay;
     }
 

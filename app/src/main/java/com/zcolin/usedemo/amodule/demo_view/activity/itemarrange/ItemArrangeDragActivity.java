@@ -18,7 +18,7 @@ import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.outlib.views.itemarrange.AppsItemEntity;
 import com.zcolin.outlib.views.itemarrange.drag.adapter.AppsAdapter;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 /**
  * 应用图标排序
  */
-public class ItemArrangeDragActivity extends BaseSecondLevelActivity implements AppsAdapter.OnAppsItemClickListener, AppsAdapter.OnItemEditListener {
+public class ItemArrangeDragActivity extends BaseActivity implements AppsAdapter.OnAppsItemClickListener, AppsAdapter.OnItemEditListener {
 
     private RecyclerView              recyclerviewApp;
     private AppsAdapter               adapter;
@@ -36,16 +36,24 @@ public class ItemArrangeDragActivity extends BaseSecondLevelActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_itemarrange);
 
         setToolbarTitle("应用");
         setToolbarRightBtnText("编辑");
-
-        initView();
         initData();
     }
 
-    private void initView() {
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_itemarrange;
+    }
+
+    @Override
+    protected void initView() {
         recyclerviewApp = getView(R.id.recyclerview_app);
     }
 
@@ -78,7 +86,7 @@ public class ItemArrangeDragActivity extends BaseSecondLevelActivity implements 
             appId = listOtherItems.get(position).appId;
         }
 
-        ToastUtil.toastShort("appId:" +appId);
+        ToastUtil.toastShort("appId:" + appId);
     }
 
     @Override

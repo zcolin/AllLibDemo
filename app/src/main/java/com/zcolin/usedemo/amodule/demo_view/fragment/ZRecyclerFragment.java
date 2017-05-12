@@ -12,15 +12,16 @@ package com.zcolin.usedemo.amodule.demo_view.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
-import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.demo_view.adapter.ZRecyclerAdapter;
+import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
 import com.zcolin.gui.zrecyclerview.ZRecyclerView;
+import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.demo_view.adapter.ZRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 /**
  * SuperRecyclerView Demo
  */
-public class ZRecyclerFragment extends BaseFrameLazyLoadFrag {
+public class ZRecyclerFragment extends BaseFrameFrag {
 
     private ZRecyclerView    zRecyclerView;
     private ZRecyclerAdapter mRecyclerViewAdapter;
@@ -47,7 +48,7 @@ public class ZRecyclerFragment extends BaseFrameLazyLoadFrag {
     }
 
     @Override
-    protected void lazyLoad() {
+    protected void lazyLoad(@Nullable Bundle savedInstanceState) {
         zRecyclerView = getView(R.id.pullLoadMoreRecyclerView);
 
 

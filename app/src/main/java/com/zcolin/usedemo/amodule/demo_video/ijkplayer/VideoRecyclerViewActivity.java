@@ -40,8 +40,13 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
     }
 
     @Override
-    protected int getContentViewId() {
-        return R.layout.activity_ijk_videorecycler;
+    protected int getRootViewLayId() {
+         return R.layout.activity_ijk_videorecycler;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 
     @Override

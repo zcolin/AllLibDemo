@@ -14,7 +14,7 @@ import android.support.annotation.Nullable;
 
 import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.base.BaseVideoPlayFragment;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.base.BaseVideoRecycleViewFragment;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.fragment.VideoPlayFragment;
@@ -23,14 +23,13 @@ import com.zcolin.usedemo.amodule.demo_video.ijkplayer.fragment.VideoRecyclerVie
 /**
  * 视频在Fragment中的播放
  */
-public class VideoFragmentPlayActivity extends BaseSecondLevelActivity {
+public class VideoFragmentPlayActivity extends BaseActivity {
 
     private BaseFrameFrag fragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ijk_fragmentplay);
 
         String strData = getIntent().getStringExtra("data");
         if ("single".equals(strData)) {
@@ -47,6 +46,22 @@ public class VideoFragmentPlayActivity extends BaseSecondLevelActivity {
                                        .commitAllowingStateLoss();
         }
     }
+
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_ijk_fragmentplay;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
 
     @Override
     public void onBackPressed() {

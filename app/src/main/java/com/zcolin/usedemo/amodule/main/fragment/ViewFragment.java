@@ -9,13 +9,14 @@ package com.zcolin.usedemo.amodule.main.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.utils.ActivityUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity;
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 /**
  * View相关示例
  */
-public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickListener {
+public class ViewFragment extends BaseFrameFrag implements View.OnClickListener {
     private LinearLayout llContent;
     private ArrayList<Button> listButton = new ArrayList<>();
 
@@ -48,7 +49,7 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
     }
 
     @Override
-    protected void lazyLoad() {
+    protected void lazyLoad(@Nullable Bundle savedInstanceState) {
         init();
     }
 

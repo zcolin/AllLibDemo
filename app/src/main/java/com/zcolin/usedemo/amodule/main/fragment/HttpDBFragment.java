@@ -8,13 +8,14 @@
 package com.zcolin.usedemo.amodule.main.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.utils.ActivityUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.demo_db.DbDemoActivity;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 /**
  * 数据库、网络演示
  */
-public class HttpDBFragment extends BaseFrameLazyLoadFrag implements View.OnClickListener {
+public class HttpDBFragment extends BaseFrameFrag implements View.OnClickListener {
     private LinearLayout llContent;
     private ArrayList<Button> listButton = new ArrayList<>();
 
@@ -43,7 +44,7 @@ public class HttpDBFragment extends BaseFrameLazyLoadFrag implements View.OnClic
     }
 
     @Override
-    protected void lazyLoad() {
+    protected void lazyLoad(@Nullable Bundle savedInstanceState) {
         init();
     }
 

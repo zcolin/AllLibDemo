@@ -9,6 +9,8 @@
 package com.zcolin.usedemo.amodule.demo_video.ijkplayer.base;
 
 import android.content.res.Configuration;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.RelativeLayout;
 
 import com.zcolin.frame.app.BaseFrameFrag;
@@ -24,7 +26,7 @@ public abstract class BaseVideoRecycleViewFragment extends BaseFrameFrag {
 
 
     @Override
-    protected void createView() {
+    protected void createView(@Nullable Bundle savedInstanceState) {
         player = initPlayer();
     }
 

@@ -10,24 +10,25 @@ package com.zcolin.usedemo.amodule.demo_view.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
 
-import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
+import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.utils.ToastUtil;
-import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.demo_view.adapter.PullRecyclerAdapter;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.pullrecyclerview.BaseRecyclerAdapter;
 import com.zcolin.gui.pullrecyclerview.PullRecyclerView;
 import com.zcolin.gui.pullrecyclerview.progressindicator.ProgressStyle;
+import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.demo_view.adapter.PullRecyclerAdapter;
 
 import java.util.ArrayList;
 
 /**
  * PullRecyclerView Demo
  */
-public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
+public class PullRecyclerFragment extends BaseFrameFrag {
 
     private PullRecyclerView    recyclerView;
     private PullRecyclerAdapter mRecyclerViewAdapter;
@@ -63,7 +64,7 @@ public class PullRecyclerFragment extends BaseFrameLazyLoadFrag {
     }
 
     @Override
-    protected void lazyLoad() {
+    protected void lazyLoad(@Nullable Bundle savedInstanceState) {
 
         recyclerView = getView(R.id.pullLoadMoreRecyclerView);
         // recyclerView.setGridLayout(false);//默认为LinearLayoutManager

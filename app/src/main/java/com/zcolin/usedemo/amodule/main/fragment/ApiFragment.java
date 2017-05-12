@@ -9,6 +9,7 @@ package com.zcolin.usedemo.amodule.main.fragment;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
-import com.zcolin.frame.app.BaseFrameLazyLoadFrag;
 import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
 import com.zcolin.frame.utils.ToastUtil;
@@ -25,6 +25,7 @@ import com.zcolin.gui.ZConfirm;
 import com.zcolin.gui.ZDialog;
 import com.zcolin.libamaplocation.LocationUtil;
 import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.base.BaseFragment;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ import cn.sharesdk.util.ShareSocial;
 /**
  * 个人演示页
  */
-public class ApiFragment extends BaseFrameLazyLoadFrag implements View.OnClickListener {
+public class ApiFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout llContent;
     private ArrayList<Button> listButton = new ArrayList<>();
     private TextView tvMessage;
@@ -47,8 +48,8 @@ public class ApiFragment extends BaseFrameLazyLoadFrag implements View.OnClickLi
     }
 
     @Override
-    protected void lazyLoad() {
-        init();
+    protected void lazyLoad(@Nullable Bundle savedInstanceState) {
+
     }
 
     @Override
@@ -56,8 +57,8 @@ public class ApiFragment extends BaseFrameLazyLoadFrag implements View.OnClickLi
         return R.layout.activity_common;
     }
 
-
-    private void init() {
+    @Override
+    protected void initView() {
         tvMessage = getView(R.id.tvMessage);
         llContent = getView(R.id.ll_content);
         listButton.add(addButton("定位"));
@@ -82,14 +83,11 @@ public class ApiFragment extends BaseFrameLazyLoadFrag implements View.OnClickLi
         PermissionHelper.requestPermission(mActivity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionsResultAction() {
             @Override
             public void onGranted() {
-
                 final LocationUtil location = new LocationUtil(mActivity);
                 location.startLocation(new LocationUtil.OnGetLocation() {
-
                     @Override
                     public void getLocation(AMapLocation location) {
-
-				/*设置位置描述*/
+                /*设置位置描述*/
                         String desc = null;
                         Bundle locBundle = location.getExtras();
                         if (locBundle != null) {
@@ -100,24 +98,24 @@ public class ApiFragment extends BaseFrameLazyLoadFrag implements View.OnClickLi
 
                     @Override
                     public void locationFail() {
-                        ZConfirm dlg = new ZConfirm(mActivity);
-                        dlg.setTitle("定位失败, 是否尝试再次定位？")
-                           .addSubmitListener(new ZDialog.ZDialogSubmitInterface() {
+                        new ZConfirm(mActivity)
+                                .setTitle("定位失败, 是否尝试再次定位？")
+                                .addSubmitListener(new ZDialog.ZDialogSubmitInterface() {
 
-                               @Override
-                               public boolean submit() {
-                                   location();
-                                   return true;
-                               }
-                           });
-                        dlg.addCancelListener(new ZDialog.ZDialogCancelInterface() {
-                            @Override
-                            public boolean cancel() {
-                                tvMessage.setText("定位失败");
-                                return true;
-                            }
-                        });
-                        dlg.show();
+                                    @Override
+                                    public boolean submit() {
+                                        location();
+                                        return true;
+                                    }
+                                })
+                                .addCancelListener(new ZDialog.ZDialogCancelInterface() {
+                                    @Override
+                                    public boolean cancel() {
+                                        tvMessage.setText("定位失败");
+                                        return true;
+                                    }
+                                })
+                                .show();
                     }
                 });
             }
@@ -136,11 +134,12 @@ public class ApiFragment extends BaseFrameLazyLoadFrag implements View.OnClickLi
             location();
         }
         if (v == listButton.get(1)) {
-            new ShareSocial(mActivity).setTitle("分享")
-                                      .setContent("分享内容")
-                                      .setTargetUrl("http://www.baidu.com")
-                                      .setImgUrl("http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg")
-                                      .share();
+            new ShareSocial(mActivity)
+                    .setTitle("分享")
+                    .setContent("分享内容")
+                    .setTargetUrl("http://www.baidu.com")
+                    .setImgUrl("http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg")
+                    .share();
         }
     }
 }

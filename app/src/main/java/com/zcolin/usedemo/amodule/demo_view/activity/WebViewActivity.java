@@ -20,28 +20,40 @@ import com.zcolin.gui.webview.jsbridge.BridgeHandler;
 import com.zcolin.gui.webview.jsbridge.CallBackFunction;
 import com.zcolin.gui.webview.jsbridge.DefaultHandler;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 /**
  * 带JsBridge的webview的Demo
  */
-public class WebViewActivity extends BaseSecondLevelActivity implements OnClickListener {
+public class WebViewActivity extends BaseActivity implements OnClickListener {
     private ZWebView webView;
     private Button   button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
 
+
+        loadUrl();
+        getUserDataFrom_xx();
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_webview;
+    }
+
+    @Override
+    protected void initView() {
         webView = getView(R.id.webView);
         button = getView(R.id.button);
         button.setOnClickListener(this);
-
         initWebView();
-        loadUrl();
+    }
 
-        getUserDataFrom_xx();
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
     }
 
     public void initWebView() {

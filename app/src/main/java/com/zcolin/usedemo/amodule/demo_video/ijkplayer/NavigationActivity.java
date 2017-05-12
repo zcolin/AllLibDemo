@@ -14,26 +14,38 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 /**
  * 导航路由
  */
-public class NavigationActivity extends BaseSecondLevelActivity implements View.OnClickListener {
+public class NavigationActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ijk_navigation);
-
         setToolbarTitle("视频播放导航");
+    }
 
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_ijk_navigation;
+    }
+
+    @Override
+    protected void initView() {
         findViewById(R.id.tv_live_play).setOnClickListener(this);//直播
         findViewById(R.id.tv_demand_activity_play).setOnClickListener(this);//Activity点播
         findViewById(R.id.tv_recycleview_activity_player).setOnClickListener(this);//Activity列表播放
         findViewById(R.id.tv_demand_fragment_play).setOnClickListener(this);//Fragment点播
         findViewById(R.id.tv_recycleview_fragment_player).setOnClickListener(this);//Fragment列表播放
     }
+
 
     @Override
     public void onClick(View view) {

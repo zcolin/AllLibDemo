@@ -16,19 +16,19 @@ import android.view.View;
 import android.widget.Button;
 
 import com.zcolin.frame.utils.ToastUtil;
-import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.ZDialogAsyncProgress;
 import com.zcolin.gui.ZDialogProgress;
 import com.zcolin.gui.ZTextSwitcher;
+import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 import java.util.ArrayList;
 
 /**
  * 其他的一些View的示例
  */
-public class OtherViewActivity extends BaseSecondLevelActivity {
+public class OtherViewActivity extends BaseActivity {
     private ZTextSwitcher textSwitcher;
     private ZBanner       banner;
     private Button        btn1;
@@ -37,24 +37,6 @@ public class OtherViewActivity extends BaseSecondLevelActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otherview);
-
-        textSwitcher = getView(R.id.view_textswitcher);
-        banner = getView(R.id.view_banner);
-        btn1 = getView(R.id.btn_1);
-        btn2 = getView(R.id.btn_2);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDlgAsyncProgress();
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDlgProgress();
-            }
-        });
 
         startBanner();
         startTextSwitcher();
@@ -78,6 +60,36 @@ public class OtherViewActivity extends BaseSecondLevelActivity {
         super.onPause();
         textSwitcher.stopSwitcher();
         banner.stopAutoPlay();
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_otherview;
+    }
+
+    @Override
+    protected void initView() {
+        textSwitcher = getView(R.id.view_textswitcher);
+        banner = getView(R.id.view_banner);
+        btn1 = getView(R.id.btn_1);
+        btn2 = getView(R.id.btn_2);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDlgAsyncProgress();
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDlgProgress();
+            }
+        });
+    }
+
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
     }
 
     public void startTextSwitcher() {

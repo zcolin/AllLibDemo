@@ -1,3 +1,12 @@
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  fosung
+ *   email    wanglin2046@126.com
+ *   date     17-5-4 下午5:25
+ * ********************************************************
+ */
+
 package com.zcolin.usedemo.amodule.demo_db;
 
 import android.os.Bundle;
@@ -11,39 +20,45 @@ import android.widget.TextView;
 
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
-import com.zcolin.usedemo.db.DaoManager;
+import com.zcolin.usedemo.amodule.base.mvp.BaseMVPActivity;
+import com.zcolin.usedemo.amodule.demo_db.presenter.DbDemoPresenter;
+import com.zcolin.usedemo.amodule.demo_db.view.IDBDemoView;
 import com.zcolin.usedemo.db.entity.Employee;
-import com.zcolin.usedemo.db.entity.EmployeeDao;
-
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import static com.zcolin.usedemo.db.DaoManager.getDaoHelper;
 
 /**
  * DBDemo
  */
-public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnClickListener {
+public class DbDemoActivity extends BaseMVPActivity<DbDemoPresenter> implements View.OnClickListener, IDBDemoView {
     private LinearLayout llContent;
     private TextView     textView;
-    private ArrayList<Button> listButton      = new ArrayList<>();
-    private int               currentSortType = 0;//当前排序方式
+    private ArrayList<Button> listButton = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_http_db);
-
         setToolbarTitle("DBDemo");
-        init();
-        queryObject();
     }
 
-    private void init() {
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected Class<DbDemoPresenter> getPresenterClass() {
+        return DbDemoPresenter.class;
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_http_db;
+    }
+
+    @Override
+    protected void initView() {
         llContent = getView(R.id.ll_content);
         textView = getView(R.id.textview);
         textView.setMovementMethod(new ScrollingMovementMethod());
@@ -58,6 +73,7 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
         }
     }
 
+
     private Button addButton(String text) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         Button button = new Button(mActivity);
@@ -68,75 +84,9 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
         return button;
     }
 
-    /**
-     * 插入对象
-     */
-    public Employee insertObject() {
-        Employee employee = getEmployee();
-        boolean b = getDaoHelper().insertObject(employee);
-        ToastUtil.toastShort(b ? "插入成功" : "插入失败-主键重复");
-        return employee;
-    }
 
-    /**
-     * 有则替换，无则插入
-     */
-    public Employee insertOrReplaceObject() {
-        Employee employee = getEmployee();
-        boolean b = getDaoHelper().insertOrReplaceObject(employee);
-        ToastUtil.toastShort(b ? "插入成功" : "插入失败-主键重复");
-        return employee;
-    }
-
-    /**
-     * 查询所有数据的数据列表
-     */
-    public void queryObject() {
-        List<Employee> list = getDaoHelper().queryAll(Employee.class);
-        setText(list);
-    }
-
-    /**
-     * 查询group为“部门一”的人员,从第二条开始限制为3个,按照日期降序
-     * <p>
-     */
-    public void queryObjectWithCondition() {
-        QueryBuilder<Employee> queryBuilder = getDaoHelper().getQueryBuilder(Employee.class);
-        queryBuilder.where(EmployeeDao.Properties.Group.eq("部门二"));
-        queryBuilder.offset(1);
-        queryBuilder.limit(3);
-        if (currentSortType == 0) {
-            currentSortType = 1;
-            queryBuilder.orderDesc(EmployeeDao.Properties.Date);
-        } else {
-            currentSortType = 0;
-            queryBuilder.orderAsc(EmployeeDao.Properties.Date);
-        }
-        List<Employee> list = DaoManager.getDaoHelper().queryObjects(queryBuilder);
-        setText(list);
-    }
-
-    /**
-     * 删除所有数据
-     */
-    public void deleteAllObject(){
-        boolean b = getDaoHelper().deleteAll(Employee.class);
-    }
-
-    private Employee getEmployee() {
-        Employee employee = new Employee();
-        Date date = new Date();
-        long t = date.getTime();
-
-        employee.setId(t % 20);
-        employee.setCompany("fosung");
-        employee.setName("张" + t % 15);
-        employee.setGroup(t % 2 == 0 ? "部门一" : "部门二");
-        employee.setDate(date);
-        return employee;
-    }
-
-    private void setText(List<Employee> list) {
+    @Override
+    public void showResult(List<Employee> list) {
         if (list != null && list.size() > 0) {
             StringBuilder builder = new StringBuilder();
             for (Employee o : list) {
@@ -151,26 +101,33 @@ public class DbDemoActivity extends BaseSecondLevelActivity implements View.OnCl
                        .append("\n");
             }
             textView.setText(builder);
-        }else{
+        } else {
             textView.setText(null);
         }
     }
 
     @Override
+    public void showError(String error) {
+
+    }
+
+    @Override
+    public void toastShort(String str) {
+        ToastUtil.toastShort(str);
+    }
+
+    @Override
     public void onClick(View v) {
         if (v == listButton.get(0)) {
-            insertObject();
-            queryObject();
+            mPresenter.insertObject();
         } else if (v == listButton.get(1)) {
-            insertOrReplaceObject();
-            queryObject();
+            mPresenter.insertOrReplaceObject();
         } else if (v == listButton.get(2)) {
-            queryObject();
+            mPresenter.queryAllObject();
         } else if (v == listButton.get(3)) {
-            queryObjectWithCondition();
-        }else if (v == listButton.get(4)) {
-            deleteAllObject();
-            queryObject();
+            mPresenter.queryObjectWithCondition();
+        } else if (v == listButton.get(4)) {
+            mPresenter.deleteAllObject();
         }
     }
 }

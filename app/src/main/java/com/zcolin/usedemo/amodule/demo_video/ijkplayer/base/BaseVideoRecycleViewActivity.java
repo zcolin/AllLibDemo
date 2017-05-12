@@ -12,7 +12,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.adapter.SuperVideoAdapter;
 import com.zcolin.usedemo.amodule.demo_video.ijkplayer.bean.VideoListBean;
 import com.zplayer.library.ZListPlayer;
@@ -20,26 +20,23 @@ import com.zplayer.library.ZListPlayer;
 /**
  * 视频列表播放基类
  */
-public abstract class BaseVideoRecycleViewActivity extends BaseSecondLevelActivity {
+public abstract class BaseVideoRecycleViewActivity extends BaseActivity {
     protected ZListPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setContentView(getContentViewId());
+    }
 
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected void initView() {
         player = initPlayer();
     }
-
-    //已经做了setContentView，如果客户端再次设置，不在操作
-    @Override
-    public void setContentView(int layoutResID) {
-    }
-
-    /**
-     * 实现此函数后子类不要再进行setContentView（）操作
-     */
-    protected abstract int getContentViewId();
 
     /**
      * 初始化Player操作

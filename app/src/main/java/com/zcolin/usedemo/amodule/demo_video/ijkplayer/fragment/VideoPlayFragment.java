@@ -10,6 +10,7 @@
 package com.zcolin.usedemo.amodule.demo_video.ijkplayer.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
@@ -41,8 +42,8 @@ public class VideoPlayFragment extends BaseVideoPlayFragment implements ZPlayer.
     }
 
     @Override
-    protected void createView() {
-        super.createView();
+    protected void createView(@Nullable Bundle savedInstanceState) {
+        super.createView(savedInstanceState);
         url = getArguments().getString("url");
         isLive = getArguments().getBoolean("is_live", false);
 

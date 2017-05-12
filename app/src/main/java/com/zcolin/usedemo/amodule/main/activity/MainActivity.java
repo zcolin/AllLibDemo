@@ -15,33 +15,21 @@ import com.zcolin.frame.utils.DisplayUtil;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseFullScreenActivity;
-import com.zcolin.usedemo.amodule.base.BaseNoToolBarActivity;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
-import com.zcolin.usedemo.amodule.base.BaseToolBarActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zcolin.usedemo.amodule.main.adapter.MainPagerAdapter;
 
 /**
  * 程序主页面
- * 需要带ToolBar的继承 {@link BaseToolBarActivity}
- * <p/>
- * 需要ToolBar带返回按钮的继承 {@link BaseSecondLevelActivity}
- * <p/>
- * 需要没有ToolBar的继承 {@link BaseNoToolBarActivity}
- * <p/>
- * 需要全屏的继承 {@link BaseFullScreenActivity}
  */
-public class MainActivity extends BaseNoToolBarActivity {
-   
+public class MainActivity extends BaseActivity {
+
     private ZViewPager mViewPager;
     private ZTabView   tabView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        initRes();
         initData();
     }
 
@@ -50,9 +38,20 @@ public class MainActivity extends BaseNoToolBarActivity {
         super.onDestroy();
     }
 
-    private void initRes() {
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
         mViewPager = (ZViewPager) findViewById(R.id.view_pager);
         tabView = (ZTabView) findViewById(R.id.view_tabview);
+    }
+
+    @Override
+    public boolean isShowToolBar() {
+        return false;
     }
 
     private void initData() {
@@ -84,7 +83,6 @@ public class MainActivity extends BaseNoToolBarActivity {
         tab.setBackgroundColor(getResources().getColor(R.color.blue_mid));
         return tab;
     }
-
 
 
     /*

@@ -11,20 +11,33 @@ import android.os.Bundle;
 
 import com.zcolin.frame.utils.ActivityUtil;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseFullScreenActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zcolin.usedemo.amodule.main.activity.MainActivity;
 
-public class InitActivity extends BaseFullScreenActivity {
+public class InitActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_init);
 
         load();
-
         ActivityUtil.startActivity(this, MainActivity.class);
         this.finish();
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_init;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
     }
 
     private void load() {

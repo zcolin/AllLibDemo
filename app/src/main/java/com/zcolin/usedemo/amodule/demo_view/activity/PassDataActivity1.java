@@ -12,22 +12,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.gui.ZEditTextWithClear;
+import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 /**
  * 回传数据的Activity
  */
-public class PassDataActivity1 extends BaseSecondLevelActivity {
+public class PassDataActivity1 extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_passdata);
-
         setToolbarTitle(getClass().getSimpleName());
+    }
 
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_passdata;
+    }
+
+    @Override
+    protected void initView() {
         final ZEditTextWithClear et = getView(R.id.edittext);
         et.setHint("输入需要回传的数据");
 
@@ -41,5 +47,10 @@ public class PassDataActivity1 extends BaseSecondLevelActivity {
                 PassDataActivity1.this.finish();
             }
         });
+    }
+
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
     }
 }

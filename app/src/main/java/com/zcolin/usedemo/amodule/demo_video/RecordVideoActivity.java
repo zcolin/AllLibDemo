@@ -28,13 +28,13 @@ import com.zcolin.frame.utils.ScreenUtil;
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.outlib.views.VideoRecorderView;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 
 /**
  * 视频拍摄页面
  */
-public class RecordVideoActivity extends BaseSecondLevelActivity implements View.OnTouchListener, VideoRecorderView.OnRecordListener {
+public class RecordVideoActivity extends BaseActivity implements View.OnTouchListener, VideoRecorderView.OnRecordListener {
     private VideoRecorderView videoRecorderView;
     private Button            buttonShoot;
     private RelativeLayout    rlBottomRoot;
@@ -48,8 +48,6 @@ public class RecordVideoActivity extends BaseSecondLevelActivity implements View
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recordvideo);
-        initView();
     }
 
     @Override
@@ -64,6 +62,17 @@ public class RecordVideoActivity extends BaseSecondLevelActivity implements View
         recordStop();
     }
 
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_recordvideo;
+    }
+
+    @Override
     public void initView() {
         videoRecorderView = getView(R.id.movieRecorderView);
         buttonShoot = getView(R.id.button_shoot);
@@ -163,7 +172,8 @@ public class RecordVideoActivity extends BaseSecondLevelActivity implements View
             //录制结束，在正常位置，录制完成跳转页面
             buttonShoot.setOnTouchListener(null);
             Intent intent = new Intent(this, RecordVideoPreviewActivity.class);
-            intent.putExtra("data", videoRecorderView.getRecordFile().getAbsolutePath());
+            intent.putExtra("data", videoRecorderView.getRecordFile()
+                                                     .getAbsolutePath());
             startActivityWithCallback(intent, new ResultActivityHelper.ResultActivityListener() {
                 @Override
                 public void onResult(int resultCode, Intent data) {

@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.zcolin.frame.app.ResultActivityHelper;
 import com.zcolin.outlib.views.itemarrange.AppsItemEntity;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 import java.util.ArrayList;
 
@@ -29,19 +29,30 @@ import java.util.ArrayList;
 /**
  * MainActivity->应用
  */
-public class ItemActivity extends BaseSecondLevelActivity {
+public class ItemActivity extends BaseActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_itemshow);
-
         setToolbarTitle("应用");
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_itemshow;
+    }
+
+    @Override
+    protected void initView() {
         initZFBItem();
         initDragItem();
     }
 
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
 
     private void initZFBItem() {
         int columnCount = 4;//列数

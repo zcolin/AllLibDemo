@@ -24,33 +24,32 @@ import com.zcolin.gui.ZDialogRadioGroup;
 import com.zcolin.gui.ZDialogWheelDate;
 import com.zcolin.gui.ZDialogWheelTime;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 import java.util.ArrayList;
 
 /**
  * 带JsBridge的webview的Demo
  */
-public class DialogActivity extends BaseSecondLevelActivity implements OnClickListener {
+public class DialogActivity extends BaseActivity implements OnClickListener {
     private LinearLayout llContent;
     private ArrayList<Button> listButton = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_common);
 
         setToolbarTitle("Dialog Demo");
         setToolbarRightBtnText("保存");
-        init();
     }
 
     @Override
-    protected void onToolBarRightBtnClick() {
-        ToastUtil.toastShort("保存");
+    protected int getRootViewLayId() {
+        return R.layout.activity_common;
     }
 
-    private void init() {
+    @Override
+    protected void initView() {
         llContent = getView(R.id.ll_content);
         listButton.add(addButton("ZAlert"));
         listButton.add(addButton("ZConfirm"));
@@ -64,6 +63,17 @@ public class DialogActivity extends BaseSecondLevelActivity implements OnClickLi
             btn.setOnClickListener(this);
         }
     }
+
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected void onToolBarRightBtnClick() {
+        ToastUtil.toastShort("保存");
+    }
+
 
     private Button addButton(String text) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

@@ -12,33 +12,35 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zplayer.library.ZPlayer;
 
 /**
  * 视频播放页面基类
  */
-public abstract class BaseVideoPlayActivity extends BaseSecondLevelActivity {
+public abstract class BaseVideoPlayActivity extends BaseActivity {
 
     protected ZPlayer player;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setContentView(getContentViewId());
-        
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return 0;
+    }
+
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected void initView() {
         player = initPlayer();
     }
-
-    //已经做了setContentView，如果客户端再次设置，不在操作
-    @Override
-    public void setContentView(int layoutResID) {
-    }
-
-    /**
-     * 实现此函数后子类不要再进行setContentView（）操作
-     */
-    protected abstract int getContentViewId();
 
     /**
      * 初始化Player操作

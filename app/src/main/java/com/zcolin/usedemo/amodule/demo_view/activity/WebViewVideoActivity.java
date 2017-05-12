@@ -9,25 +9,37 @@ package com.zcolin.usedemo.amodule.demo_view.activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
 import com.zcolin.gui.webview.ZWebView;
+import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 /**
  * 带JsBridge的webview的Demo
  */
-public class WebViewVideoActivity extends BaseSecondLevelActivity {
+public class WebViewVideoActivity extends BaseActivity {
     private ZWebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview_video);
-
-        webView = getView(R.id.webView);
-        webView.setSupportVideoFullScreen(this).setSupportProgressBar();
-        
         webView.loadUrl("http://dt.85ido.com:8080/r/cms/qilu/qilu/jty/gbxxpt/video-new.html");
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_webview_video;
+    }
+
+    @Override
+    protected void initView() {
+        webView = getView(R.id.webView);
+        webView.setSupportVideoFullScreen(this)
+               .setSupportProgressBar();
+    }
+
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
     }
 
     @Override

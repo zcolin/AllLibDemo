@@ -5,33 +5,20 @@ import android.view.KeyEvent;
 
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 import cn.hugo.android.scanner.view.BaseQrCodeScannerView;
 
 
-public class QrCodeScanActivity extends BaseSecondLevelActivity {
+public class QrCodeScanActivity extends BaseActivity {
 
     private BaseQrCodeScannerView view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qrcodescan);
-        
         setToolbarTitle("扫码");
         setToolBarRightBtnBackground(R.drawable.scan_flashlight);
-
-        view = (BaseQrCodeScannerView) findViewById(R.id.scan_view);
-        view.onCreate();
-        view.setOnScanResultListener(new BaseQrCodeScannerView.OnScanResultListener() {
-            @Override
-            public boolean scanResult(String result) {
-                ToastUtil.toastShort(result);
-                QrCodeScanActivity.this.finish();
-                return true;//false会提示扫描错误，并重新开始扫描
-            }
-        });
     }
 
     @Override
@@ -50,6 +37,30 @@ public class QrCodeScanActivity extends BaseSecondLevelActivity {
     protected void onDestroy() {
         super.onDestroy();
         view.onDestroy();
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_qrcodescan;
+    }
+
+    @Override
+    protected void initView() {
+        view = (BaseQrCodeScannerView) findViewById(R.id.scan_view);
+        view.onCreate();
+        view.setOnScanResultListener(new BaseQrCodeScannerView.OnScanResultListener() {
+            @Override
+            public boolean scanResult(String result) {
+                ToastUtil.toastShort(result);
+                QrCodeScanActivity.this.finish();
+                return true;//false会提示扫描错误，并重新开始扫描
+            }
+        });
+    }
+
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
     }
 
     @Override

@@ -14,7 +14,7 @@ import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ import me.nereo.multi_image_selector.MultiImageSelector;
 /**
  * 图片选择示例
  */
-public class ImageSelectorActivity extends BaseSecondLevelActivity {
+public class ImageSelectorActivity extends BaseActivity {
 
     private TextView   mResultText;
     private RadioGroup mChoiceMode, mShowCamera;
@@ -35,8 +35,20 @@ public class ImageSelectorActivity extends BaseSecondLevelActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_imageselector);
+    }
 
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
+    }
+
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_imageselector;
+    }
+
+    @Override
+    protected void initView() {
         mResultText = (TextView) findViewById(R.id.result);
         mChoiceMode = (RadioGroup) findViewById(R.id.choice_mode);
         mShowCamera = (RadioGroup) findViewById(R.id.show_camera);
@@ -73,8 +85,8 @@ public class ImageSelectorActivity extends BaseSecondLevelActivity {
                 }
             });
         }
-
     }
+
 
     private void pickImage() {
         boolean showCamera = mShowCamera.getCheckedRadioButtonId() == R.id.show;

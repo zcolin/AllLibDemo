@@ -13,13 +13,13 @@ import android.widget.ImageView;
 
 import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.BaseSecondLevelActivity;
+import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 
 /**
  * 图片加载Demo
  */
-public class ImageUtilActivity extends BaseSecondLevelActivity {
+public class ImageUtilActivity extends BaseActivity {
     private ImageView iv1;
     private ImageView iv2;
     private ImageView iv3;
@@ -27,13 +27,24 @@ public class ImageUtilActivity extends BaseSecondLevelActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_imageutil);
+        displayImage();
+    }
 
+    @Override
+    protected int getRootViewLayId() {
+        return R.layout.activity_imageutil;
+    }
+
+    @Override
+    protected void initView() {
         iv1 = getView(R.id.iv_1);
         iv2 = getView(R.id.iv_2);
         iv3 = getView(R.id.iv_3);
+    }
 
-        displayImage();
+    @Override
+    protected boolean isSecondLevelAcitivty() {
+        return true;
     }
 
     public void displayImage() {
