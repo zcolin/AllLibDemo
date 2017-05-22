@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.mvp.BaseMVPActivity;
+import com.zcolin.usedemo.amodule.base.mvp.Presenter;
 import com.zcolin.usedemo.amodule.demo_db.presenter.DbDemoPresenter;
 import com.zcolin.usedemo.amodule.demo_db.view.IDBDemoView;
 import com.zcolin.usedemo.db.entity.Employee;
@@ -31,6 +32,7 @@ import java.util.List;
 /**
  * DBDemo
  */
+@Presenter(DbDemoPresenter.class)
 public class DbDemoActivity extends BaseMVPActivity<DbDemoPresenter> implements View.OnClickListener, IDBDemoView {
     private LinearLayout llContent;
     private TextView     textView;
@@ -39,25 +41,12 @@ public class DbDemoActivity extends BaseMVPActivity<DbDemoPresenter> implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_http_db);
         setToolbarTitle("DBDemo");
+
+        initView();
     }
 
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
-
-    @Override
-    protected Class<DbDemoPresenter> getPresenterClass() {
-        return DbDemoPresenter.class;
-    }
-
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_http_db;
-    }
-
-    @Override
     protected void initView() {
         llContent = getView(R.id.ll_content);
         textView = getView(R.id.textview);

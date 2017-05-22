@@ -57,8 +57,10 @@ public class ApiFragment extends BaseFragment implements View.OnClickListener {
         return R.layout.activity_common;
     }
 
+
     @Override
-    protected void initView() {
+    protected void createView(@Nullable Bundle savedInstanceState) {
+        super.createView(savedInstanceState);
         tvMessage = getView(R.id.tvMessage);
         llContent = getView(R.id.ll_content);
         listButton.add(addButton("定位"));

@@ -48,6 +48,9 @@ public class RecordVideoActivity extends BaseActivity implements View.OnTouchLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recordvideo);
+
+        initView();
     }
 
     @Override
@@ -62,17 +65,7 @@ public class RecordVideoActivity extends BaseActivity implements View.OnTouchLis
         recordStop();
     }
 
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_recordvideo;
-    }
-
-    @Override
     public void initView() {
         videoRecorderView = getView(R.id.movieRecorderView);
         buttonShoot = getView(R.id.button_shoot);

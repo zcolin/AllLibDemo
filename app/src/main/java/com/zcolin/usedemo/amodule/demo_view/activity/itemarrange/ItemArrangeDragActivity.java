@@ -36,23 +36,14 @@ public class ItemArrangeDragActivity extends BaseActivity implements AppsAdapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_itemarrange);
 
         setToolbarTitle("应用");
         setToolbarRightBtnText("编辑");
+        initView();
         initData();
     }
 
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
-
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_itemarrange;
-    }
-
-    @Override
     protected void initView() {
         recyclerviewApp = getView(R.id.recyclerview_app);
     }

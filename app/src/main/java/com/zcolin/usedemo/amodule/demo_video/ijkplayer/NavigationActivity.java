@@ -24,20 +24,11 @@ public class NavigationActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ijk_navigation);
         setToolbarTitle("视频播放导航");
+        initView();
     }
 
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
-
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_ijk_navigation;
-    }
-
-    @Override
     protected void initView() {
         findViewById(R.id.tv_live_play).setOnClickListener(this);//直播
         findViewById(R.id.tv_demand_activity_play).setOnClickListener(this);//Activity点播

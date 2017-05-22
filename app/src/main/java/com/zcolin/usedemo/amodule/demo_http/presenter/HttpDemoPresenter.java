@@ -18,7 +18,8 @@ import com.zcolin.frame.http.response.ZStringResponse;
 import com.zcolin.frame.utils.LogUtil;
 import com.zcolin.usedemo.amodule.base.mvp.BaseMVPPresenter;
 import com.zcolin.usedemo.amodule.demo_http.view.IHttpDemoView;
-import com.zcolin.usedemo.amodule.main.entity.BaiduWeather;
+import com.zcolin.usedemo.biz.ApiMgr;
+import com.zcolin.usedemo.entity.BaiduWeather;
 import com.zcolin.usedemo.http.entity.HttpCommonReply;
 
 import okhttp3.Call;
@@ -40,7 +41,7 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
      * 此处为Demo，实际使用一般使用{@link #getObject(Activity)}
      */
     public void getBaiduStringData(Activity activity) {
-        apiMgr.getBaiduStringData(new ZStringResponse(activity, "正在获取数据") {
+        ApiMgr.getBaiduStringData(new ZStringResponse(activity, "正在获取数据") {
             @Override
             public void onSuccess(Response response, String resObj) {
                 mView.showResult(resObj);
@@ -61,7 +62,7 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
      * ZResponse的参数，第二个参数是显示旋转进度条则传入，第三个参数是进度条文字，如果不需要进度条则只需要传入第一个参数
      */
     public void getObject(Activity activity) {
-        apiMgr.getObject(new ZResponse<BaiduWeather>(BaiduWeather.class, activity, "正在获取数据……") {
+        ApiMgr.getObject(new ZResponse<BaiduWeather>(BaiduWeather.class, activity, "正在获取数据……") {
             @Override
             public void onSuccess(Response response, BaiduWeather resObj) {
                 if (resObj.results.size() > 0) {
@@ -78,7 +79,7 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
      * 带有progressBar
      */
     public void postResponse(Activity activity) {
-        apiMgr.postResponse(new ZResponse<HttpCommonReply>(HttpCommonReply.class, activity, "正在加载……") {
+        ApiMgr.postResponse(new ZResponse<HttpCommonReply>(HttpCommonReply.class, activity, "正在加载……") {
             @Override
             public void onSuccess(Response response, HttpCommonReply httpBaseBean) {
                 mView.showResult(String.valueOf(httpBaseBean));
@@ -95,7 +96,7 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
      * 上传文件，可以和其他参数一起上传，也可以单独上传
      */
     public void uploadFile(Activity activity) {
-        apiMgr.uploadFile(new ZResponse<HttpCommonReply>(HttpCommonReply.class, activity, "正在加载……") {
+        ApiMgr.uploadFile(new ZResponse<HttpCommonReply>(HttpCommonReply.class, activity, "正在加载……") {
             @Override
             public void onSuccess(Response response, HttpCommonReply httpBaseBean) {
                 mView.showResult("上传成功");

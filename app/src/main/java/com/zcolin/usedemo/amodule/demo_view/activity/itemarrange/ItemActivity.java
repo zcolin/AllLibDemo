@@ -35,24 +35,17 @@ public class ItemActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_itemshow);
         setToolbarTitle("应用");
+        initView();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_itemshow;
-    }
 
-    @Override
     protected void initView() {
         initZFBItem();
         initDragItem();
     }
 
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
 
     private void initZFBItem() {
         int columnCount = 4;//列数

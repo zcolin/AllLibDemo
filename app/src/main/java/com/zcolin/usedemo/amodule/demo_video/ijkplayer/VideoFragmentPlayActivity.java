@@ -30,6 +30,7 @@ public class VideoFragmentPlayActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ijk_fragmentplay);
 
         String strData = getIntent().getStringExtra("data");
         if ("single".equals(strData)) {
@@ -46,22 +47,6 @@ public class VideoFragmentPlayActivity extends BaseActivity {
                                        .commitAllowingStateLoss();
         }
     }
-
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
-
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_ijk_fragmentplay;
-    }
-
-    @Override
-    protected void initView() {
-
-    }
-
 
     @Override
     public void onBackPressed() {

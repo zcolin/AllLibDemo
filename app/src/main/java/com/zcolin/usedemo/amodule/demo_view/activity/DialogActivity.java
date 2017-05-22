@@ -38,17 +38,14 @@ public class DialogActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_common);
 
         setToolbarTitle("Dialog Demo");
         setToolbarRightBtnText("保存");
+
+        initView();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_common;
-    }
-
-    @Override
     protected void initView() {
         llContent = getView(R.id.ll_content);
         listButton.add(addButton("ZAlert"));
@@ -62,11 +59,6 @@ public class DialogActivity extends BaseActivity implements OnClickListener {
         for (Button btn : listButton) {
             btn.setOnClickListener(this);
         }
-    }
-
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
     }
 
     @Override

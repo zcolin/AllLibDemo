@@ -34,20 +34,12 @@ public class VideoRecyclerViewActivity extends BaseVideoRecycleViewActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ijk_videorecycler);
         setToolbarTitle("视频播放列表");
 
         zRecyclerView.refreshWithPull();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-         return R.layout.activity_ijk_videorecycler;
-    }
-
-    @Override
-    protected void initView() {
-
-    }
 
     @Override
     protected ZListPlayer initPlayer() {

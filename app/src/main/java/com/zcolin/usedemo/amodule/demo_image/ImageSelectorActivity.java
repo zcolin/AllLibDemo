@@ -35,19 +35,12 @@ public class ImageSelectorActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_imageselector);
+
+        initView();
     }
 
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_imageselector;
-    }
-
-    @Override
     protected void initView() {
         mResultText = (TextView) findViewById(R.id.result);
         mChoiceMode = (RadioGroup) findViewById(R.id.choice_mode);

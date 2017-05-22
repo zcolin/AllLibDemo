@@ -22,24 +22,17 @@ public class WebViewVideoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_webview_video);
+        
+        initView();
         webView.loadUrl("http://dt.85ido.com:8080/r/cms/qilu/qilu/jty/gbxxpt/video-new.html");
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_webview_video;
-    }
 
-    @Override
     protected void initView() {
         webView = getView(R.id.webView);
         webView.setSupportVideoFullScreen(this)
                .setSupportProgressBar();
-    }
-
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
     }
 
     @Override

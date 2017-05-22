@@ -24,15 +24,11 @@ public class PassDataActivity1 extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_passdata);
         setToolbarTitle(getClass().getSimpleName());
+        initView();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_passdata;
-    }
-
-    @Override
     protected void initView() {
         final ZEditTextWithClear et = getView(R.id.edittext);
         et.setHint("输入需要回传的数据");
@@ -49,8 +45,4 @@ public class PassDataActivity1 extends BaseActivity {
         });
     }
 
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
 }

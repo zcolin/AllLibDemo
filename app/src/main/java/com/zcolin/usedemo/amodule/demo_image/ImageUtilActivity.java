@@ -27,24 +27,16 @@ public class ImageUtilActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_imageutil);
+
+        initView();
         displayImage();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_imageutil;
-    }
-
-    @Override
     protected void initView() {
         iv1 = getView(R.id.iv_1);
         iv2 = getView(R.id.iv_2);
         iv3 = getView(R.id.iv_3);
-    }
-
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
     }
 
     public void displayImage() {

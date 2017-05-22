@@ -128,7 +128,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.github.zcolin:ZIjkPlayer:1.1.9'//视频播放
     compile 'com.github.zcolin:ZEasyPR:1.1.2'//车牌识别
-    compile 'com.github.zcolin:ZFrame:1.3.1'//程序框架 
+    compile 'com.github.zcolin:ZFrame:1.3.3' 
     compile 'com.github.zcolin:ZBarCodeScanner:latest.release'//二维码扫描
     compile 'com.github.zcolin:ZMultiImageSelector:latest.release'//多图选择    
     compile 'com.github.zcolin:PullRecyclerView:latest.release'//下拉刷新
@@ -146,9 +146,13 @@ dependencies {
     compile project(':outlib')
 
     // Dependencies for local unit tests
-    testCompile "junit:junit:4.12"
-    testCompile "org.mockito:mockito-all:1.10.19"
-    testCompile "org.hamcrest:hamcrest-all:1.3"
+    testCompile 'junit:junit:4.11'
+    // required if you want to use Mockito for unit tests
+    testCompile 'org.mockito:mockito-core:1.9.5'
+    // required if you want to use Powermock for unit tests
+    testCompile 'org.powermock:powermock-module-junit4:1.5.6'
+    testCompile 'org.powermock:powermock-module-junit4-rule:1.5.6'
+    testCompile 'org.powermock:powermock-api-mockito:1.5.6'
 }
 
 

@@ -21,16 +21,12 @@ public class PassDataActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_passdata);
 
         setToolbarTitle(getClass().getSimpleName());
+        initView();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_passdata;
-    }
-
-    @Override
     protected void initView() {
         findViewById(R.id.edittext).setVisibility(View.GONE);
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {

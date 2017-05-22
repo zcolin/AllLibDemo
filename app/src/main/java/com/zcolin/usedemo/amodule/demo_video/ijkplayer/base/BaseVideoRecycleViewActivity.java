@@ -10,6 +10,7 @@ package com.zcolin.usedemo.amodule.demo_video.ijkplayer.base;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.zcolin.usedemo.amodule.base.BaseActivity;
@@ -29,12 +30,14 @@ public abstract class BaseVideoRecycleViewActivity extends BaseActivity {
     }
 
     @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        player = initPlayer();
     }
 
     @Override
-    protected void initView() {
+    public void setContentView(View layout) {
+        super.setContentView(layout);
         player = initPlayer();
     }
 

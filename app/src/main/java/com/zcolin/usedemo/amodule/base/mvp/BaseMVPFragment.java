@@ -3,25 +3,23 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-5-4 上午10:48
+ *   date     17-5-17 上午10:00
  * ********************************************************
  */
 
 package com.zcolin.usedemo.amodule.base.mvp;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.zcolin.usedemo.amodule.base.BaseFragment;
+
 
 /**
  * MVP模式
  */
 public abstract class BaseMVPFragment<T extends BaseMVPPresenter> extends BaseFragment {
     protected T mPresenter;
-
-    protected abstract Class<T> getPresenterClass();
 
     protected abstract boolean isLazyLoad();
     
@@ -51,12 +49,6 @@ public abstract class BaseMVPFragment<T extends BaseMVPPresenter> extends BaseFr
             //如果是数据恢复的，则传入数据回复的数据，否则传入其他页面传递过来的数据
             mPresenter.onLoad(savedInstanceState != null ? savedInstanceState : getArguments());
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mPresenter.onSave(outState);
     }
 
     @Override
@@ -97,12 +89,23 @@ public abstract class BaseMVPFragment<T extends BaseMVPPresenter> extends BaseFr
     private void createPresenter() {
         if (mPresenter == null) {
             try {
-                mPresenter = getPresenterClass().newInstance();
+                mPresenter = (T) getPresenterClass().newInstance();
             } catch (IllegalAccessException e) {
                 throw new RuntimeException("create IDelegate error");
             } catch (java.lang.InstantiationException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private Class getPresenterClass() {
+        Presenter requestParamsUrl = getClass().getAnnotation(Presenter.class);
+        Class aClass = null;
+        if (requestParamsUrl != null) {
+            aClass = requestParamsUrl.value();
+        } else{
+            throw new RuntimeException("can't find @Presenter");
+        }
+        return aClass;
     }
 }

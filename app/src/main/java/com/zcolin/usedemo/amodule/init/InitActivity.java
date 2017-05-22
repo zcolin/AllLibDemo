@@ -19,26 +19,13 @@ public class InitActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_init);
 
         load();
         ActivityUtil.startActivity(this, MainActivity.class);
         this.finish();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_init;
-    }
-
-    @Override
-    protected void initView() {
-
-    }
-
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
 
     private void load() {
         //TODO 加载数据

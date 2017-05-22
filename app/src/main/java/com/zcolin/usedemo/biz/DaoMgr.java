@@ -23,30 +23,24 @@ import static com.zcolin.usedemo.db.DaoManager.getDaoHelper;
  * 数据库操作管理
  */
 public class DaoMgr {
-    private static DaoMgr daoMgr = new DaoMgr();
-
-    public static DaoMgr getInstance() {
-        return daoMgr;
-    }
-
     /**
      * 插入对象
      */
-    public boolean insertObject(Employee employee) {
+    public static boolean insertObject(Employee employee) {
         return getDaoHelper().insertObject(employee);
     }
 
     /**
      * 有则替换，无则插入
      */
-    public boolean insertOrReplaceObject(Employee employee) {
+    public static boolean insertOrReplaceObject(Employee employee) {
         return getDaoHelper().insertOrReplaceObject(employee);
     }
 
     /**
      * 查询所有数据的数据列表
      */
-    public List<Employee> queryAllObject() {
+    public static List<Employee> queryAllObject() {
         return getDaoHelper().queryAll(Employee.class);
     }
 
@@ -54,7 +48,7 @@ public class DaoMgr {
      * 查询group为“部门一”的人员,从第二条开始限制为3个,按照日期降序
      * <p>
      */
-    public List<Employee> queryObjectWithCondition(int sortType) {
+    public static List<Employee> queryObjectWithCondition(int sortType) {
         QueryBuilder<Employee> queryBuilder = getDaoHelper().getQueryBuilder(Employee.class);
         queryBuilder.where(EmployeeDao.Properties.Group.eq("部门二"));
         queryBuilder.offset(1);
@@ -71,7 +65,7 @@ public class DaoMgr {
     /**
      * 删除所有数据
      */
-    public boolean deleteAllObject() {
+    public static boolean deleteAllObject() {
         return getDaoHelper().deleteAll(Employee.class);
     }
 }

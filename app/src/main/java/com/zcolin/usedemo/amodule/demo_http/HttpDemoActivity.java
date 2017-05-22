@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.mvp.BaseMVPActivity;
+import com.zcolin.usedemo.amodule.base.mvp.Presenter;
 import com.zcolin.usedemo.amodule.demo_http.presenter.HttpDemoPresenter;
 import com.zcolin.usedemo.amodule.demo_http.view.IHttpDemoView;
 
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 /**
  * HttpDemo
  */
+@Presenter(HttpDemoPresenter.class)
 public class HttpDemoActivity extends BaseMVPActivity<HttpDemoPresenter> implements View.OnClickListener, IHttpDemoView {
     private LinearLayout llContent;
     private TextView     textView;
@@ -28,25 +30,12 @@ public class HttpDemoActivity extends BaseMVPActivity<HttpDemoPresenter> impleme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_http_db);
         setToolbarTitle("HttpDemo");
+
+        initView();
     }
 
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
-
-    @Override
-    protected Class<HttpDemoPresenter> getPresenterClass() {
-        return HttpDemoPresenter.class;
-    }
-
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_http_db;
-    }
-
-    @Override
     protected void initView() {
         llContent = getView(R.id.ll_content);
         textView = getView(R.id.textview);

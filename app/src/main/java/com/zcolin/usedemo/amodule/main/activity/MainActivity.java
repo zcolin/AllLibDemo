@@ -15,12 +15,14 @@ import com.zcolin.frame.utils.DisplayUtil;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;
 import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.amodule.base.ActivityParam;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zcolin.usedemo.amodule.main.adapter.MainPagerAdapter;
 
 /**
  * 程序主页面
  */
+@ActivityParam(isSecondLevelActivity = false)
 public class MainActivity extends BaseActivity {
 
     private ZViewPager mViewPager;
@@ -29,7 +31,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setToolbarTitle(getString(R.string.app_name));
 
+        initView();
         initData();
     }
 
@@ -38,20 +43,10 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_main;
-    }
 
-    @Override
     protected void initView() {
         mViewPager = (ZViewPager) findViewById(R.id.view_pager);
         tabView = (ZTabView) findViewById(R.id.view_tabview);
-    }
-
-    @Override
-    public boolean isShowToolBar() {
-        return false;
     }
 
     private void initData() {

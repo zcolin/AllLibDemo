@@ -37,7 +37,9 @@ public class OtherViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_otherview);
 
+        initView();
         startBanner();
         startTextSwitcher();
     }
@@ -62,12 +64,7 @@ public class OtherViewActivity extends BaseActivity {
         banner.stopAutoPlay();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_otherview;
-    }
 
-    @Override
     protected void initView() {
         textSwitcher = getView(R.id.view_textswitcher);
         banner = getView(R.id.view_banner);
@@ -85,11 +82,6 @@ public class OtherViewActivity extends BaseActivity {
                 showDlgProgress();
             }
         });
-    }
-
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
     }
 
     public void startTextSwitcher() {

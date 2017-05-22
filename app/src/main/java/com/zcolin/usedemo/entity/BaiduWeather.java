@@ -4,7 +4,7 @@
  * email    wanglin2046@126.com
  * date     16-7-18 下午1:51
  **********************************************************/
-package com.zcolin.usedemo.amodule.main.entity;
+package com.zcolin.usedemo.entity;
 
 
 import com.zcolin.usedemo.http.entity.HttpBaseReplyBean;

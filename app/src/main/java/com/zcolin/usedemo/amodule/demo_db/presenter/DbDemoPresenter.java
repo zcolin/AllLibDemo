@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 
 import com.zcolin.usedemo.amodule.base.mvp.BaseMVPPresenter;
 import com.zcolin.usedemo.amodule.demo_db.view.IDBDemoView;
+import com.zcolin.usedemo.biz.DaoMgr;
 import com.zcolin.usedemo.db.entity.Employee;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class DbDemoPresenter extends BaseMVPPresenter<IDBDemoView> {
 
     @Override
     public void onLoad(@Nullable Bundle data) {
-        List<Employee> list = daoMgr.queryAllObject();
+        List<Employee> list = DaoMgr.queryAllObject();
         mView.showResult(list);
     }
 
@@ -37,9 +38,9 @@ public class DbDemoPresenter extends BaseMVPPresenter<IDBDemoView> {
      */
     public void insertObject() {
         List<Employee> list = new ArrayList<>();
-        boolean b = daoMgr.insertObject(getEmployee());
+        boolean b = DaoMgr.insertObject(getEmployee());
         if (b) {
-            list = daoMgr.queryAllObject();
+            list = DaoMgr.queryAllObject();
         }
         mView.showResult(list);
         mView.toastShort(b ? "插入成功" : "插入失败-主键重复");
@@ -50,9 +51,9 @@ public class DbDemoPresenter extends BaseMVPPresenter<IDBDemoView> {
      */
     public void insertOrReplaceObject() {
         List<Employee> list = new ArrayList<>();
-        boolean b = daoMgr.insertOrReplaceObject(getEmployee());
+        boolean b = DaoMgr.insertOrReplaceObject(getEmployee());
         if (b) {
-            list = daoMgr.queryAllObject();
+            list = DaoMgr.queryAllObject();
         }
         mView.showResult(list);
         mView.toastShort(b ? "插入成功" : "插入失败-主键重复");
@@ -62,7 +63,7 @@ public class DbDemoPresenter extends BaseMVPPresenter<IDBDemoView> {
      * 查询所有数据的数据列表
      */
     public void queryAllObject() {
-        List<Employee> list = daoMgr.queryAllObject();
+        List<Employee> list = DaoMgr.queryAllObject();
         mView.showResult(list);
     }
 
@@ -72,7 +73,7 @@ public class DbDemoPresenter extends BaseMVPPresenter<IDBDemoView> {
      */
     public void queryObjectWithCondition() {
         currentSortType = currentSortType == 0 ? 1 : 0;
-        List<Employee> list = daoMgr.queryObjectWithCondition(currentSortType);
+        List<Employee> list = DaoMgr.queryObjectWithCondition(currentSortType);
         mView.showResult(list);
     }
 
@@ -81,9 +82,9 @@ public class DbDemoPresenter extends BaseMVPPresenter<IDBDemoView> {
      */
     public void deleteAllObject() {
         List<Employee> list = new ArrayList<>();
-        boolean b = daoMgr.deleteAllObject();
+        boolean b = DaoMgr.deleteAllObject();
         if (b) {
-            list = daoMgr.queryAllObject();
+            list = DaoMgr.queryAllObject();
         }
         mView.showResult(list);
     }

@@ -11,6 +11,7 @@ package com.zcolin.usedemo.amodule.demo_video.ijkplayer.base;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zplayer.library.ZPlayer;
@@ -28,17 +29,14 @@ public abstract class BaseVideoPlayActivity extends BaseActivity {
     }
 
     @Override
-    protected int getRootViewLayId() {
-        return 0;
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        player = initPlayer();
     }
 
     @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
-    }
-
-    @Override
-    protected void initView() {
+    public void setContentView(View layout) {
+        super.setContentView(layout);
         player = initPlayer();
     }
 

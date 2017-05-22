@@ -16,13 +16,14 @@ import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.app.ResultActivityHelper;
 import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
+import com.zcolin.frame.utils.SystemIntentUtil;
 import com.zcolin.frame.utils.ToastUtil;
 
 import me.nereo.multi_image_selector.MultiImageSelector;
 
 /**
  * 选取图片的工具类，因为此类使用了MutilImageSelector，所以在客户端实现
- * {@link com.fosung.frame.utils.SystemIntentUtil#selectPhoto(Object, ResultActivityHelper.ResultActivityListener)} }是使用的系统选择
+ * {@link com.zcolin.frame.utils.SystemIntentUtil#selectPhoto(Object, SystemIntentUtil.OnCompleteLisenter)} 是使用的系统选择
  */
 public class PhotoSelectedUtil {
 

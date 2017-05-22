@@ -17,8 +17,10 @@ public class QrCodeScanActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_qrcodescan);
         setToolbarTitle("扫码");
         setToolBarRightBtnBackground(R.drawable.scan_flashlight);
+        initView();
     }
 
     @Override
@@ -39,12 +41,6 @@ public class QrCodeScanActivity extends BaseActivity {
         view.onDestroy();
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_qrcodescan;
-    }
-
-    @Override
     protected void initView() {
         view = (BaseQrCodeScannerView) findViewById(R.id.scan_view);
         view.onCreate();
@@ -56,11 +52,6 @@ public class QrCodeScanActivity extends BaseActivity {
                 return true;//false会提示扫描错误，并重新开始扫描
             }
         });
-    }
-
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
     }
 
     @Override

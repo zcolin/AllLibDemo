@@ -32,6 +32,7 @@ public class VideoPlayActivity extends BaseVideoPlayActivity implements View.OnC
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ijk_videoplay);
         setToolbarTitle("单视频播放");
 
         isLive = getIntent().getBooleanExtra("isLive", false);
@@ -43,11 +44,6 @@ public class VideoPlayActivity extends BaseVideoPlayActivity implements View.OnC
         findViewById(R.id.tv_replay).setOnClickListener(this);
         findViewById(R.id.tv_play_location).setOnClickListener(this);
         findViewById(R.id.tv_play_switch).setOnClickListener(this);
-    }
-
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_ijk_videoplay;
     }
 
     @Override

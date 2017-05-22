@@ -40,11 +40,6 @@ public class DesignSupportActivity2 extends BaseFrameActivity {
         init();
     }
 
-    @Override
-    protected boolean isImmerse() {
-        return false;
-    }
-
     private void init() {
         toolbar = getView(R.id.toolbar);
         tabLayout = getView(R.id.tabs);

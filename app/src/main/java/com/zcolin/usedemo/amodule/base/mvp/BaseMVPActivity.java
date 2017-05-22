@@ -3,16 +3,16 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-5-4 上午10:18
+ *   date     17-5-17 上午10:00
  * ********************************************************
  */
 
 package com.zcolin.usedemo.amodule.base.mvp;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.zcolin.usedemo.amodule.base.BaseActivity;
+
 
 /**
  * MVP模式Activity基类
@@ -20,26 +20,23 @@ import com.zcolin.usedemo.amodule.base.BaseActivity;
 public abstract class BaseMVPActivity<T extends BaseMVPPresenter> extends BaseActivity {
     protected T mPresenter;
 
-    protected abstract Class<T> getPresenterClass();
-
+    private boolean isCreate;//标记是否为create进入start，而不是从restart进入start
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isCreate = true;
         createPresenter();
         mPresenter.onAttach(this);
-        mPresenter.onLoad(savedInstanceState);
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mPresenter.onSave(outState);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        if (isCreate) {
+            isCreate = false;
+            mPresenter.onLoad(mBundle);
+        }
         mPresenter.onStart();
     }
 
@@ -75,12 +72,23 @@ public abstract class BaseMVPActivity<T extends BaseMVPPresenter> extends BaseAc
     private void createPresenter() {
         if (mPresenter == null) {
             try {
-                mPresenter = getPresenterClass().newInstance();
+                mPresenter = (T) getPresenterClass().newInstance();
             } catch (InstantiationException e) {
-                throw new RuntimeException("create IDelegate error");
+                throw new RuntimeException("create Presenter error");
             } catch (IllegalAccessException e) {
-                throw new RuntimeException("create IDelegate error");
+                throw new RuntimeException("create Presenter error");
             }
         }
+    }
+
+    private Class getPresenterClass() {
+        Presenter requestParamsUrl = getClass().getAnnotation(Presenter.class);
+        Class aClass = null;
+        if (requestParamsUrl != null) {
+            aClass = requestParamsUrl.value();
+        } else{
+            throw new RuntimeException("can't find @Presenter");
+        }
+        return aClass;
     }
 }

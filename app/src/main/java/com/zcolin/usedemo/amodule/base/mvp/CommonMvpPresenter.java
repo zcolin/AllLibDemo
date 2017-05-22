@@ -3,15 +3,15 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-5-17 上午9:58
+ *   date     17-5-17 上午10:00
  * ********************************************************
  */
 
-package com.zcolin.usedemo.amodule.base;
+package com.zcolin.usedemo.amodule.base.mvp;
 
-import com.zcolin.frame.app.BaseFrameFrag;
-
-
-public abstract class BaseFragment extends BaseFrameFrag {
-
+/**
+ *
+ */
+public class CommonMvpPresenter<V> extends BaseMVPPresenter<V> {
+    
 }

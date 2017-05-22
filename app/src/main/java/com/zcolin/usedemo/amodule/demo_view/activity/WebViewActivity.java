@@ -32,28 +32,21 @@ public class WebViewActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_webview);
 
 
+        initView();
         loadUrl();
         getUserDataFrom_xx();
+
     }
 
-    @Override
-    protected int getRootViewLayId() {
-        return R.layout.activity_webview;
-    }
 
-    @Override
     protected void initView() {
         webView = getView(R.id.webView);
         button = getView(R.id.button);
         button.setOnClickListener(this);
         initWebView();
-    }
-
-    @Override
-    protected boolean isSecondLevelAcitivty() {
-        return true;
     }
 
     public void initWebView() {
