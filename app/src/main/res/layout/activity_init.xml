@@ -17,6 +17,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.zcolin.usedemo.amodule.init.InitActivity">
+    tools:context=".amodule.mvc.init.InitActivity">
 
 </RelativeLayout>

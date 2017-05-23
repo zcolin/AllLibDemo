@@ -133,7 +133,7 @@ dependencies {
     compile 'com.github.zcolin:ZMultiImageSelector:latest.release'//多图选择    
     compile 'com.github.zcolin:PullRecyclerView:latest.release'//下拉刷新
     compile 'com.github.zcolin:ZRecyclerView:latest.release'//下拉刷新
-    compile 'com.github.zcolin:ZUILib:latest.release'//UI库 
+    compile 'com.github.zcolin:ZUILib:1.2.6'//UI库 
     compile 'com.github.zcolin.TPartyLibs:libShareSdk:1.0.2'
     compile 'com.github.zcolin.TPartyLibs:libAmapLocation:1.0.2'
     //    facebook调试工具 使用chrome查看，可以进行数据库和http报文查看

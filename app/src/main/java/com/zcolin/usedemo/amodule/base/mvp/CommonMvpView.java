@@ -12,5 +12,5 @@ package com.zcolin.usedemo.amodule.base.mvp;
 /**
  *
  */
-public interface CommonMvpView<T> extends BaseMVPView<T> {
+public interface CommonMvpView<T> extends BaseMVPView {
 }

@@ -52,7 +52,7 @@
             android:name="com.zcolin.frame.imageloader.SimpleGlideModule"
             android:value="GlideModule"/>
 
-        <activity android:name="com.zcolin.usedemo.amodule.init.InitActivity">
+        <activity android:name=".amodule.mvc.init.InitActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -60,45 +60,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.zcolin.usedemo.amodule.main.activity.MainActivity"
+            android:name=".amodule.mvc.main.activity.MainActivity"
             android:launchMode="singleTask"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity1"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.DesignSupportActivity2"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_video.RecordVideoActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_video.RecordVideoPreviewActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_video.QrCodeScanActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_image.ImageSelectorActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_image.ImageUtilActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.WebViewActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.itemarrange.ItemActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.itemarrange.ItemArrangeDragActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.itemarrange.ItemArrangeZFBActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.DesignSupportActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.DesignSupportActivity1"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.DesignSupportActivity2"/>
+        <activity android:name=".amodule.mvc.demo_video.RecordVideoActivity"/>
+        <activity android:name=".amodule.mvc.demo_video.RecordVideoPreviewActivity"/>
+        <activity android:name=".amodule.mvc.demo_video.QrCodeScanActivity"/>
+        <activity android:name=".amodule.mvc.demo_image.ImageSelectorActivity"/>
+        <activity android:name=".amodule.mvc.demo_image.ImageUtilActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.WebViewActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.itemarrange.ItemActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.itemarrange.ItemArrangeDragActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.itemarrange.ItemArrangeZFBActivity"/>
         <activity
-            android:name="com.zcolin.usedemo.amodule.demo_view.activity.WebViewVideoActivity"
+            android:name=".amodule.mvc.demo_view.activity.WebViewVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.PassDataActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.PassDataActivity1"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.DialogActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.OtherViewActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_db.DbDemoActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_http.HttpDemoActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_video.EasyPRActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.NavigationActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.PassDataActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.PassDataActivity1"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.DialogActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.OtherViewActivity"/>
+        <activity android:name=".amodule.mvc.demo_db.DbDemoActivity"/>
+        <activity android:name=".amodule.mvc.demo_http.HttpDemoActivity"/>
+        <activity android:name=".amodule.mvc.demo_video.EasyPRActivity"/>
+        <activity android:name=".amodule.mvc.demo_video.ijkplayer.NavigationActivity"/>
         <activity
-            android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.VideoRecyclerViewActivity"
+            android:name=".amodule.mvc.demo_video.ijkplayer.VideoRecyclerViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.VideoPlayActivity"
+            android:name=".amodule.mvc.demo_video.ijkplayer.VideoPlayActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensor"/>
         <activity
-            android:name="com.zcolin.usedemo.amodule.demo_video.ijkplayer.VideoFragmentPlayActivity"
+            android:name=".amodule.mvc.demo_video.ijkplayer.VideoFragmentPlayActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.RichTextViewActivity"/>
-        <activity android:name="com.zcolin.usedemo.amodule.demo_view.activity.RichEditTextViewActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.RichTextViewActivity"/>
+        <activity android:name=".amodule.mvc.demo_view.activity.RichEditTextViewActivity"/>
     </application>
 
 </manifest>

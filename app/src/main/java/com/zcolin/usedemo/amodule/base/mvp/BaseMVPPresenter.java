@@ -30,23 +30,38 @@ public abstract class BaseMVPPresenter<V> {
 
     }
 
+    /**
+     * 对应Activity或Fragment的onStart
+     */
     public void onStart() {
 
     }
 
+    /**
+     * 对应Activity或Fragment的onResume
+     */
     public void onResume() {
     }
 
+    /**
+     * 对应Activity或Fragment的onPause
+     */
     public void onPause() {
     }
 
+    /**
+     * 对应Activity或Fragment的onStop
+     */
     public void onStop() {
     }
 
+    /**
+     * 对应Activity或Fragment的onDestroy
+     */
     public void onDestroy() {
     }
 
+    
     public void onDetach() {
-        this.mView = null;
     }
 }

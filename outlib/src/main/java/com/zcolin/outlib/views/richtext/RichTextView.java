@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.text.Spanned;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -40,12 +41,20 @@ public class RichTextView extends TextView implements Drawable.Callback, View.On
      * @param text 富文本
      */
     public void setRichText(String text) {
-        super.setText(richView.getRichText(text, getContext(), this));
+        super.setText(getRichText(text));
+    }
+
+
+    /**
+     * 获取富文本
+     */
+    public Spanned getRichText(String text) {
+        return richView.getRichText(text, getContext(), this);
     }
 
     @Override
     public void onViewAttachedToWindow(View v) {
-        
+
     }
 
     @Override

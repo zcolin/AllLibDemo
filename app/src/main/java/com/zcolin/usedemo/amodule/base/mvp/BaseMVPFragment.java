@@ -12,6 +12,7 @@ package com.zcolin.usedemo.amodule.base.mvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.amodule.base.BaseFragment;
 
 
@@ -107,5 +108,13 @@ public abstract class BaseMVPFragment<T extends BaseMVPPresenter> extends BaseFr
             throw new RuntimeException("can't find @Presenter");
         }
         return aClass;
+    }
+
+    public void toastShort(String error) {
+        ToastUtil.toastShort(error);
+    }
+
+    public void toastLong(String error) {
+        ToastUtil.toastLong(error);
     }
 }

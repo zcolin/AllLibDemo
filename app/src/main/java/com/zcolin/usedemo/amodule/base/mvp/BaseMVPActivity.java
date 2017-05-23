@@ -11,6 +11,7 @@ package com.zcolin.usedemo.amodule.base.mvp;
 
 import android.os.Bundle;
 
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
 
 
@@ -86,9 +87,17 @@ public abstract class BaseMVPActivity<T extends BaseMVPPresenter> extends BaseAc
         Class aClass = null;
         if (requestParamsUrl != null) {
             aClass = requestParamsUrl.value();
-        } else{
+        } else {
             throw new RuntimeException("can't find @Presenter");
         }
         return aClass;
+    }
+
+    public void toastShort(String error) {
+        ToastUtil.toastShort(error);
+    }
+
+    public void toastLong(String error) {
+        ToastUtil.toastLong(error);
     }
 }
