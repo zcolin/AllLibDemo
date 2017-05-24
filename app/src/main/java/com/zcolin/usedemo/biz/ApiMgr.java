@@ -27,37 +27,45 @@ public class ApiMgr {
     /**
      * 获取为经解析的字符串
      */
-    public static void getBaiduStringData(ZStringResponse response) {
-        ZHttp.get(HttpUrl.URL_BAIDU_TEST, response);
+    public static String getBaiduStringData(ZStringResponse response) {
+        return ZHttp.get(HttpUrl.URL_BAIDU_TEST, response);
     }
-
 
     /**
      * 获取对象
-     * 实际使用时一般使用此方法，而不是直接解析字符窜
+     * 实际使用时一般使用此方法，而不是直接解析字符串
      */
-    public static void getObject(ZResponse<BaiduWeather> response) {
-        ZHttp.get(HttpUrl.URL_BAIDU_TEST, response);
+    public static String getObject(ZResponse<BaiduWeather> response) {
+        return ZHttp.get(HttpUrl.URL_BAIDU_TEST, response);
     }
 
     /**
      * POST请求， 返回Gson序列化的对象
      * <p>
      */
-    public static void postResponse(ZResponse<HttpCommonReply> response) {
+    public static String postResponse(ZResponse<HttpCommonReply> response) {
         HashMap<String, String> params = new HashMap<>();
         params.put("param1", "sss");
-        ZHttp.post(HttpUrl.URL_BAIDU_TEST, params, response);
+        return ZHttp.post(HttpUrl.URL_BAIDU_TEST, params, response);
     }
 
     /**
      * 上传文件，可以和其他参数一起上传，也可以单独上传
      */
-    public static void uploadFile(ZResponse<HttpCommonReply> response) {
+    public static String uploadFile(ZResponse<HttpCommonReply> response) {
         HashMap<String, String> params = new HashMap<>();
         params.put("param1", "sss");
         HashMap<String, File> fileParams = new HashMap<>();
         fileParams.put("key", new File(""));
-        ZHttp.uploadFile(HttpUrl.URL_BAIDU_TEST, params, fileParams, response);
+        return ZHttp.uploadFile(HttpUrl.URL_BAIDU_TEST, params, fileParams, response);
+    }
+
+
+    public static void cancelRequest(String... tag) {
+        if (tag != null && tag.length > 0) {
+            for (String s : tag) {
+                ZHttp.cancelRequest(s);
+            }
+        }
     }
 }
