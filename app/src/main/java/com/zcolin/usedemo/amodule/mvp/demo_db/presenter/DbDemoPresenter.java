@@ -12,7 +12,7 @@ package com.zcolin.usedemo.amodule.mvp.demo_db.presenter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zcolin.usedemo.amodule.base.mvp.BaseMVPPresenter;
+import com.zcolin.usedemo.amodule.mvp.base.BaseMVPPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_db.view.IDBDemoView;
 import com.zcolin.usedemo.biz.DaoMgr;
 import com.zcolin.usedemo.biz.TestDataMgr;

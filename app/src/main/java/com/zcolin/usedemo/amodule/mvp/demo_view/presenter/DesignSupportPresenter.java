@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
-import com.zcolin.usedemo.amodule.base.mvp.BaseMVPPresenter;
+import com.zcolin.usedemo.amodule.mvp.base.BaseMVPPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.view.DesignSupportView;
 import com.zcolin.usedemo.biz.TestDataMgr;
 

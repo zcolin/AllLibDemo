@@ -7,11 +7,10 @@
  * ********************************************************
  */
 
-package com.zcolin.usedemo.amodule.base.mvp;
+package com.zcolin.usedemo.amodule.mvp.base;
 
 /**
  *
  */
-public class CommonMvpPresenter<V> extends BaseMVPPresenter<V> {
-    
+public interface CommonMvpView extends BaseMVPView {
 }

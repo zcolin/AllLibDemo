@@ -7,7 +7,7 @@
  * ********************************************************
  */
 
-package com.zcolin.usedemo.amodule.base.mvp;
+package com.zcolin.usedemo.amodule.mvp.base;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

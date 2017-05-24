@@ -16,7 +16,7 @@ import android.support.annotation.Nullable;
 import com.zcolin.frame.http.response.ZResponse;
 import com.zcolin.frame.http.response.ZStringResponse;
 import com.zcolin.frame.utils.LogUtil;
-import com.zcolin.usedemo.amodule.base.mvp.BaseMVPPresenter;
+import com.zcolin.usedemo.amodule.mvp.base.BaseMVPPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_http.view.IHttpDemoView;
 import com.zcolin.usedemo.biz.ApiMgr;
 import com.zcolin.usedemo.entity.BaiduWeather;

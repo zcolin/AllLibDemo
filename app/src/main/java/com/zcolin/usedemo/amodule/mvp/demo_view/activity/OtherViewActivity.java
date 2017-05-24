@@ -13,7 +13,6 @@ package com.zcolin.usedemo.amodule.mvp.demo_view.activity;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,8 +22,8 @@ import com.zcolin.gui.ZDialogAsyncProgress;
 import com.zcolin.gui.ZDialogProgress;
 import com.zcolin.gui.ZTextSwitcher;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.mvp.BaseMVPActivity;
-import com.zcolin.usedemo.amodule.base.mvp.Presenter;
+import com.zcolin.usedemo.amodule.mvp.base.BaseMVPActivity;
+import com.zcolin.usedemo.amodule.mvp.base.Presenter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.presenter.OtherViewPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.view.OtherViewView;
 

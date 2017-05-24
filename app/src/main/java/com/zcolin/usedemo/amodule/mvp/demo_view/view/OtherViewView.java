@@ -9,7 +9,7 @@
 
 package com.zcolin.usedemo.amodule.mvp.demo_view.view;
 
-import com.zcolin.usedemo.amodule.base.mvp.BaseMVPView;
+import com.zcolin.usedemo.amodule.mvp.base.BaseMVPView;
 
 import java.util.ArrayList;
 

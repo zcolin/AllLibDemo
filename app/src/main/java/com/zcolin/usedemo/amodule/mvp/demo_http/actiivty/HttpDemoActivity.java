@@ -19,8 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.mvp.BaseMVPActivity;
-import com.zcolin.usedemo.amodule.base.mvp.Presenter;
+import com.zcolin.usedemo.amodule.mvp.base.BaseMVPActivity;
+import com.zcolin.usedemo.amodule.mvp.base.Presenter;
 import com.zcolin.usedemo.amodule.mvp.demo_http.presenter.HttpDemoPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_http.view.IHttpDemoView;
 

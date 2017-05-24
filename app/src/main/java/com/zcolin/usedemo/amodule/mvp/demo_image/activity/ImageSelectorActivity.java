@@ -22,7 +22,7 @@ import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
 import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.base.mvp.BaseMVPActivity;
+import com.zcolin.usedemo.amodule.mvp.base.BaseMVPActivity;
 import com.zcolin.usedemo.amodule.mvp.demo_image.presenter.ImageSelectorPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_image.view.IImageSelectorView;
 

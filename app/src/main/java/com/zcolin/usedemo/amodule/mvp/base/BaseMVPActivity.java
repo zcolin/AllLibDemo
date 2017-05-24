@@ -7,7 +7,7 @@
  * ********************************************************
  */
 
-package com.zcolin.usedemo.amodule.base.mvp;
+package com.zcolin.usedemo.amodule.mvp.base;
 
 import android.os.Bundle;
 
