@@ -3,7 +3,7 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-5-19 上午9:34
+ *   date     17-5-25 下午1:38
  * ********************************************************
  */
 
@@ -13,6 +13,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.zcolin.frame.app.BaseFrameActivity;
 import com.zcolin.frame.utils.ScreenUtil;
 import com.zcolin.frame.utils.StringUtil;
 import com.zcolin.usedemo.R;
+
 
 /**
  * 客户端Activity的基类
@@ -137,7 +139,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
         return initToolBar(userView);
     }
 
-    private ViewGroup initToolBar(View userView) {
+    protected ViewGroup initToolBar(View userView) {
         /*获取主题中定义的悬浮标志*/
         TypedArray typedArray = getTheme().obtainStyledAttributes(R.styleable.ToolBarTheme);
         boolean overly = typedArray.getBoolean(R.styleable.ToolBarTheme_android_windowActionBarOverlay, false);
@@ -156,7 +158,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
             toolbar.setPadding(0, statusBarHeight, 0, 0);
             toolbar.getLayoutParams().height += statusBarHeight;
         }
-        toolBarView = getLayoutInflater().inflate(R.layout.gui_toolbar_baseview, toolbar);
+        toolBarView = getLayoutInflater().inflate(getToolBarLayout() == 0 ? R.layout.gui_toolbar_baseview : getToolBarLayout(), toolbar);
         toolbarTitleView = (TextView) toolBarView.findViewById(R.id.toolbar_title);
         toolbarLeftBtn = (TextView) toolBarView.findViewById(R.id.toolbar_btn_left);
         toolbarRightBtn = (TextView) toolBarView.findViewById(R.id.toolbar_btn_right);
@@ -181,6 +183,19 @@ public abstract class BaseActivity extends BaseFrameActivity {
         }
 
         return contentView;
+    }
+
+    /**
+     * 可以自己扩展Layout，但是其扩展的Layout里必须包含现在所有的控件Id，也就是可以增加控件不可以移除控件
+     */
+    public
+    @LayoutRes
+    int getToolBarLayout() {
+        return 0;
+    }
+
+    public boolean isImmerse() {
+        return activityParam[INDEX_ISIMMERSE];
     }
 
     /**
@@ -216,9 +231,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
     }
 
     /**
-     * 设置ToolBar预制按钮一的文字
-     *
-     * @param extra : 显示的文字
+     * 设置ToolBar左侧预置按钮文字
      */
     public void setToolbarLeftBtnText(String extra) {
         if (StringUtil.isNotEmpty(extra)) {
@@ -241,9 +254,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
     }
 
     /**
-     * 设置ToolBar预制按钮一的图片
-     *
-     * @param res : 按钮显示图片资源ID
+     * 设置ToolBar左侧预置按钮的图片
      */
     public void setToolbarLeftBtnBackground(int res) {
         toolbarLeftBtn.setBackgroundResource(res);
@@ -251,11 +262,8 @@ public abstract class BaseActivity extends BaseFrameActivity {
     }
 
     /**
-     * 设置ToolBar预制按钮一的图片
-     *
-     * @param able : 按钮显示图片
+     * 设置ToolBar左侧预置按钮的图片
      */
-    @SuppressWarnings("deprecation")
     public void setToolbarLeftBtnBackground(Drawable able) {
         if (able != null) {
             toolbarLeftBtn.setBackgroundDrawable(able);
@@ -267,9 +275,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
     }
 
     /**
-     * 设置ToolBar预制按钮二的文字
-     *
-     * @param extra : 按钮显示的文字
+     * 设置ToolBar右侧侧预置按钮的文字
      */
     public void setToolbarRightBtnText(String extra) {
         if (StringUtil.isNotEmpty(extra)) {
@@ -281,8 +287,18 @@ public abstract class BaseActivity extends BaseFrameActivity {
         }
     }
 
+    public void setToolbarRightBtnCompoundDrawableRight(int res) {
+        toolbarRightBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, res, 0);
+        toolbarRightBtn.setVisibility(View.VISIBLE);
+    }
+
+    public void setToolbarRightBtnCompoundDrawableRight(Drawable able) {
+        toolbarRightBtn.setCompoundDrawablesWithIntrinsicBounds(null, null, able, null);
+        toolbarRightBtn.setVisibility(View.VISIBLE);
+    }
+
     /**
-     * 设置ToolBar预制按钮二的图片
+     * 设置ToolBar右侧侧预置按钮的图片
      *
      * @param res 显示的资源ID
      */
@@ -296,7 +312,6 @@ public abstract class BaseActivity extends BaseFrameActivity {
      *
      * @param able 显示的Drawable对象
      */
-    @SuppressWarnings("deprecation")
     public void setToolBarRightBtnBackground(Drawable able) {
         if (able != null) {
             toolbarRightBtn.setBackgroundDrawable(able);
@@ -312,7 +327,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
      *
      * @param color 颜色值
      */
-    public void setToolBarBackBroundColor(int color) {
+    public void setToolBarBackgroundColor(int color) {
         toolBarView.setBackgroundColor(color);
     }
 
@@ -321,7 +336,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
      *
      * @param res 资源ID
      */
-    public void setToolBarBackBroundRes(int res) {
+    public void setToolBarBackgroundRes(int res) {
         toolBarView.setBackgroundResource(res);
     }
 
@@ -335,25 +350,21 @@ public abstract class BaseActivity extends BaseFrameActivity {
     }
 
     /**
-     * 获取ToolBar的预制按钮一
-     *
-     * @return 预制按钮一控件
+     * 获取ToolBar左侧侧预置按钮
      */
-    public TextView getToolBarExtraView() {
+    public TextView getToolBarLeftBtn() {
         return toolbarLeftBtn;
     }
 
     /**
-     * 获取ToolBar的预制按钮二
-     *
-     * @return 预制按钮二控件
+     * 获取ToolBar右侧侧预置按钮
      */
-    public TextView getToolBarExtra2View() {
+    public TextView getToolBarRightBtn() {
         return toolbarRightBtn;
     }
 
     /**
-     * 预制按钮一点击回调，子类如需要处理点击事件，重写此方法
+     * 左侧按钮点击回调，子类如需要处理点击事件，重写此方法
      */
     protected void onToolBarLeftBtnClick() {
         if (activityParam[INDEX_ISSECONDLEVELACTIVITY]) {
@@ -362,19 +373,19 @@ public abstract class BaseActivity extends BaseFrameActivity {
     }
 
     /**
-     * 预制按钮二点击回调，子类如需要处理点击事件，重写此方法
+     * 右侧按钮点击回调，子类如需要处理点击事件，重写此方法
      */
     protected void onToolBarRightBtnClick() {
     }
 
     /**
-     * 预制按钮一长按回调，子类如需要处理点击事件，重写此方法
+     * 左侧按钮长按回调，子类如需要处理点击事件，重写此方法
      */
     protected void onToolBarLeftBtnLongClick() {
     }
 
     /**
-     * 预制按钮二长按回调，子类如需要处理点击事件，重写此方法
+     * 右侧按钮长按回调，子类如需要处理点击事件，重写此方法
      */
     protected void onToolBarRightBtnLongClick() {
     }

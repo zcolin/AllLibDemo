@@ -36,7 +36,7 @@ public @interface ActivityParam {
     /**
      * 如果是沉浸式状态栏，是否空出顶部距离
      */
-    boolean isImmersePaddingTop() default ISIMMERSE_DEF_VALUE;
+    boolean isImmersePaddingTop() default ISIMMERSEPADDINGTOP_DEF_VALUE;
 
     /**
      * 是否显示toolbar

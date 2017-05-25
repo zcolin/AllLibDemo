@@ -30,18 +30,26 @@ import okhttp3.Response;
  */
 public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
 
+    private String[] arrayTag = new String[4];
+
     @Override
     public void onLoad(@Nullable Bundle data) {
 
     }
-    
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ApiMgr.cancelRequest(arrayTag);
+    }
+
     /**
      * 获取为经解析的字符串
      * <p>
      * 此处为Demo，实际使用一般使用{@link #getObject(Activity)}
      */
     public void getBaiduStringData(Activity activity) {
-        ApiMgr.getBaiduStringData(new ZStringResponse(activity, "正在获取数据") {
+        arrayTag[0] = ApiMgr.getBaiduStringData(new ZStringResponse(activity, "正在获取数据") {
             @Override
             public void onSuccess(Response response, String resObj) {
                 mView.showResult(resObj);
@@ -62,7 +70,7 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
      * ZResponse的参数，第二个参数是显示旋转进度条则传入，第三个参数是进度条文字，如果不需要进度条则只需要传入第一个参数
      */
     public void getObject(Activity activity) {
-        ApiMgr.getObject(new ZResponse<BaiduWeather>(BaiduWeather.class, activity, "正在获取数据……") {
+        arrayTag[1] = ApiMgr.getObject(new ZResponse<BaiduWeather>(BaiduWeather.class, activity, "正在获取数据……") {
             @Override
             public void onSuccess(Response response, BaiduWeather resObj) {
                 if (resObj.results.size() > 0) {
@@ -79,7 +87,7 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
      * 带有progressBar
      */
     public void postResponse(Activity activity) {
-        ApiMgr.postResponse(new ZResponse<HttpCommonReply>(HttpCommonReply.class, activity, "正在加载……") {
+        arrayTag[2] = ApiMgr.postResponse(new ZResponse<HttpCommonReply>(HttpCommonReply.class, activity, "正在加载……") {
             @Override
             public void onSuccess(Response response, HttpCommonReply httpBaseBean) {
                 mView.showResult(String.valueOf(httpBaseBean));
@@ -96,7 +104,7 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
      * 上传文件，可以和其他参数一起上传，也可以单独上传
      */
     public void uploadFile(Activity activity) {
-        ApiMgr.uploadFile(new ZResponse<HttpCommonReply>(HttpCommonReply.class, activity, "正在加载……") {
+        arrayTag[3] = ApiMgr.uploadFile(new ZResponse<HttpCommonReply>(HttpCommonReply.class, activity, "正在加载……") {
             @Override
             public void onSuccess(Response response, HttpCommonReply httpBaseBean) {
                 mView.showResult("上传成功");
@@ -104,8 +112,9 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
 
             @Override
             public void onError(int code, String error) {
-                super.onError(code, error);
+                mView.showError(error);
             }
         });
     }
+
 }

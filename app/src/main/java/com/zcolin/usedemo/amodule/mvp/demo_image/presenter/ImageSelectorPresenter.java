@@ -11,8 +11,8 @@ package com.zcolin.usedemo.amodule.mvp.demo_image.presenter;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
+import com.zcolin.frame.utils.StringUtil;
 import com.zcolin.usedemo.amodule.mvp.base.BaseMVPPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_image.view.IImageSelectorView;
 
@@ -30,7 +30,7 @@ public class ImageSelectorPresenter extends BaseMVPPresenter<IImageSelectorView>
 
     public int getMaxNumber(String maxNumber) {
         int maxNum = 9;
-        if (!TextUtils.isEmpty(maxNumber)) {
+        if (!StringUtil.isEmpty(maxNumber)) {
             try {
                 maxNum = Integer.valueOf(maxNumber);
             } catch (NumberFormatException e) {
