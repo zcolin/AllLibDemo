@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.usedemo.R;
 import com.zcolin.gui.pullrecyclerview.BaseRecyclerAdapter;
+import com.zcolin.usedemo.entity.ListItemData;
 
 
 /**
@@ -20,7 +21,7 @@ import com.zcolin.gui.pullrecyclerview.BaseRecyclerAdapter;
  * <p>
  * pullrecyclerView的Adapter
  */
-public class PullRecyclerAdapter extends BaseRecyclerAdapter<String> {
+public class PullRecyclerAdapter extends BaseRecyclerAdapter<ListItemData> {
 
     @Override
     public int getItemLayoutId(int viewType) {
@@ -28,10 +29,10 @@ public class PullRecyclerAdapter extends BaseRecyclerAdapter<String> {
     }
 
     @Override
-    public void setUpData(CommonHolder holder, int position, int viewType, String data) {
+    public void setUpData(CommonHolder holder, int position, int viewType, ListItemData data) {
         TextView textView = getView(holder, R.id.textView);
         ImageView imageView = getView(holder, R.id.imageView);
         ImageLoaderUtils.displayCircleImage(holder.itemView.getContext(), "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", imageView);
-        textView.setText(data);
+        textView.setText(data.title);
     }
 }

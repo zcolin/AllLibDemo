@@ -3,7 +3,7 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:33
+ *   date     17-5-25 下午4:13
  * ********************************************************
  */
 
@@ -13,8 +13,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.zcolin.usedemo.amodule.mvp.demo_view.fragment.PullRecyclerFragment;
-import com.zcolin.usedemo.amodule.mvp.demo_view.fragment.ZRecyclerFragment;
+import com.zcolin.usedemo.amodule.mvc.demo_view.fragment.PullRecyclerFragment;
+import com.zcolin.usedemo.amodule.mvc.demo_view.fragment.ZRecyclerFragment;
 
 /**
  * 

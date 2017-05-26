@@ -25,6 +25,7 @@ import com.zcolin.usedemo.amodule.mvp.base.Presenter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.adapter.PullRecyclerAdapter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.presenter.DesignSupportPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.view.DesignSupportView;
+import com.zcolin.usedemo.entity.ListItemData;
 
 import java.util.ArrayList;
 
@@ -118,7 +119,7 @@ public class PullRecyclerFragment extends BaseMVPFragment<DesignSupportPresenter
     }
 
     @Override
-    public void setDataToRecyclerView(ArrayList<String> list, boolean isClear) {
+    public void setDataToRecyclerView(ArrayList<ListItemData> list, boolean isClear) {
         if (recyclerViewAdapter == null) {
             recyclerViewAdapter = new PullRecyclerAdapter();
             recyclerView.setAdapter(recyclerViewAdapter);

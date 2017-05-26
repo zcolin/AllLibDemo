@@ -3,7 +3,7 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:33
+ *   date     17-5-25 下午4:13
  * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvp.demo_view.adapter;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
 import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.entity.ListItemData;
 
 
 /**
@@ -22,7 +23,7 @@ import com.zcolin.usedemo.R;
  * <p>
  * pullrecyclerView的Adapter
  */
-public class ZRecyclerAdapter extends BaseRecyclerAdapter<String> {
+public class ZRecyclerAdapter extends BaseRecyclerAdapter<ListItemData> {
 
     @Override
     public int getItemLayoutId(int viewType) {
@@ -30,10 +31,10 @@ public class ZRecyclerAdapter extends BaseRecyclerAdapter<String> {
     }
 
     @Override
-    public void setUpData(CommonHolder holder, int position, int viewType, String data) {
+    public void setUpData(CommonHolder holder, int position, int viewType, ListItemData data) {
         TextView textView = getView(holder, R.id.textView);
         ImageView imageView = getView(holder, R.id.imageView);
         ImageLoaderUtils.displayCircleImage(holder.itemView.getContext(), "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", imageView);
-        textView.setText(data);
+        textView.setText(data.title);
     }
 }

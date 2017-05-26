@@ -10,6 +10,7 @@
 package com.zcolin.usedemo.biz;
 
 import com.zcolin.usedemo.db.entity.Employee;
+import com.zcolin.usedemo.entity.ListItemData;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,11 +39,14 @@ public class TestDataMgr {
     /**
      * 制造列表页显示的假数据
      */
-    public static ArrayList<String> getTextList(int page) {
-        ArrayList<String> dataList = new ArrayList<>();
+    public static ArrayList<ListItemData> getTextList(int page) {
+        ArrayList<ListItemData> dataList = new ArrayList<>();
         int start = 20 * (page - 1);
         for (int i = start; i < 20 * page; i++) {
-            dataList.add("Frist" + i);
+            ListItemData data = new ListItemData();
+            data.title = "Frist" + i;
+            data.id = i;
+            dataList.add(data);
         }
         return dataList;
     }

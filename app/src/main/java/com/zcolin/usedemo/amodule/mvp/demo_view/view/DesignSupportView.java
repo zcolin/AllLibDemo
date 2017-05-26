@@ -10,9 +10,10 @@
 package com.zcolin.usedemo.amodule.mvp.demo_view.view;
 
 import com.zcolin.usedemo.amodule.mvp.base.BaseRecyclerMVPView;
+import com.zcolin.usedemo.entity.ListItemData;
 
 /**
  * HttpDemo
  */
-public interface DesignSupportView extends BaseRecyclerMVPView<String> {
+public interface DesignSupportView extends BaseRecyclerMVPView<ListItemData> {
 }

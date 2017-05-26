@@ -14,6 +14,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.zcolin.gui.ZViewPager;
 import com.zcolin.usedemo.R;
@@ -59,5 +60,14 @@ public class DesignSupportActivity2 extends BaseActivity {
         FragmentPagerAdapter adapter = new DesignSupportPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Android.R.id.home对应应用程序图标的id
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

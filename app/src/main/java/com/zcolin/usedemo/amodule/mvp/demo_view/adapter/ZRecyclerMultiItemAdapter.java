@@ -3,16 +3,18 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:33
+ *   date     17-5-25 下午4:13
  * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvp.demo_view.adapter;
 
 
+import android.graphics.Color;
 import android.widget.TextView;
 
 import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
 import com.zcolin.usedemo.R;
+import com.zcolin.usedemo.entity.ListItemData;
 
 
 /**
@@ -20,7 +22,7 @@ import com.zcolin.usedemo.R;
  * <p>
  * pullrecyclerView的Adapter
  */
-public class ZRecyclerMultiItemAdapter extends BaseRecyclerAdapter<String> {
+public class ZRecyclerMultiItemAdapter extends BaseRecyclerAdapter<ListItemData> {
 
     public static final int TYPE_1 = 1;
     public static final int TYPE_2 = 2;
@@ -41,13 +43,15 @@ public class ZRecyclerMultiItemAdapter extends BaseRecyclerAdapter<String> {
     }
 
     @Override
-    public void setUpData(CommonHolder holder, int position, int viewType, String data) {
+    public void setUpData(CommonHolder holder, int position, int viewType, ListItemData data) {
         if (viewType == TYPE_1) {
             TextView tvTitle = getView(holder, R.id.title);
-            tvTitle.setText(data + "…………TYPE_1");
+            tvTitle.setTextColor(Color.RED);
+            tvTitle.setText(data.title + "…………TYPE_1");
         } else {
             TextView tvTitle = getView(holder, R.id.title);
-            tvTitle.setText(data + "—————TYPE_2");
+            tvTitle.setTextColor(Color.BLACK);
+            tvTitle.setText(data.title + "—————TYPE_2");
         }
     }
 }

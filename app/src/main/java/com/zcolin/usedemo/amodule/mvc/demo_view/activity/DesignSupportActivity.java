@@ -22,6 +22,7 @@ import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.ActivityParam;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zcolin.usedemo.amodule.mvc.demo_view.adapter.ZRecyclerMultiItemAdapter;
+import com.zcolin.usedemo.entity.ListItemData;
 
 import java.util.ArrayList;
 
@@ -89,7 +90,7 @@ public class DesignSupportActivity extends BaseActivity {
     }
 
 
-    public void setDataToRecyclerView(ArrayList<String> list, boolean isClear) {
+    public void setDataToRecyclerView(ArrayList<ListItemData> list, boolean isClear) {
         if (recyclerViewAdapter == null) {
             recyclerViewAdapter = new ZRecyclerMultiItemAdapter();
             recyclerView.setAdapter(recyclerViewAdapter);
@@ -114,11 +115,14 @@ public class DesignSupportActivity extends BaseActivity {
     }
 
     //制造假数据
-    private ArrayList<String> setList(int page) {
-        ArrayList<String> dataList = new ArrayList<>();
+    private ArrayList<ListItemData> setList(int page) {
+        ArrayList<ListItemData> dataList = new ArrayList<>();
         int start = 20 * (page - 1);
         for (int i = start; i < 20 * page; i++) {
-            dataList.add("Frist" + i);
+            ListItemData data = new ListItemData();
+            data.title = "Frist" + i;
+            data.id = i;
+            dataList.add(data);
         }
         return dataList;
     }

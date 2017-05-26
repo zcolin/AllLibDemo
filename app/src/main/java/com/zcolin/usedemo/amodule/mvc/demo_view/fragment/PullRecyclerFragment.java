@@ -21,6 +21,7 @@ import com.zcolin.gui.pullrecyclerview.PullRecyclerView;
 import com.zcolin.gui.pullrecyclerview.progressindicator.ProgressStyle;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.mvc.demo_view.adapter.PullRecyclerAdapter;
+import com.zcolin.usedemo.entity.ListItemData;
 
 import java.util.ArrayList;
 
@@ -123,7 +124,7 @@ public class PullRecyclerFragment extends BaseFrameFrag {
         }, 1000);
     }
 
-    public void setDataToRecyclerView(ArrayList<String> list, boolean isClear) {
+    public void setDataToRecyclerView(ArrayList<ListItemData> list, boolean isClear) {
         if (recyclerViewAdapter == null) {
             recyclerViewAdapter = new PullRecyclerAdapter();
             recyclerView.setAdapter(recyclerViewAdapter);
@@ -164,11 +165,13 @@ public class PullRecyclerFragment extends BaseFrameFrag {
     }
 
     //制造假数据
-    private ArrayList<String> setList(int page) {
-        ArrayList<String> dataList = new ArrayList<>();
+    private ArrayList<ListItemData> setList(int page) {
+        ArrayList<ListItemData> dataList = new ArrayList<>();
         int start = 10 * (page - 1);
         for (int i = start; i < 10 * page; i++) {
-            dataList.add("Frist" + i);
+            ListItemData data = new ListItemData();
+            data.title = "Frist" + i;
+            dataList.add(data);
         }
         return dataList;
     }

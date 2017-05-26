@@ -20,6 +20,7 @@ import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
 import com.zcolin.gui.zrecyclerview.ZRecyclerView;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.mvc.demo_view.adapter.ZRecyclerAdapter;
+import com.zcolin.usedemo.entity.ListItemData;
 
 import java.util.ArrayList;
 
@@ -101,16 +102,19 @@ public class ZRecyclerFragment extends BaseFrameFrag {
     }
 
     //制造假数据
-    private ArrayList<String> setList(int page) {
-        ArrayList<String> dataList = new ArrayList<>();
+    private ArrayList<ListItemData> setList(int page) {
+        ArrayList<ListItemData> dataList = new ArrayList<>();
         int start = 10 * (page - 1);
         for (int i = start; i < 10 * page; i++) {
-            dataList.add("Frist" + i);
+            ListItemData data = new ListItemData();
+            data.title = "Frist" + i;
+            data.id = i;
+            dataList.add(data);
         }
         return dataList;
     }
 
-    public void setDataToRecyclerView(ArrayList<String> list, boolean isClear) {
+    public void setDataToRecyclerView(ArrayList<ListItemData> list, boolean isClear) {
         if (recyclerViewAdapter == null) {
             recyclerViewAdapter = new ZRecyclerAdapter();
             recyclerView.setAdapter(recyclerViewAdapter);

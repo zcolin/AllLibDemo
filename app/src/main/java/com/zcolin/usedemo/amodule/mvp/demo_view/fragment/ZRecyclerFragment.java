@@ -22,6 +22,7 @@ import com.zcolin.usedemo.amodule.mvp.base.Presenter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.adapter.ZRecyclerAdapter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.presenter.DesignSupportPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_view.view.DesignSupportView;
+import com.zcolin.usedemo.entity.ListItemData;
 
 import java.util.ArrayList;
 
@@ -94,7 +95,7 @@ public class ZRecyclerFragment extends BaseMVPFragment<DesignSupportPresenter> i
     }
 
     @Override
-    public void setDataToRecyclerView(ArrayList<String> list, boolean isClear) {
+    public void setDataToRecyclerView(ArrayList<ListItemData> list, boolean isClear) {
         if (recyclerViewAdapter == null) {
             recyclerViewAdapter = new ZRecyclerAdapter();
             recyclerView.setAdapter(recyclerViewAdapter);
