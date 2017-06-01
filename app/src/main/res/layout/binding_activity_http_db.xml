@@ -1,0 +1,76 @@
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.zcolin.usedemo.amodule.mvvm.demo_db.viewmodel.DbDemoViewModel"/>
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{viewModel.insertObject}"
+                    android:text="插入数据"
+                    android:textAllCaps="false"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{viewModel.insertOrReplaceObject}"
+                    android:text="替换或插入数据"
+                    android:textAllCaps="false"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{viewModel.queryAllObject}"
+                    android:text="获取数据列表"
+                    android:textAllCaps="false"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{viewModel.queryObjectWithCondition}"
+                    android:text="条件查询降序"
+                    android:textAllCaps="false"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{viewModel.deleteAllObject}"
+                    android:text="清空数据库"
+                    android:textAllCaps="false"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="20"
+                android:text="@{viewModel.strResult}"
+                />
+        </LinearLayout>
+    </ScrollView>
+</layout>

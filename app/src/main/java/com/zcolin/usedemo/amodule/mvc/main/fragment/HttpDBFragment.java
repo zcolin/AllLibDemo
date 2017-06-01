@@ -18,8 +18,8 @@ import android.widget.LinearLayout;
 import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.utils.ActivityUtil;
 import com.zcolin.usedemo.R;
-import com.zcolin.usedemo.amodule.mvc.demo_db.DbDemoActivity;
 import com.zcolin.usedemo.amodule.mvc.demo_http.HttpDemoActivity;
+import com.zcolin.usedemo.amodule.mvvm.demo_db.activity.DbDemoActivity;
 
 import java.util.ArrayList;
 

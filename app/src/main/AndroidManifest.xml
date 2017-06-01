@@ -85,6 +85,8 @@
         <activity android:name=".amodule.mvc.demo_http.HttpDemoActivity"/>
         <activity android:name=".amodule.mvc.demo_video.EasyPRActivity"/>
         <activity android:name=".amodule.mvc.demo_video.ijkplayer.NavigationActivity"/>
+
+        <activity android:name=".amodule.mvvm.demo_db.activity.DbDemoActivity"/>
         <activity
             android:name=".amodule.mvc.demo_video.ijkplayer.VideoRecyclerViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection"

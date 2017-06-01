@@ -98,7 +98,6 @@ public abstract class BaseActivity extends BaseFrameActivity {
 
             if (activityParam[INDEX_ISSECONDLEVELACTIVITY]) {
                 setToolbarLeftBtnText("返回");
-                setToolbarLeftBtnBackground(R.drawable.gui_btn_actionbar_back_sel);
                 setToolbarLeftBtnCompoundDrawableLeft(R.drawable.gui_icon_arrow_back);
             }
         } else {
@@ -119,7 +118,6 @@ public abstract class BaseActivity extends BaseFrameActivity {
 
             if (activityParam[INDEX_ISSECONDLEVELACTIVITY]) {
                 setToolbarLeftBtnText("返回");
-                setToolbarLeftBtnBackground(R.drawable.gui_btn_actionbar_back_sel);
                 setToolbarLeftBtnCompoundDrawableLeft(R.drawable.gui_icon_arrow_back);
             }
         } else {
