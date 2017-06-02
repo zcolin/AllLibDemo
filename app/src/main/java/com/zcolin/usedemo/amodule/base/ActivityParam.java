@@ -15,7 +15,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ActivityParam {
     boolean ISIMMERSE_DEF_VALUE             = false;
     boolean ISFULLSCREEN_DEF_VALUE          = false;
