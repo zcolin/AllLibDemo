@@ -41,15 +41,22 @@ public class RichTextView extends TextView implements Drawable.Callback, View.On
      * @param text 富文本
      */
     public void setRichText(String text) {
-        super.setText(getRichText(text));
+        super.setText(richView.getRichText(text, getContext(), this));
     }
 
-
     /**
-     * 获取富文本
+     * 设置富文本, 异步，显示进度框
+     *
+     * @param text 富文本
      */
-    public Spanned getRichText(String text) {
-        return richView.getRichText(text, getContext(), this);
+    public void setRichTextWithBar(String text) {
+        richView.getRichTextAsync(text, getContext(), this, new RichViewUtil.OnFinishListener() {
+            @Override
+            public void onFinished(Spanned spanned) {
+                setText(spanned);
+            }
+        });
+
     }
 
     @Override

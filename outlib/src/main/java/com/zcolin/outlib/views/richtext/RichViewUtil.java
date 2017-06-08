@@ -9,6 +9,8 @@ import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.zcolin.gui.ZDialogAsyncProgress;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,34 @@ class RichViewUtil {
         }
 
         Spanned spanned = Html.fromHtml(text, glideImageGeter, null);
+        processSpanned(spanned);
+        return spanned;
+    }
+
+    void getRichTextAsync(String text, Context context, TextView textView, final OnFinishListener onFinishListener) {
+        if (glideImageGeter == null) {
+            glideImageGeter = new GlideImageGeter(context, textView);
+        }
+
+        final Spanned spanned = Html.fromHtml(text, glideImageGeter, null);
+        new ZDialogAsyncProgress(context).setDoInterface(new ZDialogAsyncProgress.DoInterface() {
+            @Override
+            public ZDialogAsyncProgress.ProcessInfo onDoInback() {
+                processSpanned(spanned);
+                return null;
+            }
+
+            @Override
+            public void onPostExecute(ZDialogAsyncProgress.ProcessInfo info) {
+                if (onFinishListener != null) {
+                    onFinishListener.onFinished(spanned);
+                }
+            }
+        }).show();
+    }
+
+
+    private void processSpanned(Spanned spanned) {
         SpannableStringBuilder spannableStringBuilder;
         if (spanned instanceof SpannableStringBuilder) {
             spannableStringBuilder = (SpannableStringBuilder) spanned;
@@ -53,6 +83,7 @@ class RichViewUtil {
             int end = spannableStringBuilder.getSpanEnd(imageSpan);
             imageUrls.add(imageUrl);
             final int finalI = i;
+
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
@@ -70,11 +101,14 @@ class RichViewUtil {
             }
             spannableStringBuilder.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-        return spanned;
     }
 
     void recycle() {
         glideImageGeter.recycle();
         glideImageGeter = null;
+    }
+
+    public interface OnFinishListener {
+        void onFinished(Spanned spanned);
     }
 }

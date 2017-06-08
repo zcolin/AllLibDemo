@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ public class RichEditTextView extends EditText implements Drawable.Callback, Vie
      * 设置图片点击监听
      */
     public void setOnImageClickListener(OnRichImageClickListener onImageClickListener) {
+        setMovementMethod(new LinkMovementMethod());
         richView.setOnImageClickListener(onImageClickListener);
     }
 
@@ -42,6 +45,22 @@ public class RichEditTextView extends EditText implements Drawable.Callback, Vie
     public void setRichText(String text) {
         super.setText(richView.getRichText(text, getContext(), this));
     }
+
+    /**
+     * 设置富文本, 异步，显示进度框
+     *
+     * @param text 富文本
+     */
+    public void setRichTextWithBar(String text) {
+        richView.getRichTextAsync(text, getContext(), this, new RichViewUtil.OnFinishListener() {
+            @Override
+            public void onFinished(Spanned spanned) {
+                setText(spanned);
+            }
+        });
+
+    }
+
 
     @Override
     public void onViewAttachedToWindow(View v) {
