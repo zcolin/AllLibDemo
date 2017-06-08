@@ -32,14 +32,13 @@ class RichViewUtil {
      *
      * @param text 富文本
      */
-    Spanned getRichText(String text, Context context, TextView textView) {
+    SpannableStringBuilder getRichText(String text, Context context, TextView textView) {
         if (glideImageGeter == null) {
             glideImageGeter = new GlideImageGeter(context, textView);
         }
 
         Spanned spanned = Html.fromHtml(text, glideImageGeter, null);
-        processSpanned(spanned);
-        return spanned;
+        return processSpanned(spanned);
     }
 
     void getRichTextAsync(String text, Context context, TextView textView, final OnFinishListener onFinishListener) {
@@ -51,21 +50,22 @@ class RichViewUtil {
         new ZDialogAsyncProgress(context).setDoInterface(new ZDialogAsyncProgress.DoInterface() {
             @Override
             public ZDialogAsyncProgress.ProcessInfo onDoInback() {
-                processSpanned(spanned);
-                return null;
+                ZDialogAsyncProgress.ProcessInfo info = new ZDialogAsyncProgress.ProcessInfo();
+                info.info = processSpanned(spanned);
+                return info;
             }
 
             @Override
             public void onPostExecute(ZDialogAsyncProgress.ProcessInfo info) {
                 if (onFinishListener != null) {
-                    onFinishListener.onFinished(spanned);
+                    onFinishListener.onFinished((SpannableStringBuilder) info.info);
                 }
             }
         }).show();
     }
 
 
-    private void processSpanned(Spanned spanned) {
+    private SpannableStringBuilder processSpanned(Spanned spanned) {
         SpannableStringBuilder spannableStringBuilder;
         if (spanned instanceof SpannableStringBuilder) {
             spannableStringBuilder = (SpannableStringBuilder) spanned;
@@ -101,6 +101,7 @@ class RichViewUtil {
             }
             spannableStringBuilder.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
+        return spannableStringBuilder;
     }
 
     void recycle() {
@@ -109,6 +110,6 @@ class RichViewUtil {
     }
 
     public interface OnFinishListener {
-        void onFinished(Spanned spanned);
+        void onFinished(SpannableStringBuilder spanned);
     }
 }

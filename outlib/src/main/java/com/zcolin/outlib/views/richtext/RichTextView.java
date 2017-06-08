@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.text.Spanned;
+import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -52,7 +52,7 @@ public class RichTextView extends TextView implements Drawable.Callback, View.On
     public void setRichTextWithBar(String text) {
         richView.getRichTextAsync(text, getContext(), this, new RichViewUtil.OnFinishListener() {
             @Override
-            public void onFinished(Spanned spanned) {
+            public void onFinished(SpannableStringBuilder spanned) {
                 setText(spanned);
             }
         });

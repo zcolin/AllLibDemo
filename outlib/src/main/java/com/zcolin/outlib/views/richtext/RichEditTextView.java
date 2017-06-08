@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.text.Spanned;
+import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
@@ -33,8 +33,21 @@ public class RichEditTextView extends EditText implements Drawable.Callback, Vie
      * 设置图片点击监听
      */
     public void setOnImageClickListener(OnRichImageClickListener onImageClickListener) {
-        setMovementMethod(new LinkMovementMethod());
+        setMovementMethod(LinkMovementMethod.getInstance());
         richView.setOnImageClickListener(onImageClickListener);
+    }
+
+    /**
+     * 追加富文本
+     *
+     * @param text 富文本
+     */
+    public void appendRichText(String text) {
+        if (getText() != null && getText() instanceof SpannableStringBuilder) {
+            setText(((SpannableStringBuilder) getText()).append(richView.getRichText(text, getContext(), this)));
+        } else {
+            setText(richView.getRichText(text, getContext(), this));
+        }
     }
 
     /**
@@ -47,6 +60,25 @@ public class RichEditTextView extends EditText implements Drawable.Callback, Vie
     }
 
     /**
+     * 追加富文本, 异步，显示进度框
+     *
+     * @param text 富文本
+     */
+    public void appendRichTextWithBar(final String text) {
+        richView.getRichTextAsync(text, getContext(), this, new RichViewUtil.OnFinishListener() {
+            @Override
+            public void onFinished(SpannableStringBuilder spanned) {
+                if (getText() != null && getText() instanceof SpannableStringBuilder) {
+                    setText(((SpannableStringBuilder) getText()).append(spanned));
+                } else {
+                    setText(spanned);
+                }
+            }
+        });
+        
+    }
+
+    /**
      * 设置富文本, 异步，显示进度框
      *
      * @param text 富文本
@@ -54,11 +86,10 @@ public class RichEditTextView extends EditText implements Drawable.Callback, Vie
     public void setRichTextWithBar(String text) {
         richView.getRichTextAsync(text, getContext(), this, new RichViewUtil.OnFinishListener() {
             @Override
-            public void onFinished(Spanned spanned) {
+            public void onFinished(SpannableStringBuilder spanned) {
                 setText(spanned);
             }
         });
-
     }
 
 
