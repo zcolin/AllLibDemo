@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.amodule.mvvm.base.BaseViewModel;
 import com.zcolin.usedemo.biz.DaoMgr;
 import com.zcolin.usedemo.biz.TestDataMgr;

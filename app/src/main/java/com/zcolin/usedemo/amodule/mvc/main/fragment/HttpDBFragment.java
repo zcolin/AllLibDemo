@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.zcolin.frame.app.BaseFrameFrag;
-import com.zcolin.frame.utils.ActivityUtil;
+import com.zcolin.frame.util.ActivityUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.mvc.demo_http.HttpDemoActivity;
 import com.zcolin.usedemo.amodule.mvvm.demo_db.activity.DbDemoActivity;

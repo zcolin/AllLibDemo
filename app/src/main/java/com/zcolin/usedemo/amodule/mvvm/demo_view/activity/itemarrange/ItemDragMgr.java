@@ -11,8 +11,8 @@ package com.zcolin.usedemo.amodule.mvvm.demo_view.activity.itemarrange;
 
 import android.app.Activity;
 
-import com.zcolin.frame.utils.SPUtil;
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.SPUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.outlib.views.itemarrange.AppsItemEntity;
 import com.zcolin.usedemo.R;
 

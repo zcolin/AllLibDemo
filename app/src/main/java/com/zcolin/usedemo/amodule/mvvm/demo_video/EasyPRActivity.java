@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.fosung.libeasypr.view.EasyPRPreSurfaceView;
 import com.fosung.libeasypr.view.EasyPRPreView;
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
 

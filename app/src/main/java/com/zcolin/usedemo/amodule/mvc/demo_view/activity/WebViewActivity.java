@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.zcolin.frame.utils.GsonUtil;
+import com.zcolin.frame.util.GsonUtil;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZDialog;
 import com.zcolin.gui.webview.ZWebView;
@@ -67,7 +67,7 @@ public class WebViewActivity extends BaseActivity implements OnClickListener {
         });
         webView.registerStartActivity(mActivity);
         webView.registerFinishActivity(mActivity);
-        webView.setSupportChooeFile(this);
+        webView.setSupportChooseFile(this);
         webView.setSupportProgressBar();
     }
 

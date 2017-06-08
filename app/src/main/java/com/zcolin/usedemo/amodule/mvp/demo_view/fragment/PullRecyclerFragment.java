@@ -14,7 +14,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
 
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.pullrecyclerview.BaseRecyclerAdapter;
 import com.zcolin.gui.pullrecyclerview.PullRecyclerView;

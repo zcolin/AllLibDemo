@@ -12,7 +12,7 @@ package com.zcolin.usedemo.amodule.mvvm.demo_image.presenter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zcolin.frame.utils.StringUtil;
+import com.zcolin.frame.util.StringUtil;
 import com.zcolin.usedemo.amodule.mvp.base.BaseMVPPresenter;
 import com.zcolin.usedemo.amodule.mvvm.demo_image.view.IImageSelectorView;
 

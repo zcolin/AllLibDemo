@@ -12,7 +12,7 @@ package com.zcolin.usedemo.amodule.mvp.demo_video.ijkplayer.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.mvp.demo_video.ijkplayer.base.BaseVideoPlayFragment;
 import com.zplayer.library.ZPlayer;

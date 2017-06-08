@@ -15,7 +15,7 @@ import android.support.annotation.Nullable;
 
 import com.zcolin.frame.http.response.ZResponse;
 import com.zcolin.frame.http.response.ZStringResponse;
-import com.zcolin.frame.utils.LogUtil;
+import com.zcolin.frame.util.LogUtil;
 import com.zcolin.usedemo.amodule.mvp.base.BaseMVPPresenter;
 import com.zcolin.usedemo.amodule.mvp.demo_http.view.IHttpDemoView;
 import com.zcolin.usedemo.biz.ApiMgr;

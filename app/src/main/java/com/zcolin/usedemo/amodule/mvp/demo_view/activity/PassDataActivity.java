@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.zcolin.frame.app.ResultActivityHelper;
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
 

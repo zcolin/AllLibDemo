@@ -14,7 +14,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.outlib.views.itemarrange.AppsItemEntity;
 import com.zcolin.outlib.views.itemarrange.drag.adapter.AppsAdapter;
 import com.zcolin.usedemo.R;

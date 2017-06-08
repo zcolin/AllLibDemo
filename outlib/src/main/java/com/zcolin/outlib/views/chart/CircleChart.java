@@ -20,7 +20,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.zcolin.frame.utils.DisplayUtil;
+import com.zcolin.frame.util.DisplayUtil;
+
 
 /**
  * 圆环进度条View

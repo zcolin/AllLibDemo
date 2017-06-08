@@ -14,8 +14,8 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.zcolin.frame.utils.DisplayUtil;
-import com.zcolin.frame.utils.ScreenUtil;
+import com.zcolin.frame.util.DisplayUtil;
+import com.zcolin.frame.util.ScreenUtil;
 import com.zcolin.outlib.R;
 
 import java.util.HashSet;

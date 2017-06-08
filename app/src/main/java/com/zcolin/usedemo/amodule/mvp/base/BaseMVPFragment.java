@@ -12,7 +12,7 @@ package com.zcolin.usedemo.amodule.mvp.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.amodule.base.BaseFragment;
 
 

@@ -16,7 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.ZDialogAsyncProgress;
 import com.zcolin.gui.ZDialogProgress;

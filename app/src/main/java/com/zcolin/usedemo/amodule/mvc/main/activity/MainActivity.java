@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 
-import com.zcolin.frame.utils.DisplayUtil;
+import com.zcolin.frame.util.DisplayUtil;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;
 import com.zcolin.usedemo.R;

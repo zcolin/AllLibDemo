@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.zcolin.frame.http.response.ZResponse;
 import com.zcolin.frame.http.response.ZStringResponse;
-import com.zcolin.frame.utils.LogUtil;
+import com.zcolin.frame.util.LogUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
 import com.zcolin.usedemo.biz.ApiMgr;

@@ -18,7 +18,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.zcolin.frame.utils.DisplayUtil;
+import com.zcolin.frame.util.DisplayUtil;
+
 
 /**
  * 仪表盘View

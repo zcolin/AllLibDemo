@@ -16,7 +16,7 @@ import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 
 import com.zcolin.frame.app.BaseApp;
-import com.zcolin.frame.utils.DisplayUtil;
+import com.zcolin.frame.util.DisplayUtil;
 
 import java.util.Random;
 

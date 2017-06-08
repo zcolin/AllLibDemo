@@ -17,7 +17,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZViewPager;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.ActivityParam;

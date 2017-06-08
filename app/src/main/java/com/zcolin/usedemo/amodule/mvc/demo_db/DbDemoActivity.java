@@ -27,7 +27,8 @@ import com.zcolin.usedemo.db.entity.Employee;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.zcolin.frame.utils.ToastUtil.toastShort;
+import static com.zcolin.frame.util.ToastUtil.toastShort;
+
 
 /**
  * DBDemo

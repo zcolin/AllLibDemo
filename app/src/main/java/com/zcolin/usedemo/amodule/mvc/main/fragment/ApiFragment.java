@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.amap.api.location.AMapLocation;
 import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZConfirm;
 import com.zcolin.gui.ZDialog;
 import com.zcolin.libamaplocation.LocationUtil;

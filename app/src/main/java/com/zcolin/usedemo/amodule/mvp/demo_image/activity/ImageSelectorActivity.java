@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.zcolin.frame.app.ResultActivityHelper;
 import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.mvp.base.BaseMVPActivity;
 import com.zcolin.usedemo.amodule.mvp.demo_image.presenter.ImageSelectorPresenter;

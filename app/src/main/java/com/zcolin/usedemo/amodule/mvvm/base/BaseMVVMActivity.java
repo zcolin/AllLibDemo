@@ -21,6 +21,7 @@ import com.zcolin.usedemo.amodule.base.BaseActivity;
  * MVP模式Activity基类
  */
 public class BaseMVVMActivity<T extends ViewDataBinding> extends BaseActivity {
+
     protected T mBinding;
 
     @Override

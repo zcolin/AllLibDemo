@@ -16,8 +16,7 @@ import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.app.ResultActivityHelper;
 import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
-import com.zcolin.frame.utils.SystemIntentUtil;
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 
 import me.nereo.multi_image_selector.MultiImageSelector;
 
