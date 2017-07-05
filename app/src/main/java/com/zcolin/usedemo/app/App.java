@@ -14,6 +14,8 @@ import com.zcolin.frame.http.okhttp.OkHttpUtils;
 import com.zcolin.frame.http.okhttp.cookie.CookieJarImpl;
 import com.zcolin.frame.http.okhttp.cookie.store.MemoryCookieStore;
 import com.zcolin.frame.http.okhttp.https.HttpsUtils;
+import com.zcolin.frame.util.LogUtil;
+import com.zcolin.usedemo.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,6 +48,7 @@ public class App extends BaseApp {
         //}
         
         APP_CONTEXT = BaseApp.APP_CONTEXT;
+        LogUtil.LOG_DEBUG = BuildConfig.DEBUG;
         initHttpOptions();
     }
 

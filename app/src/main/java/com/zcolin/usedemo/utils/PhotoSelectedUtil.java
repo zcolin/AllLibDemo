@@ -16,13 +16,15 @@ import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.app.ResultActivityHelper;
 import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
+import com.zcolin.frame.util.SystemIntentUtil;
 import com.zcolin.frame.util.ToastUtil;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
 
-import me.nereo.multi_image_selector.MultiImageSelector;
 
 /**
  * 选取图片的工具类，因为此类使用了MutilImageSelector，所以在客户端实现
- * {@link com.zcolin.frame.utils.SystemIntentUtil#selectPhoto(Object, SystemIntentUtil.OnCompleteLisenter)} 是使用的系统选择
+ * {@link com.zcolin.frame.util.SystemIntentUtil#selectPhoto(Object, SystemIntentUtil.OnCompleteLisenter)}} 是使用的系统选择
  */
 public class PhotoSelectedUtil {
 
@@ -36,14 +38,18 @@ public class PhotoSelectedUtil {
             @Override
             public void onGranted() {
                 if (context instanceof BaseFrameActivity) {
-                    Intent intent = MultiImageSelector.create()
-                                                      .single()
-                                                      .createIntent((BaseFrameActivity) context);
+                    Intent intent = Matisse.from((BaseFrameActivity) context)
+                                           .choose(MimeType.ofImage(), true)
+                                           .showSingleMediaType(true)
+                                           .maxSelectable(1)
+                                           .createDefaultIntent();
                     ((BaseFrameActivity) context).startActivityWithCallback(intent, resultListener);
                 } else if (context instanceof BaseFrameFrag) {
-                    Intent intent = MultiImageSelector.create()
-                                                      .single()
-                                                      .createIntent(((BaseFrameFrag) context).getActivity());
+                    Intent intent = Matisse.from(((BaseFrameFrag) context).getActivity())
+                                           .choose(MimeType.ofImage(), true)
+                                           .showSingleMediaType(true)
+                                           .maxSelectable(1)
+                                           .createDefaultIntent();
                     ((BaseFrameFrag) context).startActivityWithCallback(intent, resultListener);
                 }
             }
@@ -58,27 +64,26 @@ public class PhotoSelectedUtil {
     /**
      * 选取多张图片
      *
-     * @param context           只能为BaseFrameFrag或者BaseActivity的子类
-     * @param isCotainTakePhoto 是否包含拍照按钮
-     * @param photoNumber       选取的最大图片数量
+     * @param context     只能为BaseFrameFrag或者BaseActivity的子类
+     * @param photoNumber 选取的最大图片数量
      */
-    public static void selectPhoto(final Object context, final boolean isCotainTakePhoto, final int photoNumber, final ResultActivityHelper.ResultActivityListener resultListener) {
+    public static void selectPhoto(final Object context, final int photoNumber, final ResultActivityHelper.ResultActivityListener resultListener) {
         PermissionHelper.requestReadSdCardPermission(context, new PermissionsResultAction() {
             @Override
             public void onGranted() {
                 if (context instanceof BaseFrameActivity) {
-                    Intent intent = MultiImageSelector.create()
-                                                      .multi()
-                                                      .showCamera(isCotainTakePhoto)
-                                                      .count(photoNumber)
-                                                      .createIntent((BaseFrameActivity) context);
+                    Intent intent = Matisse.from((BaseFrameActivity) context)
+                                           .choose(MimeType.ofImage(), true)
+                                           .showSingleMediaType(true)
+                                           .maxSelectable(photoNumber)
+                                           .createDefaultIntent();
                     ((BaseFrameActivity) context).startActivityWithCallback(intent, resultListener);
                 } else if (context instanceof BaseFrameFrag) {
-                    Intent intent = MultiImageSelector.create()
-                                                      .multi()
-                                                      .showCamera(isCotainTakePhoto)
-                                                      .count(photoNumber)
-                                                      .createIntent(((BaseFrameFrag) context).getActivity());
+                    Intent intent = Matisse.from(((BaseFrameFrag) context).getActivity())
+                                           .choose(MimeType.ofImage(), true)
+                                           .showSingleMediaType(true)
+                                           .maxSelectable(photoNumber)
+                                           .createDefaultIntent();
                     ((BaseFrameFrag) context).startActivityWithCallback(intent, resultListener);
                 }
             }

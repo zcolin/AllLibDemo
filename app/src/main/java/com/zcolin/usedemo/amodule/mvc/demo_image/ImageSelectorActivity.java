@@ -15,11 +15,13 @@ import com.zcolin.frame.permission.PermissionsResultAction;
 import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.SelectionCreator;
+import com.zhihu.matisse.engine.impl.GlideEngine;
+import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
-import java.util.ArrayList;
-
-import me.nereo.multi_image_selector.MultiImageSelector;
-
+import java.util.List;
 
 /**
  * 图片选择示例
@@ -30,7 +32,6 @@ public class ImageSelectorActivity extends BaseActivity {
     private RadioGroup mChoiceMode, mShowCamera;
     private EditText mRequestNum;
 
-    private ArrayList<String> mSelectPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,8 @@ public class ImageSelectorActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PermissionHelper.requestPermission(mActivity, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+                PermissionHelper.requestPermission(mActivity, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionsResultAction() {
                     @Override
                     public void onGranted() {
                         pickImage();
@@ -92,27 +94,42 @@ public class ImageSelectorActivity extends BaseActivity {
             }
         }
 
-        Intent intent = null;
+        SelectionCreator selCreator;
         if (mChoiceMode.getCheckedRadioButtonId() == R.id.single) {
-            intent = MultiImageSelector.create()
-                                       .showCamera(showCamera)
-                                       .single()
-                                       .origin(mSelectPath)
-                                       .createIntent(mActivity);
+            selCreator = Matisse.from(mActivity)
+                                .choose(MimeType.ofImage(), true)
+                                .showSingleMediaType(true)
+                                .countable(true)
+                                .maxSelectable(1)
+                                .restrictOrientation(1)
+                                .thumbnailScale(0.85F)
+                                .imageEngine(new GlideEngine())
+                                .theme(com.zhihu.matisse.R.style.Matisse_Dracula)
+                                .countable(false);
         } else {
-            intent = MultiImageSelector.create()
-                                       .showCamera(showCamera)
-                                       .count(maxNum)
-                                       .multi()
-                                       .origin(mSelectPath)
-                                       .createIntent(mActivity);
+            selCreator = Matisse.from(mActivity)
+                                .choose(MimeType.ofImage(), true)
+                                .showSingleMediaType(true)
+                                .countable(true)
+                                .maxSelectable(maxNum)
+                                .restrictOrientation(1)
+                                .thumbnailScale(0.85F)
+                                .imageEngine(new GlideEngine())
+                                .theme(com.zhihu.matisse.R.style.Matisse_Dracula)
+                                .countable(false);
         }
+
+        if (showCamera) {
+            selCreator.capture(true)
+                      .captureStrategy(new CaptureStrategy(true, getPackageName() + ".matisse_fileprovider"));
+        }
+        Intent intent = selCreator.createIntent();
 
         startActivityWithCallback(intent, new ResultActivityHelper.ResultActivityListener() {
             @Override
             public void onResult(int resultCode, Intent data) {
-                if (resultCode == RESULT_OK) {
-                    mSelectPath = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
+                if (resultCode == RESULT_OK && data != null) {
+                    List<String> mSelectPath = Matisse.obtainPathResult(data);
                     StringBuilder sb = new StringBuilder();
                     for (String p : mSelectPath) {
                         sb.append(p);

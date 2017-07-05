@@ -133,7 +133,7 @@ dependencies {
     compile 'com.github.zcolin:ZEasyPR:1.1.2'//车牌识别
     compile 'com.github.zcolin:ZFrame:1.3.4' 
     compile 'com.github.zcolin:ZBarCodeScanner:latest.release'//二维码扫描
-    compile 'com.github.zcolin:ZMultiImageSelector:latest.release'//多图选择    
+    compile 'com.github.zcolin:Matisse:1.0.6'//多图选择    
     compile 'com.github.zcolin:PullRecyclerView:latest.release'//下拉刷新
     compile 'com.github.zcolin:ZRecyclerView:latest.release'//下拉刷新
     compile 'com.github.zcolin:ZUILib:1.3.0'//UI库 
