@@ -2,6 +2,7 @@ package com.zcolin.usedemo.amodule.mvc.demo_image;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -101,7 +102,7 @@ public class ImageSelectorActivity extends BaseActivity {
                                 .showSingleMediaType(true)
                                 .countable(true)
                                 .maxSelectable(1)
-                                .restrictOrientation(1)
+                                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                                 .thumbnailScale(0.85F)
                                 .imageEngine(new GlideEngine())
                                 .theme(com.zhihu.matisse.R.style.Matisse_Dracula)
@@ -112,7 +113,7 @@ public class ImageSelectorActivity extends BaseActivity {
                                 .showSingleMediaType(true)
                                 .countable(true)
                                 .maxSelectable(maxNum)
-                                .restrictOrientation(1)
+                                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                                 .thumbnailScale(0.85F)
                                 .imageEngine(new GlideEngine())
                                 .theme(com.zhihu.matisse.R.style.Matisse_Dracula)
