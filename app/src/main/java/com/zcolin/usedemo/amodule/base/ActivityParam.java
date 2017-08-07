@@ -10,12 +10,14 @@
 package com.zcolin.usedemo.amodule.base;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
+@Inherited
 public @interface ActivityParam {
     boolean ISIMMERSE_DEF_VALUE             = false;
     boolean ISFULLSCREEN_DEF_VALUE          = false;

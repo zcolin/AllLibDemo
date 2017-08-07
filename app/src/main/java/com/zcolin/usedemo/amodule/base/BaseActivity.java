@@ -28,6 +28,8 @@ import com.zcolin.frame.util.ScreenUtil;
 import com.zcolin.frame.util.StringUtil;
 import com.zcolin.usedemo.R;
 
+import java.lang.reflect.Method;
+
 
 /**
  * 客户端Activity的基类
@@ -48,8 +50,8 @@ public abstract class BaseActivity extends BaseFrameActivity {
     private static final int INDEX_ISSHOWTOOLBAR         = 3;
     private static final int INDEX_ISSECONDLEVELACTIVITY = 4;
 
-    private boolean[] activityParam = new boolean[]{ActivityParam.ISIMMERSE_DEF_VALUE, ActivityParam.ISFULLSCREEN_DEF_VALUE,
-            ActivityParam.ISIMMERSEPADDINGTOP_DEF_VALUE, ActivityParam.ISSHOWTOOLBAR_DEF_VALUE, ActivityParam.ISSECONDLEVELACTIVITY_DEF_VALUE};
+    private boolean[] activityParam = new boolean[]{ActivityParam.ISIMMERSE_DEF_VALUE, ActivityParam.ISFULLSCREEN_DEF_VALUE, ActivityParam
+            .ISIMMERSEPADDINGTOP_DEF_VALUE, ActivityParam.ISSHOWTOOLBAR_DEF_VALUE, ActivityParam.ISSECONDLEVELACTIVITY_DEF_VALUE};
 
     private Toolbar  toolbar;
     private View     toolBarView;           //自定义的toolBar的布局
@@ -68,6 +70,36 @@ public abstract class BaseActivity extends BaseFrameActivity {
             activityParam[INDEX_ISIMMERSEPADDINGTOP] = requestParamsUrl.isImmersePaddingTop();
             activityParam[INDEX_ISSHOWTOOLBAR] = requestParamsUrl.isShowToolBar();
             activityParam[INDEX_ISSECONDLEVELACTIVITY] = requestParamsUrl.isSecondLevelActivity();
+        }
+    }
+
+    private void injectZClick() {
+        Method[] methods = getClass().getDeclaredMethods();
+        for (final Method method : methods) {
+            ZClick clickArray = method.getAnnotation(ZClick.class);//通过反射api获取方法上面的注解
+            if (clickArray != null && clickArray.value().length > 0) {
+                method.setAccessible(true);
+                final boolean isHasParam = method.getParameterTypes() != null && method.getParameterTypes().length > 0;
+                for (int click : clickArray.value()) {
+                    final View view = getView(click);//通过注解的值获取View控件
+                    if (view == null)
+                        return;
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                if (isHasParam) {
+                                    method.invoke(mActivity, view);
+                                } else {
+                                    method.invoke(mActivity);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
         }
     }
 
@@ -108,6 +140,8 @@ public abstract class BaseActivity extends BaseFrameActivity {
                 viewGroup.setPadding(0, ScreenUtil.getStatusBarHeight(this), 0, 0);
             }
         }
+
+        injectZClick();
     }
 
     @Override
@@ -128,6 +162,8 @@ public abstract class BaseActivity extends BaseFrameActivity {
                 viewGroup.setPadding(0, ScreenUtil.getStatusBarHeight(this), 0, 0);
             }
         }
+
+        injectZClick();
     }
 
 
