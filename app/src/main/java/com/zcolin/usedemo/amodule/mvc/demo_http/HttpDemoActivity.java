@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.zcolin.frame.http.ZHttp;
 import com.zcolin.frame.http.response.ZResponse;
 import com.zcolin.frame.http.response.ZStringResponse;
 import com.zcolin.frame.util.LogUtil;
@@ -46,7 +47,7 @@ public class HttpDemoActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ApiMgr.cancelRequest(arrayTag);
+        ZHttp.cancelRequest(arrayTag);
     }
 
     protected void initView() {

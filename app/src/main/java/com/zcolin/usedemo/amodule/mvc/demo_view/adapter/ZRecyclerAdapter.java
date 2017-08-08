@@ -27,7 +27,7 @@ public class ZRecyclerAdapter extends BaseRecyclerAdapter<ListItemData> {
 
     @Override
     public int getItemLayoutId(int viewType) {
-        return R.layout.view_recycler_item_1;
+        return R.layout.recycleritem_1;
     }
 
     @Override

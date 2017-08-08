@@ -59,13 +59,4 @@ public class ApiMgr {
         fileParams.put("key", new File(""));
         return ZHttp.uploadFile(HttpUrl.URL_BAIDU_TEST, params, fileParams, response);
     }
-
-
-    public static void cancelRequest(String... tag) {
-        if (tag != null && tag.length > 0) {
-            for (String s : tag) {
-                ZHttp.cancelRequest(s);
-            }
-        }
-    }
 }

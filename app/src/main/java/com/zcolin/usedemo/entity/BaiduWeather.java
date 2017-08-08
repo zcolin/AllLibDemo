@@ -7,14 +7,14 @@
 package com.zcolin.usedemo.entity;
 
 
-import com.zcolin.usedemo.http.entity.HttpBaseReplyBean;
+import com.zcolin.usedemo.http.entity.BaseReply;
 
 import java.util.List;
 
 /**
  * 信息实体，此处demo为User的信息
  */
-public class BaiduWeather extends HttpBaseReplyBean {
+public class BaiduWeather extends BaseReply {
 
     
     public String            date;
