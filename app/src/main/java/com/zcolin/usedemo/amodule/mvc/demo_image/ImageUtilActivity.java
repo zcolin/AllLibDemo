@@ -40,7 +40,7 @@ public class ImageUtilActivity extends BaseActivity {
     }
 
     public void displayImage() {
-        ImageLoaderUtils.displayImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv1);
+        ImageLoaderUtils.displayImage(this, "http://news.xinhuanet.com/politics/2017-08/13/1121475837_15026253145521n.jpg", iv1);
         // ImageLoaderUtils.displayImageWithPlaceholder(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv1, R.drawable.ic_launcher);
         ImageLoaderUtils.displayCircleImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv2);
         ImageLoaderUtils.displayRoundCornersImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv3, 15, R.drawable.ic_launcher);

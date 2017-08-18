@@ -3,12 +3,13 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     16-11-9 下午3:41
+ *   date     17-8-18 下午2:16
  * ********************************************************
  */
 
 package com.zcolin.usedemo.utils;
 
+import android.Manifest;
 import android.content.Intent;
 
 import com.zcolin.frame.app.BaseFrameActivity;
@@ -34,7 +35,14 @@ public class PhotoSelectedUtil {
      * @param context 只能为BaseFrameFrag或者BaseActivity的子类
      */
     public static void selectPhoto(final Object context, final ResultActivityHelper.ResultActivityListener resultListener) {
-        PermissionHelper.requestReadSdCardPermission(context, new PermissionsResultAction() {
+        String[] permissions;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
+        } else {
+            permissions = new String[]{Manifest.permission.CAMERA};
+        }
+
+        PermissionHelper.requestPermission(context, permissions, new PermissionsResultAction() {
             @Override
             public void onGranted() {
                 if (context instanceof BaseFrameActivity) {
@@ -56,7 +64,7 @@ public class PhotoSelectedUtil {
 
             @Override
             public void onDenied(String permission) {
-                ToastUtil.toastShort("请授予本程序读取SD卡权限");
+                ToastUtil.toastShort("请授予本程序读取SD卡和拍照权限");
             }
         });
     }
@@ -68,7 +76,14 @@ public class PhotoSelectedUtil {
      * @param photoNumber 选取的最大图片数量
      */
     public static void selectPhoto(final Object context, final int photoNumber, final ResultActivityHelper.ResultActivityListener resultListener) {
-        PermissionHelper.requestReadSdCardPermission(context, new PermissionsResultAction() {
+        String[] permissions;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        } else {
+            permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        }
+
+        PermissionHelper.requestPermission(context, permissions, new PermissionsResultAction() {
             @Override
             public void onGranted() {
                 if (context instanceof BaseFrameActivity) {
@@ -90,7 +105,7 @@ public class PhotoSelectedUtil {
 
             @Override
             public void onDenied(String permission) {
-                ToastUtil.toastShort("请授予本程序读取SD卡权限");
+                ToastUtil.toastShort("请授予本程序读取SD卡和拍照权限");
             }
         });
     }

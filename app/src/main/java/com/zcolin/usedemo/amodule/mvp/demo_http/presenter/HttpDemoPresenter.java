@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.zcolin.frame.http.ZHttp;
 import com.zcolin.frame.http.response.ZResponse;
 import com.zcolin.frame.http.response.ZStringResponse;
 import com.zcolin.frame.util.LogUtil;
@@ -40,7 +41,7 @@ public class HttpDemoPresenter extends BaseMVPPresenter<IHttpDemoView> {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ApiMgr.cancelRequest(arrayTag);
+        ZHttp.cancelRequest(arrayTag);
     }
 
     /**
