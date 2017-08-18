@@ -53,3 +53,17 @@ public static java.lang.String TABLENAME;
     java.lang.Object readResolve();
 }
 -keep public class * implements java.io.Serializable {*;}
+
+#js调用不被混淆
+-keepattributes JavascriptInterface
+
+#排除所有注解类
+-keepattributes *Annotation*
+-keep class * extends java.lang.annotation.Annotation { *; }
+-keep interface * extends java.lang.annotation.Annotation { *; }
+
+#使用ZClick注解的函数不混淆
+-keep,allowobfuscation @interface com.fosung.lighthouse.amodule.base.ZClick 
+-keepclassmembers class * {  
+    @com.fosung.lighthouse.amodule.base.ZClick *;  
+}  
