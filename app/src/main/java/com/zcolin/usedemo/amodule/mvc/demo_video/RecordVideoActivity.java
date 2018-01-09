@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:28
+ *   date     18-1-9 下午5:02
  * ********************************************************
  */
 
@@ -22,7 +22,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.zcolin.frame.app.ResultActivityHelper;
 import com.zcolin.frame.util.FileUtil;
 import com.zcolin.frame.util.ScreenUtil;
 import com.zcolin.frame.util.ToastUtil;
@@ -165,14 +164,10 @@ public class RecordVideoActivity extends BaseActivity implements View.OnTouchLis
             //录制结束，在正常位置，录制完成跳转页面
             buttonShoot.setOnTouchListener(null);
             Intent intent = new Intent(this, RecordVideoPreviewActivity.class);
-            intent.putExtra("data", videoRecorderView.getRecordFile()
-                                                     .getAbsolutePath());
-            startActivityWithCallback(intent, new ResultActivityHelper.ResultActivityListener() {
-                @Override
-                public void onResult(int resultCode, Intent data) {
-                    if (resultCode == RESULT_OK) {
-                        finish();
-                    }
+            intent.putExtra("data", videoRecorderView.getRecordFile().getAbsolutePath());
+            startActivityWithCallback(intent, (resultCode, data) -> {
+                if (resultCode == RESULT_OK) {
+                    finish();
                 }
             });
         }

@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-3-28 上午10:56
+ *   date     18-1-9 下午5:02
  * ********************************************************
  */
 
@@ -78,8 +78,7 @@ public class ItemZFBMgr {
     public static void saveMyItems(ArrayList<AppsItemEntity> listMyItems) {
         StringBuilder sBuilder = new StringBuilder();
         for (AppsItemEntity entity : listMyItems) {
-            sBuilder.append(entity.appId)
-                    .append(",");
+            sBuilder.append(entity.appId).append(",");
         }
 
         if (sBuilder.length() > 0) {

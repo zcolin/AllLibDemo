@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-3-28 上午11:04
+ *   date     18-1-9 下午5:02
  * ********************************************************
  */
 
@@ -173,8 +173,7 @@ public class ItemDragMgr {
     public static void saveItems(ArrayList<AppsItemEntity> listMyItems, ArrayList<AppsItemEntity> listOtherItems) {
         StringBuilder sBuilder = new StringBuilder();
         for (AppsItemEntity entity : listMyItems) {
-            sBuilder.append(entity.appId)
-                    .append(",");
+            sBuilder.append(entity.appId).append(",");
         }
 
         if (sBuilder.length() > 0) {
@@ -185,8 +184,7 @@ public class ItemDragMgr {
 
         sBuilder = new StringBuilder();
         for (AppsItemEntity entity : listOtherItems) {
-            sBuilder.append(entity.appId)
-                    .append(",");
+            sBuilder.append(entity.appId).append(",");
         }
 
         if (sBuilder.length() > 0) {

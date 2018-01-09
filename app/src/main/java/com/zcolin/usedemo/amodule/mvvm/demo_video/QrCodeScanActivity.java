@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-26 下午3:36
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -51,15 +51,12 @@ public class QrCodeScanActivity extends BaseActivity {
     }
 
     protected void initView() {
-        view = (BaseQrCodeScannerView) findViewById(R.id.scan_view);
+        view = findViewById(R.id.scan_view);
         view.onCreate();
-        view.setOnScanResultListener(new BaseQrCodeScannerView.OnScanResultListener() {
-            @Override
-            public boolean scanResult(String result) {
-                ToastUtil.toastShort(result);
-                QrCodeScanActivity.this.finish();
-                return true;//false会提示扫描错误，并重新开始扫描
-            }
+        view.setOnScanResultListener(result -> {
+            ToastUtil.toastShort(result);
+            QrCodeScanActivity.this.finish();
+            return true;//false会提示扫描错误，并重新开始扫描
         });
     }
 

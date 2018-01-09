@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-8 下午2:56
+ *   date     18-1-9 下午5:02
  * ********************************************************
  */
 
@@ -58,8 +58,7 @@ public class DaoMgr {
         } else {
             queryBuilder.orderAsc(EmployeeDao.Properties.Date);
         }
-        return DaoManager.getDaoHelper()
-                         .queryObjects(queryBuilder);
+        return DaoManager.getDaoHelper().queryObjects(queryBuilder);
     }
 
     /**

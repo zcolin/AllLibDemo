@@ -99,24 +99,38 @@ android {
 //        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name, UMENG_CHANNEL2_VALUE: name]//menifest中使用${UMENG_CHANNEL_VALUE}
 //    }
 
-//    //修改输出文件的文件名
+    //修改输出文件的文件名
+//    def fileMap = [:]
 //    applicationVariants.all { variant ->
-//        variant.outputs.each { output ->
+//        variant.outputs.all { output ->
 //            def outputFile = output.outputFile
-//            def apkName = "${defaultConfig.versionName}_build-${defaultConfig.versionCode}"
+//            def apkName = getApkName("${defaultConfig.versionCode}")
 //            if (outputFile != null && variant.buildType.name == "release") {
 //                variant.productFlavors.each { flavor ->  //多渠道包名前缀
-//                    def fileName = flavor.name + "_AllLibDemo_" + apkName + ".apk"
-//                    def destPath = outputFile.getParentFile().getParentFile().getParentFile().getParentFile().getParent();
-//                    output.outputFile = new File(destPath + rootProject.ext.release_path, fileName)
+//                    def fileName = flavor.name + "_" + rootProject.ext.apkName + "_" + apkName + ".apk"
+//                    outputFileName = fileName
+//                    //往数组添加输出的文件路径
+//                    fileMap.put(new File(outputFile.parentFile.absolutePath, fileName), flavor.name)
 //                }
+//            }
+//        }
+//    }
+//
+//    tasks.whenTaskAdded { task ->
+//        productFlavors.find { flavor ->
+//            if (task.name.equals('assemble' + flavor.name) || task.name.equals('assembleRelease')) {
+//                task.doLast {
+//                    //遍历文件数组并进行操作
+//                    forEachFile(fileMap)
+//                }
+//                return true
 //            }
 //        }
 //    }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     sourceSets {
         main {
@@ -124,38 +138,68 @@ android {
         }
     }
 }
+
+//遍历打包文件
+def forEachFile(fileMap) {
+    fileMap.each { file, flavor ->
+        //遍历进行文件操作
+        moveout_apk(file, flavor)
+    }
+}
+
+//copy安装包到目标文件夹
+def moveout_apk(orignalFile, flavor) {
+    def intoFile = getRootDir().absolutePath + rootProject.ext.release_path + File.separator + flavor
+    copy {
+        from orignalFile.absolutePath
+        into intoFile
+    }
+}
+
+//获取Git版本号
+def getApkName(versionCode) {
+    return rootProject.ext.rootVersionName + "_build_" + versionCode;
+}
+
+//获取Git版本号
+def getGitVersion() {
+    def cmd = 'git rev-list HEAD --count'
+    def gitVersion = cmd.execute().text.trim().toInteger()
+    return gitVersion;
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.android.support:cardview-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
-    compile 'com.github.zcolin:ZIjkPlayer:1.1.9'//视频播放
-    compile 'com.github.zcolin:ZEasyPR:1.1.2'//车牌识别
-    compile 'com.github.zcolin:ZFrame:1.3.4' 
-    compile 'com.github.zcolin:ZBarCodeScanner:latest.release'//二维码扫描
-    compile 'com.github.zcolin:Matisse:1.0.6'//多图选择    
-    compile 'com.github.zcolin:PullRecyclerView:latest.release'//下拉刷新
-    compile 'com.github.zcolin:ZRecyclerView:latest.release'//下拉刷新
-    compile 'com.github.zcolin:ZUILib:1.3.0'//UI库 
-    compile 'com.github.zcolin.TPartyLibs:libShareSdk:1.0.2'
-    compile 'com.github.zcolin.TPartyLibs:libAmapLocation:1.0.2'
+    compile "com.android.support:recyclerview-v7:$supprotVersion"
+    compile "com.android.support:cardview-v7:$supprotVersion"
+    compile "com.android.support:design:$supprotVersion"
+    compile "com.github.zcolin:ZIjkPlayer:latest.release"//视频播放
+    compile "com.github.zcolin:ZEasyPR:latest.release"//车牌识别
+    compile "com.github.zcolin:ZFrame:latest.release"
+    compile "com.github.zcolin:ZBarCodeScanner:latest.release"//二维码扫描
+    compile "com.github.zcolin:Matisse:latest.release"//多图选择    
+    compile "com.github.zcolin:PullRecyclerView:latest.release"//下拉刷新
+    compile "com.github.zcolin:ZRecyclerView:latest.release"//下拉刷新
+    compile "com.github.zcolin:ZUILib:latest.release"//UI库 
+    compile "com.github.zcolin.TPartyLibs:libShareSdk:latest.release"
+    compile "com.github.zcolin.TPartyLibs:libAmapLocation:latest.release"
     //    facebook调试工具 使用chrome查看，可以进行数据库和http报文查看
-    //    compile 'com.facebook.stetho:stetho:1.4.2'
-    //    compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
+    //    compile "com.facebook.stetho:stetho:1.4.2"
+    //    compile "com.facebook.stetho:stetho-okhttp3:1.4.2"
     //leakcanary
-    //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    //    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    compile project(':outlib')
+    //    debugCompile "com.squareup.leakcanary:leakcanary-android:1.5"
+    //    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:1.5"
+    //    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:1.5"
+    compile project(":outlib")
 
     // Dependencies for local unit tests
-    testCompile 'junit:junit:4.11'
+    testCompile "junit:junit:4.11"
     // required if you want to use Mockito for unit tests
-    testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile "org.mockito:mockito-core:1.9.5"
     // required if you want to use Powermock for unit tests
-    testCompile 'org.powermock:powermock-module-junit4:1.5.6'
-    testCompile 'org.powermock:powermock-module-junit4-rule:1.5.6'
-    testCompile 'org.powermock:powermock-api-mockito:1.5.6'
+    testCompile "org.powermock:powermock-module-junit4:1.5.6"
+    testCompile "org.powermock:powermock-module-junit4-rule:1.5.6"
+    testCompile "org.powermock:powermock-api-mockito:1.5.6"
 }
 
 

@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-18 下午1:47
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 
 package com.zcolin.usedemo.amodule.mvc.main.fragment;
 
@@ -83,9 +85,9 @@ public class VideoImageFragment extends BaseFrameFrag implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if(v == listButton.get(0)){
+        if (v == listButton.get(0)) {
             ActivityUtil.startActivity(mActivity, NavigationActivity.class);
-        }else if (v == listButton.get(1)) {
+        } else if (v == listButton.get(1)) {
             PermissionHelper.requestPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO}, new PermissionsResultAction() {
                 @Override
                 public void onGranted() {
@@ -111,9 +113,9 @@ public class VideoImageFragment extends BaseFrameFrag implements View.OnClickLis
             });
         } else if (v == listButton.get(3)) {
             ActivityUtil.startActivity(mActivity, ImageSelectorActivity.class);
-        }else if (v == listButton.get(4)) {
+        } else if (v == listButton.get(4)) {
             ActivityUtil.startActivity(mActivity, ImageUtilActivity.class);
-        }else if (v == listButton.get(5)) {
+        } else if (v == listButton.get(5)) {
             PermissionHelper.requestCameraPermission(this, new PermissionsResultAction() {
                 @Override
                 public void onGranted() {

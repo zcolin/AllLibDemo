@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:33
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -47,7 +47,7 @@ public class DesignSupportActivity2 extends BaseActivity {
         toolbar = getView(R.id.toolbar);
         tabLayout = getView(R.id.tabs);
         viewPager = getView(R.id.viewpager);
-        collapsingToolbar =getView(R.id.collapsing_toolbar);
+        collapsingToolbar = getView(R.id.collapsing_toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

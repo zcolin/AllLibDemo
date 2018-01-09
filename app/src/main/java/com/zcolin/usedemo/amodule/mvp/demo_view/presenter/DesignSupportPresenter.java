@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-23 下午3:44
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -30,12 +30,9 @@ public class DesignSupportPresenter extends BaseMVPPresenter<DesignSupportView> 
      */
     public void requestData(final boolean isRefresh) {
         mPage = isRefresh ? 1 : mPage + 1;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mView.setDataToRecyclerView(TestDataMgr.getTextList(mPage), mPage == 1);
-                mView.setPullLoadMoreCompleted();
-            }
+        new Handler().postDelayed(() -> {
+            mView.setDataToRecyclerView(TestDataMgr.getTextList(mPage), mPage == 1);
+            mView.setPullLoadMoreCompleted();
         }, 1000);
     }
 }

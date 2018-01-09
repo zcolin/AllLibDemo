@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:33
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -36,15 +36,11 @@ public class VideoFragmentPlayActivity extends BaseActivity {
         if ("single".equals(strData)) {
             setToolbarTitle("Fragment单视频播放");
             fragment = VideoPlayFragment.newInstance(false, "http://baobab.wandoujia.com/api/v1/playUrl?vid=2614&editionType=normal");
-            getSupportFragmentManager().beginTransaction()
-                                       .replace(R.id.content, fragment)
-                                       .commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment).commitAllowingStateLoss();
         } else {
             setToolbarTitle("Fragment列表视频播放");
             fragment = VideoRecyclerViewFragment.newInstance();
-            getSupportFragmentManager().beginTransaction()
-                                       .replace(R.id.content, fragment)
-                                       .commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment).commitAllowingStateLoss();
         }
     }
 

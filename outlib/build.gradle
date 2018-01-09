@@ -16,13 +16,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.github.zcolin:ZFrame:latest.release'
-    compile 'com.github.zcolin:ZUILib:latest.release'
+    compile "com.android.support:appcompat-v7:$supprotVersion"
+    compile "com.android.support:recyclerview-v7:$supprotVersion"
+    compile "com.github.zcolin:ZFrame:latest.release"
+    compile "com.github.zcolin:ZUILib:latest.release"
     //程序框架 
 }

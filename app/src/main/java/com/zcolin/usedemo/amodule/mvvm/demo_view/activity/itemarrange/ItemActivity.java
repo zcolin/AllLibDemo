@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-26 下午3:36
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvvm.demo_view.activity.itemarrange;
@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.zcolin.frame.app.ResultActivityHelper;
 import com.zcolin.outlib.views.itemarrange.AppsItemEntity;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
@@ -56,8 +55,7 @@ public class ItemActivity extends BaseActivity {
 
         ArrayList<AppsItemEntity> listMyItems = ItemZFBMgr.getMyItems();
         int size = listMyItems.size() >= columnCount * 2 - fixedCount ? columnCount * 2 - fixedCount : listMyItems.size();
-        int dimensSmall = (int) mActivity.getResources()
-                                         .getDimension(R.dimen.dimens_small);
+        int dimensSmall = (int) mActivity.getResources().getDimension(R.dimen.dimens_small);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
         params.rightMargin = dimensSmall;
         llOperateBottom.removeAllViews();
@@ -65,12 +63,7 @@ public class ItemActivity extends BaseActivity {
         for (int i = 0; i < size; i++) {
             final AppsItemEntity entity = listMyItems.get(i);
             TextView tv = getItemTextView(entity, dimensSmall);
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ItemZFBMgr.onItemClick(mActivity, entity);
-                }
-            });
+            tv.setOnClickListener(v -> ItemZFBMgr.onItemClick(mActivity, entity));
             if (i <= columnCount - 1) {
                 llOperateTop.addView(tv, params);
             } else if (i >= columnCount && i <= columnCount * 2 - fixedCount - 1) {
@@ -80,19 +73,11 @@ public class ItemActivity extends BaseActivity {
 
         //增加全部view和 补位空白view
         TextView tvAll = getItemTextView(ItemZFBMgr.getFixedItem(), dimensSmall);
-        tvAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityWithCallback(new Intent(mActivity, ItemArrangeZFBActivity.class), new ResultActivityHelper.ResultActivityListener() {
-                    @Override
-                    public void onResult(int resultCode, Intent data) {
-                        if (resultCode == Activity.RESULT_OK) {
-                            initZFBItem();
-                        }
-                    }
-                });
+        tvAll.setOnClickListener(v -> startActivityWithCallback(new Intent(mActivity, ItemArrangeZFBActivity.class), (resultCode, data) -> {
+            if (resultCode == Activity.RESULT_OK) {
+                initZFBItem();
             }
-        });
+        }));
         if (size <= columnCount - fixedCount) {
             llOperateBottom.setVisibility(View.GONE);
             llOperateTop.addView(tvAll, params);
@@ -119,8 +104,7 @@ public class ItemActivity extends BaseActivity {
 
         ArrayList<AppsItemEntity> listMyItems = ItemDragMgr.getMyItems();
         int size = listMyItems.size() >= columnCount * 2 - fixedCount ? columnCount * 2 - fixedCount : listMyItems.size();
-        int dimensSmall = (int) mActivity.getResources()
-                                         .getDimension(R.dimen.dimens_small);
+        int dimensSmall = (int) mActivity.getResources().getDimension(R.dimen.dimens_small);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
         params.rightMargin = dimensSmall;
         llOperateBottom.removeAllViews();
@@ -128,12 +112,7 @@ public class ItemActivity extends BaseActivity {
         for (int i = 0; i < size; i++) {
             final AppsItemEntity entity = listMyItems.get(i);
             TextView tv = getItemTextView(entity, dimensSmall);
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ItemDragMgr.onItemClick(mActivity, entity);
-                }
-            });
+            tv.setOnClickListener(v -> ItemDragMgr.onItemClick(mActivity, entity));
             if (i <= columnCount - 1) {
                 llOperateTop.addView(tv, params);
             } else if (i >= columnCount && i <= columnCount * 2 - fixedCount - 1) {
@@ -143,19 +122,11 @@ public class ItemActivity extends BaseActivity {
 
         //增加全部view和 补位空白view
         TextView tvAll = getItemTextView(ItemDragMgr.getFixedItem(), dimensSmall);
-        tvAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityWithCallback(new Intent(mActivity, ItemArrangeDragActivity.class), new ResultActivityHelper.ResultActivityListener() {
-                    @Override
-                    public void onResult(int resultCode, Intent data) {
-                        if (resultCode == Activity.RESULT_OK) {
-                            initDragItem();
-                        }
-                    }
-                });
+        tvAll.setOnClickListener(v -> startActivityWithCallback(new Intent(mActivity, ItemArrangeDragActivity.class), (resultCode, data) -> {
+            if (resultCode == Activity.RESULT_OK) {
+                initDragItem();
             }
-        });
+        }));
         if (size <= columnCount - fixedCount) {
             llOperateBottom.setVisibility(View.GONE);
             llOperateTop.addView(tvAll, params);

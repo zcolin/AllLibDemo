@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-15 上午9:54
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 
 package com.zcolin.usedemo.app;
 
@@ -18,9 +20,6 @@ import com.zcolin.frame.util.LogUtil;
 import com.zcolin.usedemo.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
 
 import okhttp3.OkHttpClient;
 
@@ -46,7 +45,7 @@ public class App extends BaseApp {
         //if (BuildConfig.DEBUG) {
         //    Stetho.initializeWithDefaults(this);
         //}
-        
+
         APP_CONTEXT = BaseApp.APP_CONTEXT;
         LogUtil.LOG_DEBUG = BuildConfig.DEBUG;
         initHttpOptions();
@@ -63,12 +62,7 @@ public class App extends BaseApp {
         OkHttpClient okHttpClient = builder.connectTimeout(10000L, TimeUnit.MILLISECONDS)
                                            .readTimeout(10000L, TimeUnit.MILLISECONDS)
                                            .cookieJar(cookieJar1)
-                                           .hostnameVerifier(new HostnameVerifier() {
-                                               @Override
-                                               public boolean verify(String hostname, SSLSession session) {
-                                                   return true;
-                                               }
-                                           })
+                                           .hostnameVerifier((hostname, session) -> true)
                                            .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
                                            .build();
         OkHttpUtils.initClient(okHttpClient);

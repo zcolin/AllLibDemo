@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-3-27 上午11:48
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -119,105 +119,88 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 };
             case TYPE_MY_APPS:
                 final AppsViewHolder myHolder = new AppsViewHolder(inflater.inflate(R.layout.itemarrange_apps, parent, false), 0);
-                myHolder.rlMy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(final View v) {
-                        int position = myHolder.getAdapterPosition();
-                        if (isEditMode) {
-                            RecyclerView recyclerView = (RecyclerView) parent;
-                            View currentView = recyclerView.getLayoutManager()
-                                                           .findViewByPosition(position);
-                            int[] location = getMyToOtherTargetViewLocation(recyclerView);
+                myHolder.rlMy.setOnClickListener(v -> {
+                    int position = myHolder.getAdapterPosition();
+                    if (isEditMode) {
+                        RecyclerView recyclerView = (RecyclerView) parent;
+                        View currentView = recyclerView.getLayoutManager().findViewByPosition(position);
+                        int[] location = getMyToOtherTargetViewLocation(recyclerView);
 
-                            moveMyToOther(myHolder);
-                            if (location != null) {
-                                startAnimation(recyclerView, currentView, location[0], location[1]);
-                            }
-                        } else {
-                            mAppsItemClickListener.onItemClick(v, position - COUNT_PRE_MY_HEADER, 0);
+                        moveMyToOther(myHolder);
+                        if (location != null) {
+                            startAnimation(recyclerView, currentView, location[0], location[1]);
                         }
+                    } else {
+                        mAppsItemClickListener.onItemClick(v, position - COUNT_PRE_MY_HEADER, 0);
                     }
                 });
 
-                myHolder.rlMy.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        if (!isEditMode) {
-                            edit();
-                        }
-                        return false;
+                myHolder.rlMy.setOnLongClickListener(view -> {
+                    if (!isEditMode) {
+                        edit();
                     }
+                    return false;
                 });
 
-                myHolder.rlMy.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if (isEditMode) {
-                            switch (MotionEventCompat.getActionMasked(event)) {
-                                case MotionEvent.ACTION_DOWN:
-                                    startTime = System.currentTimeMillis();
-                                    break;
-                                case MotionEvent.ACTION_MOVE:
-                                    if (System.currentTimeMillis() - startTime > SPACE_TIME) {
-                                        mItemTouchHelper.startDrag(myHolder);
-                                    }
-                                    break;
-                                case MotionEvent.ACTION_CANCEL:
-                                case MotionEvent.ACTION_UP:
-                                    startTime = 0;
-                                    break;
-                            }
-
+                myHolder.rlMy.setOnTouchListener((v, event) -> {
+                    if (isEditMode) {
+                        switch (MotionEventCompat.getActionMasked(event)) {
+                            case MotionEvent.ACTION_DOWN:
+                                startTime = System.currentTimeMillis();
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                if (System.currentTimeMillis() - startTime > SPACE_TIME) {
+                                    mItemTouchHelper.startDrag(myHolder);
+                                }
+                                break;
+                            case MotionEvent.ACTION_CANCEL:
+                            case MotionEvent.ACTION_UP:
+                                startTime = 0;
+                                break;
                         }
-                        return false;
+
                     }
+                    return false;
                 });
                 return myHolder;
             case TYPE_OTHER_APPS:
                 final AppsViewHolder otherHolder = new AppsViewHolder(inflater.inflate(R.layout.itemarrange_apps, parent, false), 1);
-                otherHolder.rlMy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int position = otherHolder.getAdapterPosition();
-                        if (isEditMode) {
-                            RecyclerView recyclerView = ((RecyclerView) parent);
-                            GridLayoutManager gridLayoutManager = ((GridLayoutManager) recyclerView.getLayoutManager());
-                            View currentView = gridLayoutManager.findViewByPosition(position);
+                otherHolder.rlMy.setOnClickListener(v -> {
+                    int position = otherHolder.getAdapterPosition();
+                    if (isEditMode) {
+                        RecyclerView recyclerView = ((RecyclerView) parent);
+                        GridLayoutManager gridLayoutManager = ((GridLayoutManager) recyclerView.getLayoutManager());
+                        View currentView = gridLayoutManager.findViewByPosition(position);
 
-                            int[] location = getOtherToMyTargetViewLocation(recyclerView);
-                            if (location != null) {
-                                // 如果当前位置是otherApps可见的最后一个
-                                // 并且 当前位置不在grid的第一个位置
-                                // 并且 目标位置不在grid的第一个位置
-                                // 则 需要延迟动画时间秒数 notifyItemMove , 这是因为这种情况 , 并不触发ItemAnimator , 会直接刷新界面
-                                // 导致我们的位移动画刚开始,就已经notify完毕,引起不同步问题
-                                int spanCount = gridLayoutManager.getSpanCount();
-                                int targetPosition = listMyAppsItems.size() - 1 + COUNT_PRE_OTHER_HEADER;
-                                if (position == gridLayoutManager.findLastVisibleItemPosition()
-                                        && (position - listMyAppsItems.size() - COUNT_PRE_OTHER_HEADER) % spanCount != 0
-                                        && (targetPosition - COUNT_PRE_MY_HEADER) % spanCount != 0) {
-                                    moveOtherToMyWithDelay(otherHolder);
-                                } else {
-                                    moveOtherToMy(otherHolder);
-                                }
-                                startAnimation(recyclerView, currentView, location[0], location[1]);
+                        int[] location = getOtherToMyTargetViewLocation(recyclerView);
+                        if (location != null) {
+                            // 如果当前位置是otherApps可见的最后一个
+                            // 并且 当前位置不在grid的第一个位置
+                            // 并且 目标位置不在grid的第一个位置
+                            // 则 需要延迟动画时间秒数 notifyItemMove , 这是因为这种情况 , 并不触发ItemAnimator , 会直接刷新界面
+                            // 导致我们的位移动画刚开始,就已经notify完毕,引起不同步问题
+                            int spanCount = gridLayoutManager.getSpanCount();
+                            int targetPosition = listMyAppsItems.size() - 1 + COUNT_PRE_OTHER_HEADER;
+                            if (position == gridLayoutManager.findLastVisibleItemPosition() && (position - listMyAppsItems.size() - COUNT_PRE_OTHER_HEADER) %
+                                    spanCount != 0 && (targetPosition - COUNT_PRE_MY_HEADER) % spanCount != 0) {
+                                moveOtherToMyWithDelay(otherHolder);
                             } else {
                                 moveOtherToMy(otherHolder);
                             }
+                            startAnimation(recyclerView, currentView, location[0], location[1]);
                         } else {
-                            mAppsItemClickListener.onItemClick(v, position - listMyAppsItems.size() - COUNT_PRE_OTHER_HEADER, 1);
+                            moveOtherToMy(otherHolder);
                         }
+                    } else {
+                        mAppsItemClickListener.onItemClick(v, position - listMyAppsItems.size() - COUNT_PRE_OTHER_HEADER, 1);
                     }
                 });
 
-                otherHolder.rlMy.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        if (!isEditMode) {
-                            edit();
-                        }
-                        return false;
+                otherHolder.rlMy.setOnLongClickListener(view -> {
+                    if (!isEditMode) {
+                        edit();
                     }
+                    return false;
                 });
                 return otherHolder;
         }
@@ -256,8 +239,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     }
 
     private int[] getMyToOtherTargetViewLocation(RecyclerView recyclerView) {
-        View targetView = recyclerView.getLayoutManager()
-                                      .findViewByPosition(listMyAppsItems.size() + COUNT_PRE_OTHER_HEADER);
+        View targetView = recyclerView.getLayoutManager().findViewByPosition(listMyAppsItems.size() + COUNT_PRE_OTHER_HEADER);
         if (recyclerView.indexOfChild(targetView) >= 0) {
             int[] location = new int[2];
             RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
@@ -265,8 +247,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
             // 移动后 高度将变化 (我的频道Grid 最后一个item在新的一行第一个)
             if ((listMyAppsItems.size() - COUNT_PRE_MY_HEADER) % spanCount == 0) {
-                View preTargetView = recyclerView.getLayoutManager()
-                                                 .findViewByPosition(listMyAppsItems.size() + COUNT_PRE_OTHER_HEADER - 1);
+                View preTargetView = recyclerView.getLayoutManager().findViewByPosition(listMyAppsItems.size() + COUNT_PRE_OTHER_HEADER - 1);
                 location[0] = preTargetView.getLeft();
                 location[1] = preTargetView.getTop();
             } else {
@@ -309,8 +290,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                             // FirstCompletelyVisibleItemPosition == 0 即 内容不满一屏幕 , targetY值不需要变化
                             // // FirstCompletelyVisibleItemPosition != 0 即 内容满一屏幕 并且 可滑动 , targetY值 + firstItem.getTop
                             if (gridLayoutManager.findFirstCompletelyVisibleItemPosition() != 0) {
-                                int offset = (-recyclerView.getChildAt(0)
-                                                           .getTop()) - recyclerView.getPaddingTop();
+                                int offset = (-recyclerView.getChildAt(0).getTop()) - recyclerView.getPaddingTop();
                                 location[1] += offset;
                             }
                         } else { // 在这种情况下 并且 RecyclerView高度变化时(即可见第一个item的 position != 0),
@@ -392,12 +372,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         if (position == -1) {
             return;
         }
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                notifyItemMoved(position, listMyAppsItems.size() - 1 + COUNT_PRE_MY_HEADER);
-            }
-        }, ANIM_TIME);
+        delayHandler.postDelayed(() -> notifyItemMoved(position, listMyAppsItems.size() - 1 + COUNT_PRE_MY_HEADER), ANIM_TIME);
     }
 
 
@@ -485,7 +460,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         int visibleChildCount = recyclerView.getChildCount();
         for (int i = 0; i < visibleChildCount; i++) {
             View view = recyclerView.getChildAt(i);
-            ImageView ivMyReduceSign = (ImageView) view.findViewById(R.id.iv_editflag);
+            ImageView ivMyReduceSign = view.findViewById(R.id.iv_editflag);
             if (ivMyReduceSign != null) {
                 ivMyReduceSign.setVisibility(View.VISIBLE);
             }
@@ -500,7 +475,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         int visibleChildCount = recyclerView.getChildCount();
         for (int i = 0; i < visibleChildCount; i++) {
             View view = recyclerView.getChildAt(i);
-            ImageView ivMyReduceSign = (ImageView) view.findViewById(R.id.iv_editflag);
+            ImageView ivMyReduceSign = view.findViewById(R.id.iv_editflag);
             if (ivMyReduceSign != null) {
                 ivMyReduceSign.setVisibility(View.INVISIBLE);
             }
@@ -511,11 +486,8 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
      * 获取位移动画
      */
     private TranslateAnimation getTranslateAnimator(float targetX, float targetY) {
-        TranslateAnimation translateAnimation = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, 0f,
-                Animation.ABSOLUTE, targetX,
-                Animation.RELATIVE_TO_SELF, 0f,
-                Animation.ABSOLUTE, targetY);
+        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f, Animation.ABSOLUTE, targetX, Animation
+                .RELATIVE_TO_SELF, 0f, Animation.ABSOLUTE, targetY);
         // RecyclerView默认移动动画250ms 这里设置360ms 是为了防止在位移动画结束后 remove(view)过早 导致闪烁
         translateAnimation.setDuration(ANIM_TIME);
         translateAnimation.setFillAfter(true);
@@ -547,9 +519,9 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         AppsViewHolder(View itemView, int type) {
             super(itemView);
             this.type = type;
-            rlMy = (RelativeLayout) itemView.findViewById(R.id.rl_my);
-            tvMy = (TextView) itemView.findViewById(R.id.tv_name);
-            ivMyReduceSign = (ImageView) itemView.findViewById(R.id.iv_editflag);
+            rlMy = itemView.findViewById(R.id.rl_my);
+            tvMy = itemView.findViewById(R.id.tv_name);
+            ivMyReduceSign = itemView.findViewById(R.id.iv_editflag);
         }
 
         /**

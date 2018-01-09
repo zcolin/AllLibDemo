@@ -1,10 +1,10 @@
 /*
- * **********************************************************
- *   author   colin
- *   company  fosung
- *   email    wanglin2046@126.com
- *   date     16-10-19 下午3:45
  * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvc.demo_view.adapter;
 

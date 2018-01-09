@@ -1,10 +1,18 @@
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:03
+ * ********************************************************
+ */
+
 package com.zcolin.outlib.views.richtext;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -50,12 +58,7 @@ public class RichTextView extends TextView implements Drawable.Callback, View.On
      * @param text 富文本
      */
     public void setRichTextWithBar(String text) {
-        richView.getRichTextAsync(text, getContext(), this, new RichViewUtil.OnFinishListener() {
-            @Override
-            public void onFinished(SpannableStringBuilder spanned) {
-                setText(spanned);
-            }
-        });
+        richView.getRichTextAsync(text, getContext(), this, this::setText);
 
     }
 

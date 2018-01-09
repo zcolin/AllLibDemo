@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-8 下午3:31
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -54,8 +54,7 @@ public class DbDemoPresenterTest {
 
         bundle.putString("data", "data");
         PowerMockito.mockStatic(DaoMgr.class);
-        PowerMockito.when(DaoMgr.queryAllObject())
-                    .thenReturn(new ArrayList<Employee>());
+        PowerMockito.when(DaoMgr.queryAllObject()).thenReturn(new ArrayList<>());
     }
 
     @Test
@@ -66,48 +65,37 @@ public class DbDemoPresenterTest {
 
     @Test
     public void testInsertObject() throws Exception {
-        PowerMockito.when(DaoMgr.insertObject(new Employee()))
-                    .thenReturn(true);
+        PowerMockito.when(DaoMgr.insertObject(new Employee())).thenReturn(true);
         presenter.insertObject();
-        verify(view)
-                .showResult(anyString());
-        verify(view)
-                .toastShort(anyString());
+        verify(view).showResult(anyString());
+        verify(view).toastShort(anyString());
     }
 
     @Test
     public void testInsertOrReplaceObject() throws Exception {
-        PowerMockito.when(DaoMgr.insertOrReplaceObject(new Employee()))
-                    .thenReturn(true);
+        PowerMockito.when(DaoMgr.insertOrReplaceObject(new Employee())).thenReturn(true);
         presenter.insertOrReplaceObject();
-        verify(view)
-                .showResult(anyString());
-        verify(view)
-                .toastShort(anyString());
+        verify(view).showResult(anyString());
+        verify(view).toastShort(anyString());
     }
 
     @Test
     public void testQueryAllObject() throws Exception {
         presenter.queryAllObject();
-        verify(view)
-                .showResult(anyString());
+        verify(view).showResult(anyString());
     }
 
     @Test
     public void testQueryObjectWithCondition() throws Exception {
-        PowerMockito.when(DaoMgr.queryObjectWithCondition(1))
-                    .thenReturn(new ArrayList<Employee>());
+        PowerMockito.when(DaoMgr.queryObjectWithCondition(1)).thenReturn(new ArrayList<>());
         presenter.queryObjectWithCondition();
-        verify(view)
-                .showResult(anyString());
+        verify(view).showResult(anyString());
     }
 
     @Test
     public void testDeleteAllObject() throws Exception {
-        PowerMockito.when(DaoMgr.deleteAllObject())
-                    .thenReturn(true);
+        PowerMockito.when(DaoMgr.deleteAllObject()).thenReturn(true);
         presenter.deleteAllObject();
-        verify(view)
-                .showResult(anyString());
+        verify(view).showResult(anyString());
     }
 }

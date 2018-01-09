@@ -1,10 +1,10 @@
 /*
- * **********************************************************
- *   author   colin
- *   company  fosung
- *   email    wanglin2046@126.com
- *   date     16-10-11 下午4:00
  * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvc.demo_view.fragment;
 
@@ -12,7 +12,6 @@ package com.zcolin.usedemo.amodule.mvc.demo_view.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.Toast;
 
 import com.zcolin.frame.app.BaseFrameFrag;
@@ -63,13 +62,9 @@ public class ZRecyclerFragment extends BaseFrameFrag {
         //recyclerView.setLoadMoreFooter(customview implements ILoadMoreFooter);   //设置自定义的加载Footer
         //recyclerView.setLoadMoreText("正在加载...", "正在加载...", "*****已加载全部*****");//设置加载文字
         //recyclerView.addDefaultItemDecoration();//增加默认分割线
-        recyclerView.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
-            @Override
-            public void onItemClick(View covertView, int position, String data) {
-                Toast.makeText(mActivity, data, Toast.LENGTH_SHORT)
-                     .show();
-            }
-        });
+        recyclerView.setOnItemClickListener((BaseRecyclerAdapter.OnItemClickListener<String>) (covertView, position, data) -> Toast.makeText(mActivity, data,
+                Toast.LENGTH_SHORT)
+                                                                                                                                   .show());
         recyclerView.setOnPullLoadMoreListener(new ZRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
@@ -89,14 +84,11 @@ public class ZRecyclerFragment extends BaseFrameFrag {
     }
 
     public void requestData(final int page) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setDataToRecyclerView(setList(page), page == 1);
-                recyclerView.setPullLoadMoreCompleted();
-                if (page == 2) {
-                    recyclerView.setNoMore(true);
-                }
+        new Handler().postDelayed(() -> {
+            setDataToRecyclerView(setList(page), page == 1);
+            recyclerView.setPullLoadMoreCompleted();
+            if (page == 2) {
+                recyclerView.setNoMore(true);
             }
         }, 1000);
     }

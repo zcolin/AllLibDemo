@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-23 下午4:48
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -28,7 +28,7 @@ public class OtherViewPresenter extends BaseMVPPresenter<OtherViewView> {
     /**
      * 模拟后台任务
      */
-    public void mockBackGroundThreadTask(int millionSeconds){
+    public void mockBackGroundThreadTask(int millionSeconds) {
         SystemClock.sleep(millionSeconds);
     }
 }

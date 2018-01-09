@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-2-23 下午3:36
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -91,9 +91,8 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
         recordMaxTime = a.getInteger(R.styleable.VideoRecorderView_record_max_time, RECORD_MAXTIME_DEFAULT);//默认最大拍摄时间为10s
         a.recycle();
 
-        LayoutInflater.from(context)
-                      .inflate(R.layout.view_videorecorder, this);
-        surfaceView = (SurfaceView) findViewById(R.id.surface_view);
+        LayoutInflater.from(context).inflate(R.layout.view_videorecorder, this);
+        surfaceView = findViewById(R.id.surface_view);
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(new CustomCallBack());
     }
@@ -114,13 +113,10 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
             if (camera != null) {
                 try {
                     // 实现自动对焦
-                    camera.autoFocus(new Camera.AutoFocusCallback() {
-                        @Override
-                        public void onAutoFocus(boolean success, Camera arg1) {
-                            if (success) {
-                                startPreView();
-                                camera.cancelAutoFocus();// 只有加上了这一句，才会自动对焦。
-                            }
+                    camera.autoFocus((success, arg1) -> {
+                        if (success) {
+                            startPreView();
+                            camera.cancelAutoFocus();// 只有加上了这一句，才会自动对焦。
                         }
                     });
                 } catch (Exception e) {
@@ -240,8 +236,7 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
             LogUtil.i("VideoRecorderView.setPreviewSize", "setPreviewSize BestSize: width:" + best.width + "   height:" + best.height);
 
             //大部分手机支持的预览尺寸和录制尺寸是一样的，也有特例，有些手机获取不到，那就把设置录制尺寸放到设置预览的方法里面
-            if (params.getSupportedVideoSizes() == null || params.getSupportedVideoSizes()
-                                                                 .size() == 0) {
+            if (params.getSupportedVideoSizes() == null || params.getSupportedVideoSizes().size() == 0) {
                 mWidth = best.width;
                 mHeight = best.height;
             } else {
@@ -358,8 +353,7 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
      * 开始录制视频
      */
     public void record() {
-        String savePath = FramePathConst.getInstance()
-                                        .getPathTemp() + "zz_videoCapture_" + CalendarUtil.getDateTime("yyyyMMddHHmmss") + ".mp4";
+        String savePath = FramePathConst.getInstance().getPathTemp() + "zz_videoCapture_" + CalendarUtil.getDateTime("yyyyMMddHHmmss") + ".mp4";
         FileUtil.checkFilePath(savePath, false);
         recordFile = new File(savePath);
 
@@ -374,21 +368,18 @@ public class VideoRecorderView extends LinearLayout implements OnErrorListener, 
             }
             timeCount = 0;
             timer = Executors.newSingleThreadScheduledExecutor();
-            timer.scheduleWithFixedDelay(new Runnable() {
-                @Override
-                public void run() {
-                    timeCount++;
-                    if (onRecordListener != null) {
-                        onRecordListener.onProgressChanged(recordMaxTime, timeCount);
-                    }
+            timer.scheduleWithFixedDelay(() -> {
+                timeCount++;
+                if (onRecordListener != null) {
+                    onRecordListener.onProgressChanged(recordMaxTime, timeCount);
+                }
 
-                    //达到指定时间，停止拍摄
-                    if (timeCount >= recordMaxTime) {
-                        boolean isFinish = isRecordFinish;
-                        stop();
-                        if (onRecordListener != null && !isFinish) {
-                            onRecordListener.onRecordFinish();
-                        }
+                //达到指定时间，停止拍摄
+                if (timeCount >= recordMaxTime) {
+                    boolean isFinish = isRecordFinish;
+                    stop();
+                    if (onRecordListener != null && !isFinish) {
+                        onRecordListener.onRecordFinish();
                     }
                 }
             }, 0, 1, TimeUnit.SECONDS);

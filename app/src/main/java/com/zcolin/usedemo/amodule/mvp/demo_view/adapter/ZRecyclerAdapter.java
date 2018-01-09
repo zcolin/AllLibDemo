@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-25 下午4:13
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvp.demo_view.adapter;

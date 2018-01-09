@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-18 下午5:24
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 
 package com.zcolin.usedemo.amodule.mvc.main.fragment;
 
@@ -72,7 +74,7 @@ public class ViewFragment extends BaseFrameFrag implements View.OnClickListener 
         listButton.add(addButton("RichEditTextView"));
         listButton.add(addButton("其他View示例"));
         listButton.add(addButton("Item增加移除排序"));
-        
+
         for (Button btn : listButton) {
             btn.setOnClickListener(this);
         }
@@ -98,19 +100,19 @@ public class ViewFragment extends BaseFrameFrag implements View.OnClickListener 
             ActivityUtil.startActivity(mActivity, DesignSupportActivity1.class);
         } else if (v == listButton.get(3)) {
             ActivityUtil.startActivity(mActivity, DesignSupportActivity2.class);
-        }else if (v == listButton.get(4)) {
+        } else if (v == listButton.get(4)) {
             ActivityUtil.startActivity(mActivity, WebViewActivity.class);
-        }else if (v == listButton.get(5)) {
+        } else if (v == listButton.get(5)) {
             ActivityUtil.startActivity(mActivity, WebViewVideoActivity.class);
-        }else if (v == listButton.get(6)) {
+        } else if (v == listButton.get(6)) {
             ActivityUtil.startActivity(mActivity, DialogActivity.class);
-        }else if (v == listButton.get(7)) {
+        } else if (v == listButton.get(7)) {
             ActivityUtil.startActivity(mActivity, RichTextViewActivity.class);
-        }else if (v == listButton.get(8)) {
+        } else if (v == listButton.get(8)) {
             ActivityUtil.startActivity(mActivity, RichEditTextViewActivity.class);
-        }else if (v == listButton.get(9)) {
+        } else if (v == listButton.get(9)) {
             ActivityUtil.startActivity(mActivity, OtherViewActivity.class);
-        }else if (v == listButton.get(10)) {
+        } else if (v == listButton.get(10)) {
             ActivityUtil.startActivity(mActivity, ItemActivity.class);
         }
     }

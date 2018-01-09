@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-27 下午1:40
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -29,7 +29,7 @@ public class DbDemoActivity extends BaseMVVMActivity<BindingActivityHttpDbBindin
         super.onCreate(savedInstanceState);
         setContentView(R.layout.binding_activity_http_db);
         setToolbarTitle("DBDemo");
-        
+
         DbDemoViewModel viewModel = new DbDemoViewModel();
         mBinding.setVariable(BR.viewModel, viewModel);
         viewModel.onLoad(mBundle);

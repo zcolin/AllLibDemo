@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-7-17 下午2:38
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -46,12 +46,7 @@ public class CommonWebActivity extends BaseActivity {
         tvClose = getView(R.id.toolbar_btn_colose);
         if (isShowCloseBtn) {
             tvClose.setVisibility(View.VISIBLE);
-            tvClose.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mActivity.finish();
-                }
-            });
+            tvClose.setOnClickListener(v -> mActivity.finish());
         } else {
             tvClose.setVisibility(View.GONE);
         }

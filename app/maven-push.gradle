@@ -1,6 +1,6 @@
 /**
  * 开源库上传maven私服使用
- * 
+ *
  * 使用方法
  * 1 在app-moudle的 build.gralde中最末尾处使用 apply from: './maven-push.gradle'
  * 2 在跟目录的build.gradle中buildscript->dependencies-> 配置  

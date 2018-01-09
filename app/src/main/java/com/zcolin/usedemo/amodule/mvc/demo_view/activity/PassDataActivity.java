@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-18 下午5:24
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 
 package com.zcolin.usedemo.amodule.mvc.demo_view.activity;
 
@@ -11,7 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.zcolin.frame.app.ResultActivityHelper;
 import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
@@ -29,20 +30,14 @@ public class PassDataActivity extends BaseActivity {
 
     protected void initView() {
         findViewById(R.id.edittext).setVisibility(View.GONE);
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(PassDataActivity.this, PassDataActivity1.class);
-                startActivityWithCallback(intent, new ResultActivityHelper.ResultActivityListener() {
-                    @Override
-                    public void onResult(int resultCode, Intent data) {
-                        if (data != null) {
-                            ToastUtil.toastShort("ActivityResult返回数据：" + data.getStringExtra("data"));
-                        }
-                    }
-                });
-            }
+        findViewById(R.id.button).setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setClass(PassDataActivity.this, PassDataActivity1.class);
+            startActivityWithCallback(intent, (resultCode, data) -> {
+                if (data != null) {
+                    ToastUtil.toastShort("ActivityResult返回数据：" + data.getStringExtra("data"));
+                }
+            });
         });
     }
 

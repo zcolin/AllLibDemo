@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-3-3 下午2:46
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -14,20 +14,20 @@ import android.view.View;
 
 public class ZoomOutPageTransformer implements PageTransformer {
     private static float MIN_SCALE = 0.85f;
-                  
+
     private static float MIN_ALPHA = 0.5f;
-                  
+
     @Override
     public void transformPage(View view, float position) {
         int pageWidth = view.getWidth();
         int pageHeight = view.getHeight();
-                  
+
         if (position < -1) { // [-Infinity,-1)
-                                // This page is way off-screen to the left.
+            // This page is way off-screen to the left.
             view.setAlpha(0);
         } else if (position <= 1) { // [-1,1]
-                                    // Modify the default slide transition to
-                                    // shrink the page as well
+            // Modify the default slide transition to
+            // shrink the page as well
             float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
             float vertMargin = pageHeight * (1 - scaleFactor) / 2;
             float horzMargin = pageWidth * (1 - scaleFactor) / 2;
@@ -40,10 +40,9 @@ public class ZoomOutPageTransformer implements PageTransformer {
             view.setScaleX(scaleFactor);
             view.setScaleY(scaleFactor);
             // Fade the page relative to its size.
-            view.setAlpha(MIN_ALPHA + (scaleFactor - MIN_SCALE)
-                    / (1 - MIN_SCALE) * (1 - MIN_ALPHA));
+            view.setAlpha(MIN_ALPHA + (scaleFactor - MIN_SCALE) / (1 - MIN_SCALE) * (1 - MIN_ALPHA));
         } else { // (1,+Infinity]
-                    // This page is way off-screen to the right.
+            // This page is way off-screen to the right.
             view.setAlpha(0);
         }
     }

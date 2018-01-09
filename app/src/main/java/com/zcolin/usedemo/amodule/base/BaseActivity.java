@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-25 下午1:38
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -84,18 +84,15 @@ public abstract class BaseActivity extends BaseFrameActivity {
                     final View view = getView(click);//通过注解的值获取View控件
                     if (view == null)
                         return;
-                    view.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-                                if (isHasParam) {
-                                    method.invoke(mActivity, view);
-                                } else {
-                                    method.invoke(mActivity);
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                    view.setOnClickListener(v -> {
+                        try {
+                            if (isHasParam) {
+                                method.invoke(mActivity, view);
+                            } else {
+                                method.invoke(mActivity);
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     });
                 }
@@ -168,8 +165,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
 
 
     private ViewGroup initToolBar(int layoutResID) {
-        View userView = LayoutInflater.from(this)
-                                      .inflate(layoutResID, null);
+        View userView = LayoutInflater.from(this).inflate(layoutResID, null);
         return initToolBar(userView);
     }
 
@@ -180,22 +176,21 @@ public abstract class BaseActivity extends BaseFrameActivity {
         typedArray.recycle();
 
         /*将toolbar引入到父容器中*/
-        View toolbarLay = LayoutInflater.from(this)
-                                        .inflate(R.layout.gui_toolbar, null);
+        View toolbarLay = LayoutInflater.from(this).inflate(R.layout.gui_toolbar, null);
         ViewGroup.LayoutParams layParam = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         //不明原因导致布局向右移动了一些，移动回来
         //((ViewGroup.MarginLayoutParams) toolbarLay.getLayoutParams()).leftMargin = -40;
-        toolbar = (Toolbar) toolbarLay.findViewById(R.id.id_tool_bar);
+        toolbar = toolbarLay.findViewById(R.id.id_tool_bar);
         if (activityParam[INDEX_ISIMMERSE]) {
             int statusBarHeight = ScreenUtil.getStatusBarHeight(this);
             toolbar.setPadding(0, statusBarHeight, 0, 0);
             toolbar.getLayoutParams().height += statusBarHeight;
         }
         toolBarView = getLayoutInflater().inflate(getToolBarLayout() == 0 ? R.layout.gui_toolbar_baseview : getToolBarLayout(), toolbar);
-        toolbarTitleView = (TextView) toolBarView.findViewById(R.id.toolbar_title);
-        toolbarLeftBtn = (TextView) toolBarView.findViewById(R.id.toolbar_btn_left);
-        toolbarRightBtn = (TextView) toolBarView.findViewById(R.id.toolbar_btn_right);
+        toolbarTitleView = toolBarView.findViewById(R.id.toolbar_title);
+        toolbarLeftBtn = toolBarView.findViewById(R.id.toolbar_btn_left);
+        toolbarRightBtn = toolBarView.findViewById(R.id.toolbar_btn_right);
         toolbarTitleView.setVisibility(View.GONE);
         toolbarLeftBtn.setVisibility(View.GONE);
         toolbarRightBtn.setVisibility(View.GONE);
@@ -222,8 +217,7 @@ public abstract class BaseActivity extends BaseFrameActivity {
     /**
      * 可以自己扩展Layout，但是其扩展的Layout里必须包含现在所有的控件Id，也就是可以增加控件不可以移除控件
      */
-    public
-    @LayoutRes
+    public @LayoutRes
     int getToolBarLayout() {
         return 0;
     }

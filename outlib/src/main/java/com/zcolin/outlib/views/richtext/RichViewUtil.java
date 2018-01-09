@@ -1,3 +1,12 @@
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:03
+ * ********************************************************
+ */
+
 package com.zcolin.outlib.views.richtext;
 
 import android.content.Context;

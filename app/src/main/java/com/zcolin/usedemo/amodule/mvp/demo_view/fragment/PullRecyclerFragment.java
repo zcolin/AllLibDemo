@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:33
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvp.demo_view.fragment;
@@ -79,22 +79,17 @@ public class PullRecyclerFragment extends BaseMVPFragment<DesignSupportPresenter
         //设置数据为空时的EmptyView，DataObserver是注册在adapter之上的，也就是setAdapter是注册上，notifyDataSetChanged的时候才会生效
         recyclerView.setEmptyView(mActivity, R.layout.view_pullrecycler_empty);
         //设置HeaderView和footerView
-        View view =  mActivity.getLayoutInflater()
-                                    .inflate(R.layout.view_recycler_header_banner, null);
-        banner = (ZBanner) view.findViewById(R.id.view_banner);
+        View view = mActivity.getLayoutInflater().inflate(R.layout.view_recycler_header_banner, null);
+        banner = view.findViewById(R.id.view_banner);
         recyclerView.addHeaderView(view);
         startBanner();
         recyclerView.addFooterView(mActivity, R.layout.view_recyclerfooter);
         //下拉和到底加载的进度条样式，默认为 ProgressStyle.BallSpinFadeLoaderIndicator
         recyclerView.setRefreshProgressStyle(ProgressStyle.LineScaleIndicator);
         recyclerView.setLoadMoreProgressStyle(ProgressStyle.LineScaleIndicator);
-        recyclerView.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
-            @Override
-            public void onItemClick(View covertView, int position, String data) {
-                Toast.makeText(mActivity, data, Toast.LENGTH_SHORT)
-                     .show();
-            }
-        });
+        recyclerView.setOnItemClickListener((BaseRecyclerAdapter.OnItemClickListener<String>) (covertView, position, data) -> Toast.makeText(mActivity, data,
+                Toast.LENGTH_SHORT)
+                                                                                                                                   .show());
         recyclerView.setOnPullLoadMoreListener(new PullRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
@@ -143,12 +138,7 @@ public class PullRecyclerFragment extends BaseMVPFragment<DesignSupportPresenter
               .setIndicatorGravity(ZBanner.CENTER)
               .setBannerTitle(listUrl)
               .setDelayTime(4000)
-              .setOnBannerClickListener(new ZBanner.OnBannerClickListener() {
-                  @Override
-                  public void OnBannerClick(View view, int position) {
-                      ToastUtil.toastShort("点击了第" + (position + 1) + "张图片");
-                  }
-              })
+              .setOnBannerClickListener((view, position) -> ToastUtil.toastShort("点击了第" + (position + 1) + "张图片"))
               .setImages(listUrl)
               .startAutoPlay();
     }

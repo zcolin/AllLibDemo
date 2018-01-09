@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     16-12-20 下午4:31
+ *   date     18-1-9 下午5:02
  * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvc.demo_view.adapter;
@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zcolin.frame.imageloader.ImageLoaderUtils;
-import com.zcolin.usedemo.R;
 import com.zcolin.gui.zrecyclerview.BaseRecyclerAdapter;
+import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.entity.ListItemData;
 
 

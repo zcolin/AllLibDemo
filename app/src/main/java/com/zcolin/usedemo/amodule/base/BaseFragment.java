@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-17 上午9:58
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -38,18 +38,15 @@ public abstract class BaseFragment extends BaseFrameFrag {
                     final View view = getView(click);//通过注解的值获取View控件
                     if (view == null)
                         return;
-                    view.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-                                if (isHasParam) {
-                                    method.invoke(BaseFragment.this, view);
-                                } else {
-                                    method.invoke(BaseFragment.this);
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                    view.setOnClickListener(v -> {
+                        try {
+                            if (isHasParam) {
+                                method.invoke(BaseFragment.this, view);
+                            } else {
+                                method.invoke(BaseFragment.this);
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     });
                 }

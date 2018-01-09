@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     16-12-19 上午11:56
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -128,8 +128,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
 
     @Override
     public CommonHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                               .inflate(getItemLayoutId(viewType), parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(getItemLayoutId(viewType), parent, false);
         CommonHolder holder = new CommonHolder((RecyclerView) parent, v);
         holder.setVariable(DataBindingUtil.bind(v));
         return holder;
@@ -139,29 +138,23 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     public void onBindViewHolder(final CommonHolder viewHolder, final int position) {
         final T data = listData.get(position);
         if (itemClickListener != null) {
-            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    long curTime = System.currentTimeMillis();
-                    if (curTime - mLastClickTime > minClickIntervaltime) {
-                        mLastClickTime = curTime;
-                        itemClickListener.onItemClick(viewHolder.itemView, position, data);
-                    }
+            viewHolder.itemView.setOnClickListener(v -> {
+                long curTime = System.currentTimeMillis();
+                if (curTime - mLastClickTime > minClickIntervaltime) {
+                    mLastClickTime = curTime;
+                    itemClickListener.onItemClick(viewHolder.itemView, position, data);
                 }
             });
         }
 
         if (itemLongClickListener != null) {
-            viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    long curTime = System.currentTimeMillis();
-                    if (curTime - mLastClickTime > minClickIntervaltime) {
-                        mLastClickTime = curTime;
-                        return itemLongClickListener.onItemLongClick(viewHolder.itemView, position, data);
-                    }
-                    return false;
+            viewHolder.itemView.setOnLongClickListener(v -> {
+                long curTime = System.currentTimeMillis();
+                if (curTime - mLastClickTime > minClickIntervaltime) {
+                    mLastClickTime = curTime;
+                    return itemLongClickListener.onItemLongClick(viewHolder.itemView, position, data);
                 }
+                return false;
             });
         }
 
@@ -203,8 +196,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         public void setVariable(Object variable) {
             this.variable = variable;
         }
-        
-        public <T> T getVariable(){
+
+        public <T> T getVariable() {
             return (T) this.variable;
         }
     }

@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-3-27 上午9:16
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -125,8 +125,7 @@ public class CircleChart extends View {
         paint.setTextSize(DisplayUtil.sp2px(getContext(), textSize));
         paint.setTypeface(Typeface.DEFAULT_BOLD); // 设置字体  
         float textWidth = paint.measureText(progressText + "%");
-        canvas.drawText(progressText + "%", centre - textWidth / 2,
-                centre + 14 / 2, paint); // 画出进度百分比  
+        canvas.drawText(progressText + "%", centre - textWidth / 2, centre + 14 / 2, paint); // 画出进度百分比  
     }
 
 

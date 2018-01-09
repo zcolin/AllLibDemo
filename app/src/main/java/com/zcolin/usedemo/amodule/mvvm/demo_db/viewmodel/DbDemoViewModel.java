@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-26 下午3:36
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class DbDemoViewModel extends BaseViewModel {
     private int                     currentSortType = 0;//当前排序方式
-    public ObservableField<String> strResult       = new ObservableField<>();
+    public  ObservableField<String> strResult       = new ObservableField<>();
 
     @Override
     public void onLoad(@Nullable Bundle data) {

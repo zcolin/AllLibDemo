@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:33
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 package com.zcolin.usedemo.amodule.mvp.demo_video.ijkplayer.base;

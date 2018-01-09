@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:28
+ *   date     18-1-9 下午5:02
  * ********************************************************
  */
 
@@ -11,6 +11,7 @@ package com.zcolin.usedemo.amodule.mvc.demo_video.ijkplayer.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
 import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.mvc.demo_video.ijkplayer.base.BaseVideoPlayFragment;
@@ -61,34 +62,17 @@ public class VideoPlayFragment extends BaseVideoPlayFragment implements ZPlayer.
         player.setLive(isLive)//设置该地址是直播的地址
               .setNetChangeListener(true)//设置监听手机网络的变化,这个参数是内部是否处理网络监听，和setOnNetChangeListener没有关系
               .setOnNetChangeListener(this)//实现网络变化的回调
-              .setScaleType(ZPlayer.SCALETYPE_FITXY)
-              .setPlayerWH(0, player.getMeasuredHeight())//设置竖屏的时候屏幕的高度，如果不设置会切换后按照16:9的高度重置
+              .setScaleType(ZPlayer.SCALETYPE_FITXY).setPlayerWH(0, player.getMeasuredHeight())//设置竖屏的时候屏幕的高度，如果不设置会切换后按照16:9的高度重置
               .setFullScreenOnly(true)  //只全屏播放
-              .setAlwaysShowControl()
-              .onPrepared(new ZPlayer.OnPreparedListener() {
-                  @Override
-                  public void onPrepared() {
-                      //TODO 监听视频是否已经准备完成开始播放。（可以在这里处理视频封面的显示跟隐藏）
-                  }
-              })
-              .onComplete(new Runnable() {
-                  @Override
-                  public void run() {
-                      //TODO 监听视频是否已经播放完成了。（可以在这里处理视频播放完成进行的操作）
-                  }
-              })
-              .onInfo(new ZPlayer.OnInfoListener() {
-                  @Override
-                  public void onInfo(int what, int extra) {
-                      //TODO 监听视频的相关信息。
-                  }
-              })
-              .onError(new ZPlayer.OnErrorListener() {
-                  @Override
-                  public void onError(int what, int extra) {
-                      //TODO 监听视频播放失败的回调
-                  }
-              });
+              .setAlwaysShowControl().onPrepared(() -> {
+            //TODO 监听视频是否已经准备完成开始播放。（可以在这里处理视频封面的显示跟隐藏）
+        }).onComplete(() -> {
+            //TODO 监听视频是否已经播放完成了。（可以在这里处理视频播放完成进行的操作）
+        }).onInfo((what, extra) -> {
+            //TODO 监听视频的相关信息。
+        }).onError((what, extra) -> {
+            //TODO 监听视频播放失败的回调
+        });
         return player;
     }
 

@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-26 下午3:36
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -11,7 +11,6 @@ package com.zcolin.usedemo.amodule.mvvm.demo_video;
 
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -53,7 +52,7 @@ public class RecordVideoPreviewActivity extends BaseActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recordvideo_preview);
-        
+
         String path = getIntent().getStringExtra("data");
         setToolbarTitle("视频预览");
         if (path == null) {
@@ -120,23 +119,17 @@ public class RecordVideoPreviewActivity extends BaseActivity implements View.OnC
         videoViewShow.setVideoPath(file.getPath());
         videoViewShow.start();
         videoViewShow.requestFocus();
-        videoViewShow.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                if (!videoViewShow.isPlaying()) {
-                    buttonPlay.setVisibility(View.VISIBLE);
-                }
+        videoViewShow.setOnCompletionListener(mp -> {
+            if (!videoViewShow.isPlaying()) {
+                buttonPlay.setVisibility(View.VISIBLE);
             }
         });
-        videoViewShow.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                if (timer != null) {
-                    timer.shutdown();
-                    timer = null;
-                }
-                return false;
+        videoViewShow.setOnErrorListener((mp, what, extra) -> {
+            if (timer != null) {
+                timer.shutdown();
+                timer = null;
             }
+            return false;
         });
 
         currentTime = 0;//时间计数器重新赋值

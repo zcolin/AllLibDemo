@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午12:06
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -43,8 +43,10 @@ public class ImageUtilActivity extends BaseActivity {
 
     public void displayImage() {
         ImageLoaderUtils.displayImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv1);
-        // ImageLoaderUtils.displayImageWithPlaceholder(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv1, R.drawable.ic_launcher);
+        // ImageLoaderUtils.displayImageWithPlaceholder(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv1, R.drawable
+        // .ic_launcher);
         ImageLoaderUtils.displayCircleImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv2);
-        ImageLoaderUtils.displayRoundCornersImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv3, 15, R.drawable.ic_launcher);
+        ImageLoaderUtils.displayRoundCornersImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=21&gp=0.jpg", iv3, 15, R.drawable
+                .ic_launcher);
     }
 }

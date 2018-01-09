@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-7 下午4:05
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -23,8 +23,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -64,59 +62,47 @@ public class HttpDemoPresenterTest {
     @Test
     public void testGetBaiduStringData() throws Exception {
         //当调用getBaiduStringData中的api.getBaiduStringData(ZStringResponse)时返回mock对象
-        PowerMockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                //这里可以获得传给performLogin的参数,callback是第0个参数
-                ((ZStringResponse) invocation.getArguments()[0]).onSuccess(null, "success");
-                return null;
-            }
+        PowerMockito.doAnswer(invocation -> {
+            //这里可以获得传给performLogin的参数,callback是第0个参数
+            ((ZStringResponse) invocation.getArguments()[0]).onSuccess(null, "success");
+            return null;
         }).when(ApiMgr.class, "getBaiduStringData", (any(ZStringResponse.class)));
 
         // 模拟数据，测试函数
         presenter.getBaiduStringData(null);
         //测试是否调用了view层的showResult
-        Mockito.verify(view)
-               .showResult(anyString());
+        Mockito.verify(view).showResult(anyString());
     }
 
-   @Test
+    @Test
     public void testGetObject() throws Exception {
         baiduWeather.results = new ArrayList<>();
         baiduWeather.results.add(new BaiduWeather.ResultsBean());
         //当调用getBaiduStringData中的api.getBaiduStringData(ZStringResponse)时返回mock对象
-       PowerMockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                //这里可以获得传给performLogin的参数,callback是第0个参数
-                ((ZResponse) invocation.getArguments()[0]).onSuccess(null, baiduWeather);
-                return null;
-            }
+        PowerMockito.doAnswer(invocation -> {
+            //这里可以获得传给performLogin的参数,callback是第0个参数
+            ((ZResponse) invocation.getArguments()[0]).onSuccess(null, baiduWeather);
+            return null;
         }).when(ApiMgr.class, "getObject", (any(ZResponse.class)));
 
         // 模拟数据，测试函数
         presenter.getObject(null);
         //测试是否调用了view层的showResult
-        Mockito.verify(view)
-               .showResult(anyString());
+        Mockito.verify(view).showResult(anyString());
     }
 
     @Test
     public void testUploadFile() throws Exception {
         //当调用getBaiduStringData中的api.getBaiduStringData(ZStringResponse)时返回mock对象
-        PowerMockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                //这里可以获得传给performLogin的参数,callback是第0个参数
-                ((ZResponse) invocation.getArguments()[0]).onSuccess(null, commonReply);
-                return null;
-            }
+        PowerMockito.doAnswer(invocation -> {
+            //这里可以获得传给performLogin的参数,callback是第0个参数
+            ((ZResponse) invocation.getArguments()[0]).onSuccess(null, commonReply);
+            return null;
         }).when(ApiMgr.class, "uploadFile", (any(ZResponse.class)));
 
         // 模拟数据，测试函数
         presenter.uploadFile(null);
         //测试是否调用了view层的showResult
-        Mockito.verify(view)
-               .showResult(anyString());
+        Mockito.verify(view).showResult(anyString());
     }
 }

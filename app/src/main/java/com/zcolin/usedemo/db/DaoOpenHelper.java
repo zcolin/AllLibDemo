@@ -1,16 +1,21 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-15 上午9:54
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 
 package com.zcolin.usedemo.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+
 import com.zcolin.usedemo.db.entity.DaoMaster;
+
 import org.greenrobot.greendao.database.Database;
+
 import static com.zcolin.usedemo.db.entity.DaoMaster.dropAllTables;
 
 

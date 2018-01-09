@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-26 下午3:36
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -13,7 +13,6 @@ package com.zcolin.usedemo.amodule.mvvm.demo_view.activity;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.zcolin.frame.util.ToastUtil;
@@ -73,18 +72,8 @@ public class OtherViewActivity extends BaseMVPActivity<OtherViewPresenter> imple
         banner = getView(R.id.view_banner);
         btn1 = getView(R.id.btn_1);
         btn2 = getView(R.id.btn_2);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDlgAsyncProgress();
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDlgProgress();
-            }
-        });
+        btn1.setOnClickListener(v -> showDlgAsyncProgress());
+        btn2.setOnClickListener(v -> showDlgProgress());
     }
 
     @Override
@@ -105,12 +94,7 @@ public class OtherViewActivity extends BaseMVPActivity<OtherViewPresenter> imple
               .setIndicatorGravity(ZBanner.CENTER)
               .setBannerTitle(listUrl)
               .setDelayTime(4000)
-              .setOnBannerClickListener(new ZBanner.OnBannerClickListener() {
-                  @Override
-                  public void OnBannerClick(View view, int position) {
-                      ToastUtil.toastShort("点击了第" + (position + 1) + "张图片");
-                  }
-              })
+              .setOnBannerClickListener((view, position) -> ToastUtil.toastShort("点击了第" + (position + 1) + "张图片"))
               .setImages(listUrl)
               .startAutoPlay();
     }

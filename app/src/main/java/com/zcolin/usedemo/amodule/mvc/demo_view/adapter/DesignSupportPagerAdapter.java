@@ -1,3 +1,12 @@
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
+
 package com.zcolin.usedemo.amodule.mvc.demo_view.adapter;
 
 import android.support.v4.app.Fragment;
@@ -8,7 +17,7 @@ import com.zcolin.usedemo.amodule.mvc.demo_view.fragment.PullRecyclerFragment;
 import com.zcolin.usedemo.amodule.mvc.demo_view.fragment.ZRecyclerFragment;
 
 /**
- * 
+ *
  */
 public class DesignSupportPagerAdapter extends FragmentPagerAdapter {
     public DesignSupportPagerAdapter(FragmentManager fm) {

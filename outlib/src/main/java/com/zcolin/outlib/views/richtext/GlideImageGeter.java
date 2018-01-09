@@ -1,3 +1,12 @@
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:03
+ * ********************************************************
+ */
+
 package com.zcolin.outlib.views.richtext;
 
 import android.content.Context;
@@ -48,26 +57,18 @@ public class GlideImageGeter implements Html.ImageGetter {
 
         if (isGif(url)) {
             GifTarget target = new GifTarget();
-            Glide.with(mContext)
-                 .load(url)
-                 .asGif()
-                 .into(target);
+            Glide.with(mContext).load(url).asGif().into(target);
             return target.getUrlDrawable();
         } else {
             BitmapTarget target = new BitmapTarget();
-            Glide.with(mContext)
-                 .load(url)
-                 .asBitmap()
-                 .into(target);
+            Glide.with(mContext).load(url).asBitmap().into(target);
             return target.getUrlDrawable();
         }
     }
 
     private static boolean isGif(String path) {
         int index = path.lastIndexOf('.');
-        return index > 0 && "gif".toUpperCase()
-                                 .equals(path.substring(index + 1)
-                                             .toUpperCase());
+        return index > 0 && "gif".toUpperCase().equals(path.substring(index + 1).toUpperCase());
     }
 
     private class GifTarget extends SimpleTarget<GifDrawable> {

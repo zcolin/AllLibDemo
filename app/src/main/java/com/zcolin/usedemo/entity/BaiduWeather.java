@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-18 下午1:51
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 package com.zcolin.usedemo.entity;
 
 
@@ -16,7 +18,7 @@ import java.util.List;
  */
 public class BaiduWeather extends BaseReply {
 
-    
+
     public String            date;
     public List<ResultsBean> results;
 

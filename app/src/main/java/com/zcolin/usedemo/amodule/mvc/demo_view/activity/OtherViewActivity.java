@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-18 下午5:24
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 
 package com.zcolin.usedemo.amodule.mvc.demo_view.activity;
 
@@ -12,7 +14,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.view.View;
 import android.widget.Button;
 
 import com.zcolin.frame.util.ToastUtil;
@@ -70,24 +71,13 @@ public class OtherViewActivity extends BaseActivity {
         banner = getView(R.id.view_banner);
         btn1 = getView(R.id.btn_1);
         btn2 = getView(R.id.btn_2);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDlgAsyncProgress();
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDlgProgress();
-            }
-        });
+        btn1.setOnClickListener(v -> showDlgAsyncProgress());
+        btn2.setOnClickListener(v -> showDlgProgress());
     }
 
     public void startTextSwitcher() {
-        String text = "只要用过mvp这个问题可能很多人都知道。写mvp的时候，presenter会持有view，如果presenter有后台异步的长时间的动作，" +
-                "比如网络请求，这时如果返回退出了Activity，后台异步的动作不会立即停止，这里就会有内存泄漏的隐患，所以会在presenter中加入" +
-                "一个销毁view的方法。现在就在之前的项目中做一下修改";
+        String text = "只要用过mvp这个问题可能很多人都知道。写mvp的时候，presenter会持有view，如果presenter有后台异步的长时间的动作，" + 
+                "比如网络请求，这时如果返回退出了Activity，后台异步的动作不会立即停止，这里就会有内存泄漏的隐患，所以会在presenter中加入" + "一个销毁view的方法。现在就在之前的项目中做一下修改";
         textSwitcher.setTextColor(Color.BLACK)
                     .setSwitchInterval(4000)
                     .setTextSize(20)
@@ -104,12 +94,7 @@ public class OtherViewActivity extends BaseActivity {
               .setIndicatorGravity(ZBanner.CENTER)
               .setBannerTitle(listUrl)
               .setDelayTime(4000)
-              .setOnBannerClickListener(new ZBanner.OnBannerClickListener() {
-                  @Override
-                  public void OnBannerClick(View view, int position) {
-                      ToastUtil.toastShort("点击了第" + (position + 1) + "张图片");
-                  }
-              })
+              .setOnBannerClickListener((view, position) -> ToastUtil.toastShort("点击了第" + (position + 1) + "张图片"))
               .setImages(listUrl)
               .startAutoPlay();
     }

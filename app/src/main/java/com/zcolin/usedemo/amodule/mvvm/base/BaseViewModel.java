@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-27 下午1:38
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -18,6 +18,6 @@ import android.support.annotation.Nullable;
 
 public class BaseViewModel {
     public void onLoad(@Nullable Bundle data) {
-        
+
     }
 }

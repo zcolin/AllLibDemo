@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-22 下午3:33
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -11,7 +11,6 @@ package com.zcolin.usedemo.amodule.mvp.demo_view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.zcolin.gui.ZEditTextWithClear;
@@ -37,13 +36,9 @@ public class PassDataActivity1 extends BaseActivity {
 
         Button btn = getView(R.id.button);
         btn.setText("finishActivity");
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PassDataActivity1.this.setResult(RESULT_OK, new Intent().putExtra("data", et.getText()
-                                                                                            .toString()));
-                PassDataActivity1.this.finish();
-            }
+        btn.setOnClickListener(v -> {
+            PassDataActivity1.this.setResult(RESULT_OK, new Intent().putExtra("data", et.getText().toString()));
+            PassDataActivity1.this.finish();
         });
     }
 

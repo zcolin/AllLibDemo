@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-26 下午3:36
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -11,7 +11,6 @@ package com.zcolin.usedemo.amodule.mvvm.demo_view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.widget.Toast;
 
 import com.zcolin.frame.util.ToastUtil;
@@ -47,19 +46,8 @@ public class DesignSupportActivity extends BaseMVPActivity<DesignSupportPresente
     }
 
     private void initView() {
-        findViewById(R.id.fab)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Snackbar.make(v, "FloatActionBar-click", Snackbar.LENGTH_LONG)
-                                .setAction("toast", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        ToastUtil.toastShort("button-click");
-                                    }
-                                });
-                    }
-                });
+        findViewById(R.id.fab).setOnClickListener(v -> Snackbar.make(v, "FloatActionBar-click", Snackbar.LENGTH_LONG)
+                                                               .setAction("toast", v1 -> ToastUtil.toastShort("button-click")));
 
 
         recyclerView = getView(R.id.pullLoadMoreRecyclerView);
@@ -67,13 +55,9 @@ public class DesignSupportActivity extends BaseMVPActivity<DesignSupportPresente
         recyclerView.setEmptyView(this, R.layout.view_pullrecycler_empty);
         //设置HeaderView
         recyclerView.addHeaderView(this, R.layout.view_recyclerheader);
-        recyclerView.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
-            @Override
-            public void onItemClick(View covertView, int position, String data) {
-                Toast.makeText(mActivity, data, Toast.LENGTH_SHORT)
-                     .show();
-            }
-        });
+        recyclerView.setOnItemClickListener((BaseRecyclerAdapter.OnItemClickListener<String>) (covertView, position, data) -> Toast.makeText(mActivity, data,
+                Toast.LENGTH_SHORT)
+                                                                                                                                   .show());
         recyclerView.setOnPullLoadMoreListener(new ZRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {

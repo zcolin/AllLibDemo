@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-18 下午1:47
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 
 package com.zcolin.usedemo.amodule.mvc.main.fragment;
 
@@ -22,7 +24,6 @@ import com.zcolin.frame.permission.PermissionHelper;
 import com.zcolin.frame.permission.PermissionsResultAction;
 import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZConfirm;
-import com.zcolin.gui.ZDialog;
 import com.zcolin.libamaplocation.LocationUtil;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseFragment;
@@ -82,7 +83,8 @@ public class ApiFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void location() {
-        PermissionHelper.requestPermission(mActivity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+        PermissionHelper.requestPermission(mActivity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE}, new
+                PermissionsResultAction() {
             @Override
             public void onGranted() {
                 final LocationUtil location = new LocationUtil(mActivity);
@@ -100,24 +102,13 @@ public class ApiFragment extends BaseFragment implements View.OnClickListener {
 
                     @Override
                     public void locationFail() {
-                        new ZConfirm(mActivity)
-                                .setTitle("定位失败, 是否尝试再次定位？")
-                                .addSubmitListener(new ZDialog.ZDialogSubmitInterface() {
-
-                                    @Override
-                                    public boolean submit() {
-                                        location();
-                                        return true;
-                                    }
-                                })
-                                .addCancelListener(new ZDialog.ZDialogCancelInterface() {
-                                    @Override
-                                    public boolean cancel() {
-                                        tvMessage.setText("定位失败");
-                                        return true;
-                                    }
-                                })
-                                .show();
+                        new ZConfirm(mActivity).setTitle("定位失败, 是否尝试再次定位？").addSubmitListener(() -> {
+                            location();
+                            return true;
+                        }).addCancelListener(() -> {
+                            tvMessage.setText("定位失败");
+                            return true;
+                        }).show();
                     }
                 });
             }
@@ -136,12 +127,11 @@ public class ApiFragment extends BaseFragment implements View.OnClickListener {
             location();
         }
         if (v == listButton.get(1)) {
-            new ShareSocial(mActivity)
-                    .setTitle("分享")
-                    .setContent("分享内容")
-                    .setTargetUrl("http://www.baidu.com")
-                    .setImgUrl("http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg")
-                    .share();
+            new ShareSocial(mActivity).setTitle("分享")
+                                      .setContent("分享内容")
+                                      .setTargetUrl("http://www.baidu.com")
+                                      .setImgUrl("http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg")
+                                      .share();
         }
     }
 }

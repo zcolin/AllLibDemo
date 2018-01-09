@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-5-17 上午10:00
+ *   date     18-1-9 下午5:02
  * ********************************************************
  */
 
@@ -23,7 +23,7 @@ public abstract class BaseMVPFragment<T extends BaseMVPPresenter> extends BaseFr
     protected T mPresenter;
 
     protected abstract boolean isLazyLoad();
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public abstract class BaseMVPFragment<T extends BaseMVPPresenter> extends BaseFr
     @Override
     protected void createView(@Nullable Bundle savedInstanceState) {
         super.createView(savedInstanceState);
-        
+
         if (!isLazyLoad()) {
             //如果是数据恢复的，则传入数据回复的数据，否则传入其他页面传递过来的数据
             mPresenter.onLoad(savedInstanceState != null ? savedInstanceState : getArguments());
@@ -104,7 +104,7 @@ public abstract class BaseMVPFragment<T extends BaseMVPPresenter> extends BaseFr
         Class aClass = null;
         if (requestParamsUrl != null) {
             aClass = requestParamsUrl.value();
-        } else{
+        } else {
             throw new RuntimeException("can't find @Presenter");
         }
         return aClass;

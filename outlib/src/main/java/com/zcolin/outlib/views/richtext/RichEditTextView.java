@@ -1,3 +1,12 @@
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:03
+ * ********************************************************
+ */
+
 package com.zcolin.outlib.views.richtext;
 
 import android.content.Context;
@@ -65,17 +74,14 @@ public class RichEditTextView extends EditText implements Drawable.Callback, Vie
      * @param text 富文本
      */
     public void appendRichTextWithBar(final String text) {
-        richView.getRichTextAsync(text, getContext(), this, new RichViewUtil.OnFinishListener() {
-            @Override
-            public void onFinished(SpannableStringBuilder spanned) {
-                if (getText() != null && getText() instanceof SpannableStringBuilder) {
-                    setText(((SpannableStringBuilder) getText()).append(spanned));
-                } else {
-                    setText(spanned);
-                }
+        richView.getRichTextAsync(text, getContext(), this, spanned -> {
+            if (getText() != null && getText() instanceof SpannableStringBuilder) {
+                setText(((SpannableStringBuilder) getText()).append(spanned));
+            } else {
+                setText(spanned);
             }
         });
-        
+
     }
 
     /**
@@ -84,12 +90,7 @@ public class RichEditTextView extends EditText implements Drawable.Callback, Vie
      * @param text 富文本
      */
     public void setRichTextWithBar(String text) {
-        richView.getRichTextAsync(text, getContext(), this, new RichViewUtil.OnFinishListener() {
-            @Override
-            public void onFinished(SpannableStringBuilder spanned) {
-                setText(spanned);
-            }
-        });
+        richView.getRichTextAsync(text, getContext(), this, this::setText);
     }
 
 

@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-18 下午5:24
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 下午5:02
+ * ********************************************************
+ */
 package com.zcolin.usedemo.amodule.mvc.demo_view.activity;
 
 import android.os.Bundle;
@@ -23,7 +25,7 @@ public class WebViewVideoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview_video);
-        
+
         initView();
         webView.loadUrl("http://dt.85ido.com:8080/r/cms/qilu/qilu/jty/gbxxpt/video-new.html");
     }
@@ -31,8 +33,7 @@ public class WebViewVideoActivity extends BaseActivity {
 
     protected void initView() {
         webView = getView(R.id.webView);
-        webView.setSupportVideoFullScreen(this)
-               .setSupportProgressBar();
+        webView.setSupportVideoFullScreen(this).setSupportProgressBar();
     }
 
     @Override

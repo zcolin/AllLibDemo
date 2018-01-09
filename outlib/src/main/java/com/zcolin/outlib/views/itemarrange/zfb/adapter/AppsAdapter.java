@@ -1,9 +1,9 @@
 /*
  * *********************************************************
  *   author   colin
- *   company  fosung
+ *   company  telchina
  *   email    wanglin2046@126.com
- *   date     17-3-28 上午10:26
+ *   date     18-1-9 下午5:03
  * ********************************************************
  */
 
@@ -92,73 +92,58 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 };
             case TYPE_MY_APPS:
                 final AppsViewHolder myHolder = new AppsViewHolder(inflater.inflate(R.layout.itemarrange_apps, parent, false));
-                myHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(final View v) {
-                        if (isEditMode) {
-                            removeMyApps(myHolder.getAdapterPosition());
-                        } else if (mAppsItemClickListener != null) {
-                            mAppsItemClickListener.onItemClick(v, myHolder.getAdapterPosition() - COUNT_PRE_MY_HEADER, 0);
-                        }
+                myHolder.itemView.setOnClickListener(v -> {
+                    if (isEditMode) {
+                        removeMyApps(myHolder.getAdapterPosition());
+                    } else if (mAppsItemClickListener != null) {
+                        mAppsItemClickListener.onItemClick(v, myHolder.getAdapterPosition() - COUNT_PRE_MY_HEADER, 0);
                     }
                 });
-                myHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        if (!isEditMode) {
-                            edit();
-                        }
-                        return true;
+                myHolder.itemView.setOnLongClickListener(v -> {
+                    if (!isEditMode) {
+                        edit();
                     }
+                    return true;
                 });
-                myHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if (isEditMode) {
-                            switch (MotionEventCompat.getActionMasked(event)) {
-                                case MotionEvent.ACTION_DOWN:
-                                    startTime = System.currentTimeMillis();
-                                    break;
-                                case MotionEvent.ACTION_MOVE:
-                                    if (System.currentTimeMillis() - startTime > SPACE_TIME) {
-                                        mItemTouchHelper.startDrag(myHolder);
-                                    }
-                                    break;
-                                case MotionEvent.ACTION_CANCEL:
-                                case MotionEvent.ACTION_UP:
-                                    startTime = 0;
-                                    break;
-                            }
+                myHolder.itemView.setOnTouchListener((v, event) -> {
+                    if (isEditMode) {
+                        switch (MotionEventCompat.getActionMasked(event)) {
+                            case MotionEvent.ACTION_DOWN:
+                                startTime = System.currentTimeMillis();
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                if (System.currentTimeMillis() - startTime > SPACE_TIME) {
+                                    mItemTouchHelper.startDrag(myHolder);
+                                }
+                                break;
+                            case MotionEvent.ACTION_CANCEL:
+                            case MotionEvent.ACTION_UP:
+                                startTime = 0;
+                                break;
+                        }
 
-                        }
-                        return false;
                     }
+                    return false;
                 });
                 return myHolder;
             case TYPE_ALL_APPS:
                 final AppsViewHolder allHolder = new AppsViewHolder(inflater.inflate(R.layout.itemarrange_apps, parent, false));
-                allHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (isEditMode) {
-                            int pos = allHolder.getAdapterPosition();
-                            AppsItemEntity entity = listAllAppsItems.get(pos - listMyAppsItems.size() - COUNT_PRE_ALL_HEADER);
-                            if (!entity.isAdded) {
-                                addAppToMy(pos);
-                            }
-                        } else if (mAppsItemClickListener != null) {
-                            mAppsItemClickListener.onItemClick(v, allHolder.getAdapterPosition() - COUNT_PRE_ALL_HEADER - listMyAppsItems.size(), 1);
+                allHolder.itemView.setOnClickListener(v -> {
+                    if (isEditMode) {
+                        int pos = allHolder.getAdapterPosition();
+                        AppsItemEntity entity = listAllAppsItems.get(pos - listMyAppsItems.size() - COUNT_PRE_ALL_HEADER);
+                        if (!entity.isAdded) {
+                            addAppToMy(pos);
                         }
+                    } else if (mAppsItemClickListener != null) {
+                        mAppsItemClickListener.onItemClick(v, allHolder.getAdapterPosition() - COUNT_PRE_ALL_HEADER - listMyAppsItems.size(), 1);
                     }
                 });
-                allHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        if (!isEditMode) {
-                            edit();
-                        }
-                        return false;
+                allHolder.itemView.setOnLongClickListener(v -> {
+                    if (!isEditMode) {
+                        edit();
                     }
+                    return false;
                 });
                 return allHolder;
         }
@@ -287,7 +272,7 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         int visibleChildCount = recyclerView.getChildCount();
         for (int i = 0; i < visibleChildCount; i++) {
             View view = recyclerView.getChildAt(i);
-            ImageView ivMyReduceSign = (ImageView) view.findViewById(R.id.iv_editflag);
+            ImageView ivMyReduceSign = view.findViewById(R.id.iv_editflag);
             if (ivMyReduceSign != null) {
                 ivMyReduceSign.setVisibility(View.VISIBLE);
             }
@@ -304,8 +289,8 @@ public class AppsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
         AppsViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tv_name);
-            ivEditFlag = (ImageView) itemView.findViewById(R.id.iv_editflag);
+            tvName = itemView.findViewById(R.id.tv_name);
+            ivEditFlag = itemView.findViewById(R.id.iv_editflag);
         }
 
         @Override
