@@ -32,7 +32,6 @@ import java.util.ArrayList;
 
 import cn.sharesdk.util.ShareSocial;
 
-
 /**
  * 个人演示页
  */
@@ -127,11 +126,12 @@ public class ApiFragment extends BaseFragment implements View.OnClickListener {
             location();
         }
         if (v == listButton.get(1)) {
-            new ShareSocial(mActivity).setTitle("分享")
-                                      .setContent("分享内容")
-                                      .setTargetUrl("http://www.baidu.com")
-                                      .setImgUrl("http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg")
-                                      .share();
+            ShareSocial.instance()
+                       .setTitle("分享")
+                       .setContent("分享内容")
+                       .setTargetUrl("http://www.baidu.com")
+                       .setImgUrl("http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg")
+                       .share(mActivity);
         }
     }
 }

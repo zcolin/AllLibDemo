@@ -11,9 +11,9 @@ package com.zcolin.usedemo.amodule.mvc.demo_view.activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import com.zcolin.gui.webview.ZWebView;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
+import com.zcolin.zwebview.ZWebView;
 
 /**
  * 带JsBridge的webview的Demo

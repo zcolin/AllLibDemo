@@ -16,8 +16,8 @@ import android.widget.Button;
 
 import com.zcolin.frame.util.GsonUtil;
 import com.zcolin.gui.ZAlert;
-import com.zcolin.gui.webview.ZWebView;
-import com.zcolin.gui.webview.jsbridge.DefaultHandler;
+import com.zcolin.zwebview.ZWebView;
+import com.zcolin.zwebview.jsbridge.DefaultHandler;
 import com.zcolin.usedemo.R;
 import com.zcolin.usedemo.amodule.base.BaseActivity;
 

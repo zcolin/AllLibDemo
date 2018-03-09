@@ -10,7 +10,6 @@
 package com.zcolin.usedemo.amodule.mvc.main.activity;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 
 import com.zcolin.frame.util.DisplayUtil;
@@ -60,9 +59,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void setUpTab() {
-        tabView.initAsTabIcon(mViewPager);
-        tabView.setOnPageChangeListener(new MainPagerListener());
-
+        tabView.setUpViewPager(mViewPager);
         tabView.addZTab(getNewTab("View", R.drawable.icon_tab_mainpage, R.drawable.icon_tab_mainpage_s));
         tabView.addZTab(getNewTab("Db_Http", R.drawable.icon_tab_special, R.drawable.icon_tab_special_s));
         tabView.addZTab(getNewTab("视频图片", R.drawable.icon_tab_video, R.drawable.icon_tab_video_s));
@@ -81,29 +78,5 @@ public class MainActivity extends BaseActivity {
         tab.setCompoundDrawablePadding(padding);
         tab.setTextColor(getResources().getColorStateList(R.color.main_text_color_selector));
         return tab;
-    }
-
-
-    /*
-    * ViewPager监听类 
-    */
-    private class MainPagerListener implements ViewPager.OnPageChangeListener {
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
-
-        @Override
-        public void onPageSelected(int arg0) {
-            if (arg0 == 0) {
-
-            } else {
-
-            }
-        }
     }
 }

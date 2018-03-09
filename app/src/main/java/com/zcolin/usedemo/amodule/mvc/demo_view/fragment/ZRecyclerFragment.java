@@ -47,7 +47,7 @@ public class ZRecyclerFragment extends BaseFrameFrag {
 
     @Override
     protected void lazyLoad(@Nullable Bundle savedInstanceState) {
-        recyclerView = getView(R.id.pullLoadMoreRecyclerView);
+        recyclerView = getView(R.id.recycler_view);
         //recyclerView.setGridLayout(true, 2);  //默认为LinearLayoutManager
         //设置数据为空时的EmptyView，DataObserver是注册在adapter之上的，也就是setAdapter是注册上，notifyDataSetChanged的时候才会生效
         recyclerView.setEmptyView(mActivity, R.layout.view_pullrecycler_empty);

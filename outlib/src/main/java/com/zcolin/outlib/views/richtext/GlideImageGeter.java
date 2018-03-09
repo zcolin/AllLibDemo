@@ -19,10 +19,9 @@ import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.zcolin.frame.util.DisplayUtil;
 import com.zcolin.frame.util.ScreenUtil;
 import com.zcolin.outlib.R;
@@ -57,11 +56,11 @@ public class GlideImageGeter implements Html.ImageGetter {
 
         if (isGif(url)) {
             GifTarget target = new GifTarget();
-            Glide.with(mContext).load(url).asGif().into(target);
+            Glide.with(mContext).asGif().load(url).into(target);
             return target.getUrlDrawable();
         } else {
             BitmapTarget target = new BitmapTarget();
-            Glide.with(mContext).load(url).asBitmap().into(target);
+            Glide.with(mContext).asBitmap().load(url).into(target);
             return target.getUrlDrawable();
         }
     }
@@ -75,8 +74,12 @@ public class GlideImageGeter implements Html.ImageGetter {
         private final UrlDrawable urlDrawable = new UrlDrawable();
         private       int         padding     = DisplayUtil.dip2px(mContext, 0);
 
+        public UrlDrawable getUrlDrawable() {
+            return urlDrawable;
+        }
+
         @Override
-        public void onResourceReady(GifDrawable resource, GlideAnimation<? super GifDrawable> glideAnimation) {
+        public void onResourceReady(GifDrawable resource, Transition<? super GifDrawable> transition) {
             int w = ScreenUtil.getScreenWidth(mContext);
             int hh = resource.getIntrinsicHeight();
             int ww = resource.getIntrinsicWidth();
@@ -88,13 +91,9 @@ public class GlideImageGeter implements Html.ImageGetter {
             gifDrawables.add(resource);
             resource.setCallback(mTextView);
             resource.start();
-            resource.setLoopCount(GlideDrawable.LOOP_FOREVER);
+            resource.setLoopCount(GifDrawable.LOOP_FOREVER);
             mTextView.setText(mTextView.getText());
             mTextView.invalidate();
-        }
-
-        public UrlDrawable getUrlDrawable() {
-            return urlDrawable;
         }
     }
 
@@ -102,8 +101,12 @@ public class GlideImageGeter implements Html.ImageGetter {
         private final UrlDrawable urlDrawable = new UrlDrawable();
         private       int         padding     = DisplayUtil.dip2px(mContext, 0);
 
+        public UrlDrawable getUrlDrawable() {
+            return urlDrawable;
+        }
+
         @Override
-        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+        public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
             Drawable drawable = new BitmapDrawable(mContext.getResources(), resource);
             int w = ScreenUtil.getScreenWidth(mContext);
             int hh = drawable.getIntrinsicHeight();
@@ -115,10 +118,6 @@ public class GlideImageGeter implements Html.ImageGetter {
             urlDrawable.setDrawable(drawable);
             mTextView.setText(mTextView.getText());
             mTextView.invalidate();
-        }
-
-        public UrlDrawable getUrlDrawable() {
-            return urlDrawable;
         }
     }
 }

@@ -169,37 +169,38 @@ def getGitVersion() {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "com.android.support:recyclerview-v7:$supprotVersion"
-    compile "com.android.support:cardview-v7:$supprotVersion"
-    compile "com.android.support:design:$supprotVersion"
-    compile "com.github.zcolin:ZIjkPlayer:latest.release"//视频播放
-    compile "com.github.zcolin:ZEasyPR:latest.release"//车牌识别
-    compile "com.github.zcolin:ZFrame:latest.release"
-    compile "com.github.zcolin:ZBarCodeScanner:latest.release"//二维码扫描
-    compile "com.github.zcolin:Matisse:latest.release"//多图选择    
-    compile "com.github.zcolin:PullRecyclerView:latest.release"//下拉刷新
-    compile "com.github.zcolin:ZRecyclerView:latest.release"//下拉刷新
-    compile "com.github.zcolin:ZUILib:latest.release"//UI库 
-    compile "com.github.zcolin.TPartyLibs:libShareSdk:latest.release"
-    compile "com.github.zcolin.TPartyLibs:libAmapLocation:latest.release"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:recyclerview-v7:$supprotVersion"
+    implementation "com.android.support:cardview-v7:$supprotVersion"
+    implementation "com.android.support:design:$supprotVersion"
+    implementation "com.github.zcolin:ZIjkPlayer:latest.release"//视频播放
+    implementation "com.github.zcolin:ZEasyPR:latest.release"//车牌识别
+    implementation "com.github.zcolin:ZFrame:latest.release"
+    implementation "com.github.zcolin:ZBarCodeScanner:latest.release"//二维码扫描
+    implementation "com.github.zcolin:Matisse:latest.release"//多图选择    
+    implementation "com.github.zcolin:PullRecyclerView:latest.release"//下拉刷新
+    implementation "com.github.zcolin:ZRecyclerView:1.3.0+"//下拉刷新
+    implementation "com.github.zcolin:ZUILib:latest.release"//UI库 
+    implementation "com.github.zcolin.TPartyLibs:libShareSdk:latest.release"
+    implementation "com.github.zcolin.TPartyLibs:libAmapLocation:latest.release"
+    implementation 'com.github.zcolin:ZWebview:1.3'
     //    facebook调试工具 使用chrome查看，可以进行数据库和http报文查看
-    //    compile "com.facebook.stetho:stetho:1.4.2"
-    //    compile "com.facebook.stetho:stetho-okhttp3:1.4.2"
+    //    implementation "com.facebook.stetho:stetho:1.4.2"
+    //    implementation "com.facebook.stetho:stetho-okhttp3:1.4.2"
     //leakcanary
-    //    debugCompile "com.squareup.leakcanary:leakcanary-android:1.5"
-    //    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:1.5"
-    //    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:1.5"
-    compile project(":outlib")
+    //    debugimplementation "com.squareup.leakcanary:leakcanary-android:1.5"
+    //    releaseimplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.5"
+    //    testimplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.5"
+    implementation project(":outlib")
 
     // Dependencies for local unit tests
-    testCompile "junit:junit:4.11"
+    testImplementation "junit:junit:4.11"
     // required if you want to use Mockito for unit tests
-    testCompile "org.mockito:mockito-core:1.9.5"
+    testImplementation "org.mockito:mockito-core:1.9.5"
     // required if you want to use Powermock for unit tests
-    testCompile "org.powermock:powermock-module-junit4:1.5.6"
-    testCompile "org.powermock:powermock-module-junit4-rule:1.5.6"
-    testCompile "org.powermock:powermock-api-mockito:1.5.6"
+    testImplementation "org.powermock:powermock-module-junit4:1.5.6"
+    testImplementation "org.powermock:powermock-module-junit4-rule:1.5.6"
+    testImplementation "org.powermock:powermock-api-mockito:1.5.6"
 }
 
 

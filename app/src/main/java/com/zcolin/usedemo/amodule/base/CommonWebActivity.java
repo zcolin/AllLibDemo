@@ -14,7 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.zcolin.gui.webview.ZWebView;
+import com.zcolin.zwebview.ZWebView;
 import com.zcolin.usedemo.R;
 
 
