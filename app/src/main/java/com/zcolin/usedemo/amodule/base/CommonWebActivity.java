@@ -52,7 +52,8 @@ public class CommonWebActivity extends BaseActivity {
         }
 
         if (isShowProgressBar) {
-            zWebView.setSupportProgressBar();
+            zWebView.setSupportHorizontalProgressBar();
+            zWebView.setSupportCircleProgressBar();
         }
 
         if (isSupportVideo) {
@@ -76,6 +77,7 @@ public class CommonWebActivity extends BaseActivity {
         this.finish();
     }
 
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         zWebView.processResult(requestCode, resultCode, intent);

@@ -33,7 +33,8 @@ public class WebViewVideoActivity extends BaseActivity {
 
     protected void initView() {
         webView = getView(R.id.webView);
-        webView.setSupportVideoFullScreen(this).setSupportProgressBar();
+        webView.setSupportVideoFullScreen(this).setSupportHorizontalProgressBar();
+        webView.setSupportVideoFullScreen(this).setSupportCircleProgressBar();
     }
 
     @Override

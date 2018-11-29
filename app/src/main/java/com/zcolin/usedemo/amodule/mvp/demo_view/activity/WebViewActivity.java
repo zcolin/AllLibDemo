@@ -54,10 +54,9 @@ public class WebViewActivity extends BaseActivity implements OnClickListener {
             function.onCallBack("java 返回数据！！！");
             return true;
         }).show());
-        webView.registerStartActivity(mActivity);
-        webView.registerFinishActivity(mActivity);
         webView.setSupportChooseFile(mActivity);
-        webView.setSupportProgressBar();
+        webView.setSupportHorizontalProgressBar();
+        webView.setSupportCircleProgressBar();
     }
 
     public void loadUrl() {
